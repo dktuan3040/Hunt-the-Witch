@@ -144,14 +144,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12300899}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1703, y: 0.1697, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: 0.36, y: -0.01, z: 0}
   m_LocalScale: {x: 0.6352953, y: 0.6352953, z: 0.6352953}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 104138266}
   m_Father: {fileID: 263931744}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
 --- !u!212 &12300901
 SpriteRenderer:
   serializedVersion: 3
@@ -236,13 +236,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104138265}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.29, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: 0.46, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 12300900}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
 --- !u!1 &263931743
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 263931744}
   - component: {fileID: 263931745}
+  - component: {fileID: 263931746}
   m_Layer: 0
   m_Name: WeaponPivot
   m_TagString: Untagged
@@ -288,6 +289,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7a18ed27c88474080667fe792e0c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &263931746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263931743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30619b2f0c67054e9aef9ca921322bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponShoot
+  firePoint: {fileID: 104138266}
+  projectilePrefab: {fileID: 5488266359571220922, guid: 8d3f73b18e0c6184ab4a6b657118bba9, type: 3}
+  fireRate: 0.25
+  shootAction: {fileID: 9220610730435487027, guid: 7dceace61cea80a40801a811b5a16bca, type: 3}
 --- !u!1 &294620958
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,19 +365,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 294620959}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Move
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 1bb5a23c-1851-408b-a240-b987cc164bb4
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
@@ -413,7 +418,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!50 &294620961
