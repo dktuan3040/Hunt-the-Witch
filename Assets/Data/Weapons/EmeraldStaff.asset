@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 862c77c0a6a3b81448f0db70093ca38c, type: 3}
+  m_Name: EmeraldStaff
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponName: Emerald Staff
+  description: "C\xE2y g\u1EADy ng\u1ECDc b\xEDch c\u01A1 b\u1EA3n c\xE2n b\u1EB1ng
+    gi\u1EEFa t\u1EA7m bay, t\u1ED1c \u0111\u1ED9 v\xE0 s\xE1t th\u01B0\u01A1ng."
+  weaponSprite: {fileID: 1191002196291150918, guid: e1357a84f9787244c99aa371a2b4a1cc, type: 3}
+  weaponIcon: {fileID: 0}
+  projectilePrefab: {fileID: 5488266359571220922, guid: 8d3f73b18e0c6184ab4a6b657118bba9, type: 3}
+  primaryBulletSprite: {fileID: 0}
+  damage: 10
+  projectileSpeed: 12
+  range: 10
+  fireRate: 0.2
+  projectilesPerShot: 1
+  spreadAngle: 0
+  damageMultiplier: 1
+  muzzleFlashPrefab: {fileID: 0}
+  shootSound: {fileID: 0}
