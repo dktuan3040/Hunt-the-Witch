@@ -42,21 +42,24 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 2340998845
+    uniqueID: 2260011785
     locked: 0
   - name: Ground
+    uniqueID: 2340998845
+    locked: 0
+  - name: WalkInFront
     uniqueID: 3827292327
     locked: 0
-  - name: Environment
+  - name: Collision
     uniqueID: 3828869843
     locked: 0
-  - name: Character
+  - name: Player
     uniqueID: 3432736305
     locked: 0
-  - name: Effect
+  - name: WalkInBehind
     uniqueID: 2365842377
     locked: 0
-  - name: UI
+  - name: Decor
     uniqueID: 661934245
     locked: 0
   m_RenderingLayers:
