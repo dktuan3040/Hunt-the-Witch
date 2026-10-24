@@ -1,33 +1,93 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5.0f;
+
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private PlayerInput playerInput;
+    private HitFeedback hitFeedback;
+
+
+    private float skinSpeedBonus = 0f;
+
+    public float CurrentMoveSpeed => moveSpeed + skinSpeedBonus;
+
+    public void SetSkinSpeedBonus(float bonus)
+    {
+        skinSpeedBonus = bonus;
+    }
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        playerInput = GetComponent<PlayerInput>();
+        hitFeedback = GetComponent<HitFeedback>();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        animator.SetBool("isWalking", moveInput != Vector2.zero);
+        // Tự động liên kết sự kiện từ PlayerInput, tránh bị lỗi quên kéo trong Unity Inspector
+        if (playerInput != null && playerInput.actions != null)
+        {
+            var moveAction = playerInput.actions["Move"];
+            if (moveAction != null)
+            {
+                moveAction.performed += OnMoveInput;
+                moveAction.canceled += OnMoveInput;
+            }
+        }
     }
-    void FixedUpdate()
+
+    private void OnDisable()
     {
-        rb.linearVelocity = moveInput * moveSpeed;
+        if (playerInput != null && playerInput.actions != null)
+        {
+            var moveAction = playerInput.actions["Move"];
+            if (moveAction != null)
+            {
+                moveAction.performed -= OnMoveInput;
+                moveAction.canceled -= OnMoveInput;
+            }
+        }
     }
+
+    private void OnMoveInput(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+    }
+
+    // Giữ hàm Move để tương thích ngược nếu cấu hình qua UnityEvent trong Inspector
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
     }
 
+    void Update()
+    {
+        if (animator != null)
+        {
+            animator.SetBool("isWalking", moveInput != Vector2.zero);
+        }
+    }
+
+void FixedUpdate()
+    {
+        // Đang bị knockback thì để HitFeedback điều khiển velocity
+        if (hitFeedback != null && hitFeedback.IsKnockedBack) return;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = moveInput * CurrentMoveSpeed;
+        }
+    }
 }

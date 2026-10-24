@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291310aa392567345921f935753ffed6, type: 3}
+  m_Name: FireWindSynergyRecipe
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSynergyData
+  synergyName: "B\xE3o L\u1EEDa (Firestorm Synergy)"
+  description: "K\u1EBFt h\u1EE3p L\u1EEDa v\xE0 Gi\xF3 \u0111\u1EC3 t\u1EA1o ra
+    B\xE3o L\u1EEDa!"
+  requiredSkills:
+  - {fileID: 11400000, guid: 6ffd9be800543aa42a4303ed4eb459e5, type: 2}
+  - {fileID: 11400000, guid: 4b35d14ae12eaf6488c52a18a8b3c5e9, type: 2}
+  resultingSynergySkill: {fileID: 11400000, guid: a1f346b89381c5e45964713e42112ea2, type: 2}
