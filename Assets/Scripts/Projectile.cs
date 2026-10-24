@@ -8,7 +8,12 @@ public class Projectile : MonoBehaviour
     [Tooltip("Gán ProjectileData để dùng các thông số định nghĩa sẵn, hoặc để trống để dùng thông số bên dưới.")]
     [SerializeField] private ProjectileData projectileData;
 
-    [Header("Visual References")]
+    [Header("Phe")]
+    [Tooltip("Phe của người bắn. Đạn chỉ gây sát thương cho phe khác và bay xuyên qua phe mình. Đạn của enemy: để Enemy (hoặc EnemyAI sẽ tự set).")]
+    [SerializeField] private Team team = Team.Player;
+
+    
+[Header("Visual References")]
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
 
@@ -26,6 +31,7 @@ public class Projectile : MonoBehaviour
     private int currentPierce;
     private int finalDamage;
     private bool isInitialized = false;
+    private bool consumed = false; // đã hết xuyên thấu / đã nổ, bỏ qua va chạm thừa trong cùng frame
 
     private void Awake()
     {
@@ -34,7 +40,14 @@ public class Projectile : MonoBehaviour
         if (animator == null) animator = GetComponentInChildren<Animator>();
     }
 
-    void Start()
+    /// <summary>Đặt phe cho đạn (EnemyAI gọi khi bắn để đạn chỉ trúng Player).</summary>
+    public void SetTeam(Team newTeam)
+    {
+        team = newTeam;
+    }
+
+    
+void Start()
     {
         if (!isInitialized)
         {
@@ -139,36 +152,36 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Bỏ qua nhân vật bắn
-        if (collision.CompareTag("Player"))
-        {
-            return;
-        }
+        // Đạn đã hết xuyên thấu (đang chờ bị Destroy cuối frame)
+        if (consumed) return;
 
-        // Kiểm tra đối tượng có nhận sát thương không (Enemy, Boss, Thùng vỡ...)
-        if (collision.TryGetComponent<IDamageable>(out var damageable))
+        // Đối tượng nhận sát thương (Player, Enemy, Boss, Thùng vỡ...)
+        var damageable = collision.GetComponentInParent<IDamageable>();
+        if (damageable != null)
         {
-            damageable.TakeDamage(finalDamage);
-        }
+            // Cùng phe hoặc đã chết thì đạn bay xuyên qua
+            if (damageable.Team == team || damageable.IsDead) return;
 
-        // Xử lý va chạm với quái
-        if (collision.CompareTag("Enemy"))
-        {
+            // Health lo trừ máu, hiệu ứng dính đòn (nháy đỏ + knockback) và animation chết
+            damageable.TakeDamage(finalDamage, moveDirection);
+
             SpawnImpactEffects();
             currentPierce--;
 
             if (currentPierce <= 0)
             {
+                consumed = true;
                 Destroy(gameObject);
             }
             return;
         }
 
-        // Chạm tường hoặc vật cản
-        if (collision.CompareTag("Wall") || collision.CompareTag("Obstacle"))
+        // Chạm tường (layer Wall)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
+            consumed = true;
             SpawnImpactEffects();
             Destroy(gameObject);
         }

@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private PlayerInput playerInput;
+    private HitFeedback hitFeedback;
+
 
     private float skinSpeedBonus = 0f;
 
@@ -28,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         playerInput = GetComponent<PlayerInput>();
+        hitFeedback = GetComponent<HitFeedback>();
+
     }
 
     private void OnEnable()
@@ -76,8 +80,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+void FixedUpdate()
     {
+        // Đang bị knockback thì để HitFeedback điều khiển velocity
+        if (hitFeedback != null && hitFeedback.IsKnockedBack) return;
+
         if (rb != null)
         {
             rb.linearVelocity = moveInput * CurrentMoveSpeed;
