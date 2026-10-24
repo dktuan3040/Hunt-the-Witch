@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e147e7b0249a136408994a7de861dfcf, type: 3}
+  m_Name: FirestormSynergySkill
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  skillId: firestorm
+  skillName: "\u2605 B\xE3o L\u1EEDa (Firestorm)"
+  description: "Synergy [L\u1EEDa + Gi\xF3]. Chu\u1ED9t ph\u1EA3i k\xEDch ho\u1EA1t
+    Ultimate: b\xE3o l\u1EEDa 12 tia t\u1ECFa r\u1ED9ng 75 \u0111\u1ED9 h\u1EE7y
+    di\u1EC7t (H\u1ED3i chi\xEAu: 6s)!"
+  skillIcon: {fileID: 0}
+  themeColor: {r: 1, g: 0.2, b: 0.8, a: 1}
+  elementTag: FireWind
+  isSynergySkill: 1
+  ultimateProjectile: {fileID: 0}
+  ultimateCooldown: 6
+  ultimateProjectilesPerShot: 12
+  ultimateSpreadAngle: 75
+  ultimateMuzzleFlash: {fileID: 0}
+  ultimateSound: {fileID: 0}

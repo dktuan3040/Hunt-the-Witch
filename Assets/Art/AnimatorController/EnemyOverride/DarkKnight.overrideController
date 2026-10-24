@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DarkKnight
+  m_Controller: {fileID: 9100000, guid: 9c3114d337a468f4680e8780e35c38b2, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 01b738f89c2b38d4fa7101458c0cc5dc, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 01b738f89c2b38d4fa7101458c0cc5dc, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 581de3c91336d2d4b8c801dd350f4778, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 581de3c91336d2d4b8c801dd350f4778, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 88bb056a2229474438ee976f40555db6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 88bb056a2229474438ee976f40555db6, type: 2}

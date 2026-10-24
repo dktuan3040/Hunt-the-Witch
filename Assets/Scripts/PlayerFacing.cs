@@ -5,14 +5,20 @@ public class PlayerFacing : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer playerSprite;
     private Camera mainCamera;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    void Awake()
+    {
+        if (playerSprite == null)
+        {
+            playerSprite = GetComponentInChildren<SpriteRenderer>();
+        }
+    }
+
     void Start()
     {
         mainCamera = Camera.main;
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateFacing();
@@ -20,14 +26,19 @@ public class PlayerFacing : MonoBehaviour
 
     private void UpdateFacing()
     {
+        if (Mouse.current == null || mainCamera == null || playerSprite == null)
+        {
+            return;
+        }
+
         Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mouseScreenPosition);
 
-        if(mouseWorldPosition.x > transform.position.x)
+        if (mouseWorldPosition.x > transform.position.x)
         {
             playerSprite.flipX = false;
         }
-        else if(mouseWorldPosition.x < transform.position.x)
+        else if (mouseWorldPosition.x < transform.position.x)
         {
             playerSprite.flipX = true;
         }
