@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Hunt-the-Witch.slnx"
+    "dotnet.defaultSolution": "Hunt the Witch.slnx"
 }
