@@ -26,7 +26,16 @@ public class Projectile : MonoBehaviour
     [SerializeField] private GameObject impactVfxPrefab;
     [SerializeField] private AudioClip impactSound;
 
-    private Rigidbody2D rb;
+    [Header("Cắm vào mục tiêu")]
+    [Tooltip("Bật: khi trúng mục tiêu (hết xuyên thấu) đạn cắm lại vào mục tiêu một lúc rồi mới biến mất.")]
+    [SerializeField] private bool stickToTarget = false;
+    [SerializeField] private float stickDuration = 0.5f;
+    [Tooltip("Đạn đâm sâu thêm bao nhiêu vào người mục tiêu khi cắm (đơn vị world).")]
+    [SerializeField] private float stickDepth = 0.15f;
+
+
+    
+private Rigidbody2D rb;
     private Vector2 moveDirection;
     private int currentPierce;
     private int finalDamage;
@@ -154,17 +163,13 @@ void Start()
 
 private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Đạn đã hết xuyên thấu (đang chờ bị Destroy cuối frame)
         if (consumed) return;
 
-        // Đối tượng nhận sát thương (Player, Enemy, Boss, Thùng vỡ...)
         var damageable = collision.GetComponentInParent<IDamageable>();
         if (damageable != null)
         {
-            // Cùng phe hoặc đã chết thì đạn bay xuyên qua
             if (damageable.Team == team || damageable.IsDead) return;
 
-            // Health lo trừ máu, hiệu ứng dính đòn (nháy đỏ + knockback) và animation chết
             damageable.TakeDamage(finalDamage, moveDirection);
 
             SpawnImpactEffects();
@@ -173,12 +178,12 @@ private void OnTriggerEnter2D(Collider2D collision)
             if (currentPierce <= 0)
             {
                 consumed = true;
-                Destroy(gameObject);
+                if (stickToTarget) StickTo(collision.transform);
+                else Destroy(gameObject);
             }
             return;
         }
 
-        // Chạm tường (layer Wall)
         if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
             consumed = true;
@@ -186,6 +191,18 @@ private void OnTriggerEnter2D(Collider2D collision)
             Destroy(gameObject);
         }
     }
+
+private void StickTo(Transform target)
+    {
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        rb.simulated = false;
+        foreach (var col in GetComponentsInChildren<Collider2D>()) col.enabled = false;
+        transform.position += (Vector3)(moveDirection * stickDepth);
+        transform.SetParent(target, true);
+        Destroy(gameObject, stickDuration);
+    }
+
 
     private void SpawnImpactEffects()
     {
