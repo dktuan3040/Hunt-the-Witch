@@ -223,7 +223,7 @@ public class EnemyAI : MonoBehaviour
         if (!HasValidTarget) return;
 
         if (attackType == EnemyAttackType.Melee) MeleeHit();
-        else FireProjectile();
+        // else FireProjectile();
     }
 
     private void MeleeHit()
