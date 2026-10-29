@@ -43,6 +43,9 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float attackDuration = 0.85f;
     [Tooltip("Thời điểm đòn đánh trúng / đạn bay ra, tính từ lúc bắt đầu animation Attack (giây)")]
     [SerializeField] private float attackHitTime = 0.4f;
+    [Tooltip("Bật = đòn đánh gây sát thương qua Animation Event gọi DealDamage() thay vì tự tính theo attackHitTime")]
+    [SerializeField] private bool damageByAnimationEvent = false;
+
 
     [Header("Cận chiến")]
     [Tooltip("Tâm vùng đánh cách enemy bao xa (về phía player)")]
@@ -200,7 +203,7 @@ public class EnemyAI : MonoBehaviour
         rb.linearVelocity = desiredVelocity;
     }
 
-    private IEnumerator AttackRoutine()
+private IEnumerator AttackRoutine()
     {
         isAttacking = true;
         desiredVelocity = Vector2.zero;
@@ -209,7 +212,8 @@ public class EnemyAI : MonoBehaviour
 
         yield return new WaitForSeconds(attackHitTime);
 
-        if (!health.IsDead) PerformAttack();
+        // Nếu dùng Animation Event thì sát thương do DealDamage() xử lý
+        if (!damageByAnimationEvent && !health.IsDead) PerformAttack();
 
         yield return new WaitForSeconds(Mathf.Max(0f, attackDuration - attackHitTime));
 
@@ -217,6 +221,14 @@ public class EnemyAI : MonoBehaviour
         isAttacking = false;
         nextAttackTime = Time.time + attackCooldown;
     }
+
+/// <summary>Gọi từ Animation Event trong clip Attack (chỉ có tác dụng khi damageByAnimationEvent = true).</summary>
+    public void DealDamage()
+    {
+        if (!damageByAnimationEvent || !isAttacking || health.IsDead) return;
+        PerformAttack();
+    }
+
 
     private void PerformAttack()
     {
