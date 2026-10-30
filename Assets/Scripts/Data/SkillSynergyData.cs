@@ -31,7 +31,7 @@ public class SkillSynergyData : ScriptableObject
     {
         matchedSlotIndices = new List<int>();
 
-        if (requiredSkills == null || requiredSkills.Count == 0 || resultingSynergySkill == null)
+        if (currentSlots == null || requiredSkills == null || requiredSkills.Count < 2 || resultingSynergySkill == null)
         {
             return false;
         }
@@ -40,10 +40,8 @@ public class SkillSynergyData : ScriptableObject
         List<string> neededSkillIds = new List<string>();
         foreach (var req in requiredSkills)
         {
-            if (req != null)
-            {
-                neededSkillIds.Add(req.SkillId);
-            }
+            if (req == null) return false;
+            neededSkillIds.Add(req.SkillId);
         }
 
         List<int> candidateIndices = new List<int>();
