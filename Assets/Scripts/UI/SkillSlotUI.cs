@@ -1,114 +1,175 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Quản lý hiển thị cho 1 ô Skill (Q hoặc E):
+/// - Hiển thị icon skill (nằm dưới viền SkillBorder)
+/// - Bật / tắt object Selected khi ô được chọn
+/// - Làm mờ nhạt (dim) màu sắc khi ô không được chọn
+/// </summary>
 public class SkillSlotUI : MonoBehaviour
 {
-    [Header("UI References")]
-    [SerializeField] private Image slotBackground;
+    [Header("UI Elements")]
+    [Tooltip("Ảnh hiển thị icon kỹ năng (nằm dưới viền SkillBorder)")]
     [SerializeField] private Image skillIcon;
-    [SerializeField] private Image cooldownOverlay; // Image dạng Filled (Radial 360 hoặc Vertical)
-    [SerializeField] private Text cooldownText;
-    [SerializeField] private Image activeBorder;
-    [SerializeField] private Text keyLabelText;
-    [SerializeField] private Text skillNameText;
 
-    // Public Properties để cấu hình tự động khi sinh Canvas
-    public Image SlotBackground { get => slotBackground; set => slotBackground = value; }
-    public Image SkillIcon { get => skillIcon; set => skillIcon = value; }
-    public Image CooldownOverlay { get => cooldownOverlay; set => cooldownOverlay = value; }
-    public Text CooldownText { get => cooldownText; set => cooldownText = value; }
-    public Image ActiveBorder { get => activeBorder; set => activeBorder = value; }
-    public Text KeyLabelText { get => keyLabelText; set => keyLabelText = value; }
-    public Text SkillNameText { get => skillNameText; set => skillNameText = value; }
+    [Tooltip("Ảnh khung viền kỹ năng")]
+    [SerializeField] private Image skillBorder;
 
-    public void SetKeyLabel(string key)
+    [Tooltip("Object Selected (chỉ hiện khi nhấn chọn skill)")]
+    [SerializeField] private GameObject selectedObject;
+
+    [Tooltip("Text phím bấm (Q hoặc E)")]
+    [SerializeField] private TMP_Text keyText;
+
+    [Header("Alpha Settings (Độ nhạt khi không chọn)")]
+    [Tooltip("CanvasGroup để làm mờ toàn bộ ô khi không chọn")]
+    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private float selectedAlpha = 1.0f;
+    [SerializeField] private float unselectedAlpha = 0.55f;
+
+    private bool isCoolingDown;
+    private Color readyIconColor = Color.white;
+    private Material readyIconMaterial;
+    private Material cooldownMaterial;
+
+    public Image SkillIcon => skillIcon;
+    public Image SkillBorder => skillBorder;
+    public GameObject SelectedObject => selectedObject;
+    public TMP_Text KeyText => keyText;
+
+    private void Awake()
     {
-        if (keyLabelText != null)
+        if (canvasGroup == null)
         {
-            keyLabelText.text = key;
+            canvasGroup = GetComponent<CanvasGroup>();
+            if (canvasGroup == null) canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        }
+
+        AutoFindReferences();
+    }
+
+    public void AutoFindReferences()
+    {
+        if (skillIcon == null)
+        {
+            var iconTr = transform.Find("SkillIcon") ?? transform.Find("SkillBorder/SkillIcon");
+            if (iconTr != null) skillIcon = iconTr.GetComponent<Image>();
+        }
+
+        if (skillBorder == null)
+        {
+            var borderTr = transform.Find("SkillBorder");
+            if (borderTr != null) skillBorder = borderTr.GetComponent<Image>();
+        }
+
+        if (selectedObject == null)
+        {
+            var selTr = transform.Find("Selected");
+            if (selTr != null) selectedObject = selTr.gameObject;
+        }
+
+        if (keyText == null)
+        {
+            var titleTr = transform.Find("Title");
+            if (titleTr != null) keyText = titleTr.GetComponent<TMP_Text>();
+        }
+
+        if (canvasGroup == null)
+        {
+            canvasGroup = GetComponent<CanvasGroup>() ?? gameObject.AddComponent<CanvasGroup>();
         }
     }
 
+    /// <summary>
+    /// Bật/tắt trạng thái được chọn:
+    /// - Khi được chọn: hiện Selected, alpha = 1.0 (sáng rõ)
+    /// - Khi không được chọn: ẩn Selected, alpha = 0.55 (nhạt hơn)
+    /// </summary>
+    public void SetSelected(bool isSelected)
+    {
+        if (selectedObject != null)
+        {
+            selectedObject.SetActive(isSelected);
+        }
+
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = isSelected ? selectedAlpha : unselectedAlpha;
+        }
+    }
+
+    /// <summary>
+    /// Cập nhật hình ảnh icon của Skill
+    /// </summary>
     public void UpdateSkill(SkillData skill)
     {
-        if (skill != null)
+        if (skillIcon == null) return;
+
+        if (skill != null && skill.SkillIcon != null)
         {
-            if (skillIcon != null)
-            {
-                skillIcon.gameObject.SetActive(true);
-                skillIcon.sprite = skill.SkillIcon;
-                // Nếu chưa có sprite icon thì lấy màu nguyên tố để dễ nhận biết
-                skillIcon.color = skill.SkillIcon != null ? Color.white : skill.ThemeColor;
-            }
-
-            if (skillNameText != null)
-            {
-                skillNameText.text = skill.SkillName;
-                skillNameText.color = skill.IsSynergySkill ? new Color(1f, 0.4f, 1f) : skill.ThemeColor;
-            }
-
-            if (slotBackground != null)
-            {
-                slotBackground.color = new Color(0.12f, 0.12f, 0.18f, 0.9f);
-            }
+            skillIcon.gameObject.SetActive(true);
+            skillIcon.sprite = skill.SkillIcon;
+            readyIconColor = Color.white;
+            skillIcon.preserveAspect = true;
+        }
+        else if (skill != null)
+        {
+            skillIcon.gameObject.SetActive(true);
+            skillIcon.sprite = null;
+            readyIconColor = skill.ThemeColor;
         }
         else
         {
-            if (skillIcon != null)
-            {
-                skillIcon.gameObject.SetActive(false);
-            }
-
-            if (skillNameText != null)
-            {
-                skillNameText.text = "(Trống)";
-                skillNameText.color = new Color(0.6f, 0.6f, 0.6f, 0.7f);
-            }
-
-            if (slotBackground != null)
-            {
-                slotBackground.color = new Color(0.08f, 0.08f, 0.08f, 0.6f);
-            }
-
-            UpdateCooldown(0f, 1f);
+            skillIcon.gameObject.SetActive(false);
         }
+
+        ApplyCooldownAppearance();
     }
 
-    public void SetActive(bool isActive)
+    public void SetCooldown(float remaining)
     {
-        if (activeBorder != null)
-        {
-            activeBorder.gameObject.SetActive(isActive);
-        }
+        bool coolingDown = remaining > 0f;
+        if (isCoolingDown == coolingDown) return;
+        isCoolingDown = coolingDown;
+        ApplyCooldownAppearance();
     }
 
-    public void UpdateCooldown(float current, float max)
+    private void ApplyCooldownAppearance()
     {
-        if (current > 0f && max > 0f)
+        if (skillIcon == null) return;
+
+        if (isCoolingDown)
         {
-            if (cooldownOverlay != null)
+            if (cooldownMaterial == null)
             {
-                cooldownOverlay.gameObject.SetActive(true);
-                cooldownOverlay.fillAmount = current / max;
+                var shader = Resources.Load<Shader>("SkillCooldownGrayscale");
+                if (shader != null)
+                {
+                    cooldownMaterial = new Material(shader);
+                    cooldownMaterial.hideFlags = HideFlags.HideAndDontSave;
+                }
             }
 
-            if (cooldownText != null)
-            {
-                cooldownText.gameObject.SetActive(true);
-                cooldownText.text = current >= 1.0f ? $"{current:F0}s" : $"{current:F1}s";
-            }
+            if (skillIcon.material != cooldownMaterial)
+                readyIconMaterial = skillIcon.material;
+            if (cooldownMaterial != null) skillIcon.material = cooldownMaterial;
+            skillIcon.color = new Color(0.7f, 0.7f, 0.7f, readyIconColor.a);
         }
         else
         {
-            if (cooldownOverlay != null)
-            {
-                cooldownOverlay.gameObject.SetActive(false);
-            }
-
-            if (cooldownText != null)
-            {
-                cooldownText.gameObject.SetActive(false);
-            }
+            if (cooldownMaterial != null && skillIcon.material == cooldownMaterial)
+                skillIcon.material = readyIconMaterial;
+            skillIcon.color = readyIconColor;
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (cooldownMaterial == null) return;
+        if (skillIcon != null && skillIcon.material == cooldownMaterial)
+            skillIcon.material = readyIconMaterial;
+        Destroy(cooldownMaterial);
     }
 }

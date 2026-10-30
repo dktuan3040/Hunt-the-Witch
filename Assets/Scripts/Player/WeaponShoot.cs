@@ -78,7 +78,7 @@ public class WeaponShoot : MonoBehaviour
 
     private void HandleDirectMouseInput()
     {
-        if (Mouse.current == null) return;
+        if (PauseMenuUI.CombatInputBlocked || Mouse.current == null) return;
 
         // Chuột trái: Bắn spam liên tục (nhấn giữ hoặc nhấp) theo thông số của Gậy
         if (Mouse.current.leftButton.isPressed)
@@ -86,15 +86,12 @@ public class WeaponShoot : MonoBehaviour
             ShootPrimary();
         }
 
-        // Chuột phải: Kích hoạt Ultimate của Skill đang chọn (có cooldown)
-        if (Mouse.current.rightButton.wasPressedThisFrame)
-        {
-            ShootUltimate();
-        }
     }
 
     private void OnEnable()
     {
+        if (skillManager != null) skillManager.OnSkillUseRequested += ShootUltimate;
+
         if (shootAction != null)
         {
             shootAction.action.performed += OnShootInput;
@@ -104,6 +101,8 @@ public class WeaponShoot : MonoBehaviour
 
     private void OnDisable()
     {
+        if (skillManager != null) skillManager.OnSkillUseRequested -= ShootUltimate;
+
         if (shootAction != null)
         {
             shootAction.action.performed -= OnShootInput;
@@ -121,9 +120,8 @@ public class WeaponShoot : MonoBehaviour
     /// </summary>
     public void EquipWeapon(WeaponData newWeapon)
     {
-        if (newWeapon == null) return;
-
         currentWeapon = newWeapon;
+        if (newWeapon == null) return;
 
         // Cập nhật hình ảnh cây gậy trên tay
         if (weaponSpriteRenderer != null && newWeapon.WeaponSprite != null)
@@ -137,6 +135,7 @@ public class WeaponShoot : MonoBehaviour
     /// </summary>
     public void ShootPrimary()
     {
+        if (!isActiveAndEnabled || PauseMenuUI.CombatInputBlocked) return;
         if (Time.time < nextFireTime) return;
 
         Projectile effectivePrefab = (currentWeapon != null && currentWeapon.ProjectilePrefab != null)
@@ -180,11 +179,11 @@ public class WeaponShoot : MonoBehaviour
     }
 
     /// <summary>
-    /// Bắn chiêu Ultimate (Chuột phải) - Uy lực mạnh, có cooldown
+    /// Bắn chiêu Ultimate (Q/E) - Uy lực mạnh, có cooldown
     /// </summary>
     public void ShootUltimate()
     {
-        if (skillManager == null) return;
+        if (!isActiveAndEnabled || PauseMenuUI.CombatInputBlocked || skillManager == null) return;
 
         SkillData activeSkill = skillManager.GetActiveSkill();
         if (activeSkill == null) return;

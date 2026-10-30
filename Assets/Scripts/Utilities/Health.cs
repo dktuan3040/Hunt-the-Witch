@@ -77,6 +77,15 @@ public class Health : MonoBehaviour, IDamageable
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
     }
 
+    // Restore on a fresh scene Player after Awake and before gameplay starts.
+    public void RestoreSessionState(int current, int maximum)
+    {
+        maxHealth = Mathf.Max(1, maximum);
+        CurrentHealth = Mathf.Clamp(current, 0, maxHealth);
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
+        if (CurrentHealth == 0 && !IsDead) Die();
+    }
+
     public void TakeDamage(int damage)
     {
         TakeDamage(damage, Vector2.zero);

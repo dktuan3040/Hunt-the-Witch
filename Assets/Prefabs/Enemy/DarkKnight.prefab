@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   team: 1
-  maxHealth: 15
+  maxHealth: 1
   invincibleTime: 0
   animator: {fileID: 0}
   isDeadParameter: isDead

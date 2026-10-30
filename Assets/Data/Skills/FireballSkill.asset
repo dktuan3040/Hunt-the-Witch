@@ -16,7 +16,7 @@ MonoBehaviour:
   skillName: "L\u1EEDa (Fireball)"
   description: "Ph\xE9p thu\u1EADt l\u1EEDa. Chu\u1ED9t ph\u1EA3i k\xEDch ho\u1EA1t
     Ultimate: ch\xF9m 5 c\u1EA7u l\u1EEDa b\xF9ng n\u1ED5 (H\u1ED3i chi\xEAu: 5s)."
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: -6607481912129624618, guid: e099ae5e713cea34f87112a756e21427, type: 3}
   themeColor: {r: 1, g: 0.45, b: 0.1, a: 1}
   elementTag: Fire
   isSynergySkill: 0

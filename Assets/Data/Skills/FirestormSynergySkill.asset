@@ -17,7 +17,7 @@ MonoBehaviour:
   description: "Synergy [L\u1EEDa + Gi\xF3]. Chu\u1ED9t ph\u1EA3i k\xEDch ho\u1EA1t
     Ultimate: b\xE3o l\u1EEDa 12 tia t\u1ECFa r\u1ED9ng 75 \u0111\u1ED9 h\u1EE7y
     di\u1EC7t (H\u1ED3i chi\xEAu: 6s)!"
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: 4006003791991473683, guid: c60e7b4c0c6ea3743a0daeb427d531d5, type: 3}
   themeColor: {r: 1, g: 0.2, b: 0.8, a: 1}
   elementTag: FireWind
   isSynergySkill: 1

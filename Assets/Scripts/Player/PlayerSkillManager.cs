@@ -22,16 +22,38 @@ public class PlayerSkillManager : MonoBehaviour
     private InputAction boundSlot1Action;
     private InputAction boundSlot2Action;
 
-    // Bộ đếm thời gian hồi chiêu Ultimate cho từng slot riêng biệt
+    // Normal skills cool down independently; linked synergy slots share a cooldown.
     private float[] ultimateCooldownTimers = new float[2];
 
     // Events để kết nối Canvas UI
     public event Action<int, SkillData> OnSlotSkillChanged;
+
+    // Notify the HUD when the selected skill slot changes.
     public event Action<int> OnActiveSlotChanged;
+    public event Action OnSkillUseRequested;
+
+    private readonly int[] lastActivationFrames = { -1, -1 };
+
     public event Action<int, float, float> OnCooldownUpdated; // slotIndex, current, max
 
     public int ActiveSlotIndex => activeSlotIndex;
     public SkillData[] Slots => slots;
+
+    public bool HasLinkedSynergy
+    {
+        get
+        {
+            if (slots == null || slots.Length < 2 || slots[0] == null || slots[0] != slots[1])
+                return false;
+            if (slots[0].IsSynergySkill) return true;
+            if (synergyDatabase != null)
+            {
+                foreach (var recipe in synergyDatabase)
+                    if (recipe != null && recipe.ResultingSynergySkill == slots[0]) return true;
+            }
+            return false;
+        }
+    }
 
     private void Awake()
     {
@@ -103,23 +125,25 @@ public class PlayerSkillManager : MonoBehaviour
 
     private void Update()
     {
-        // Dự phòng phím cứng nếu Action chưa được tạo trong file Input Actions
-        if (boundSlot1Action == null && skillSlot1Action == null && Keyboard.current != null)
+        // Fall back independently for each slot when no Input Action is assigned.
+        if (Time.timeScale > 0f && Keyboard.current != null)
         {
-            if (Keyboard.current.qKey.wasPressedThisFrame) SelectSlot(0);
-            else if (Keyboard.current.eKey.wasPressedThisFrame) SelectSlot(1);
+            if (boundSlot1Action == null && skillSlot1Action == null && Keyboard.current.qKey.wasPressedThisFrame)
+                ActivateSlot(0);
+            if (boundSlot2Action == null && skillSlot2Action == null && Keyboard.current.eKey.wasPressedThisFrame)
+                ActivateSlot(1);
         }
 
         UpdateCooldowns();
     }
 
     // Callbacks khi nhận Input Action
-    private void OnSlot1Performed(InputAction.CallbackContext context) => SelectSlot(0);
-    private void OnSlot2Performed(InputAction.CallbackContext context) => SelectSlot(1);
+    private void OnSlot1Performed(InputAction.CallbackContext context) => ActivateSlot(0);
+    private void OnSlot2Performed(InputAction.CallbackContext context) => ActivateSlot(1);
 
     // Callbacks công khai dành cho UnityEvents trong PlayerInput Inspector
-    public void OnSkillSlot1(InputAction.CallbackContext context) { if (context.performed) SelectSlot(0); }
-    public void OnSkillSlot2(InputAction.CallbackContext context) { if (context.performed) SelectSlot(1); }
+    public void OnSkillSlot1(InputAction.CallbackContext context) { if (context.performed) ActivateSlot(0); }
+    public void OnSkillSlot2(InputAction.CallbackContext context) { if (context.performed) ActivateSlot(1); }
 
     private void UpdateCooldowns()
     {
@@ -137,6 +161,19 @@ public class PlayerSkillManager : MonoBehaviour
                 OnCooldownUpdated?.Invoke(i, ultimateCooldownTimers[i], maxCooldown);
             }
         }
+    }
+
+    // Selecting the initial slot in Start must not automatically cast a skill.
+    public void ActivateSlot(int index)
+    {
+        if (!isActiveAndEnabled || PauseMenuUI.CombatInputBlocked) return;
+        if (index < 0 || index >= slots.Length || index >= lastActivationFrames.Length) return;
+        // PlayerInput UnityEvents and performed callbacks can report the same press.
+        if (lastActivationFrames[index] == Time.frameCount) return;
+        lastActivationFrames[index] = Time.frameCount;
+
+        SelectSlot(index);
+        OnSkillUseRequested?.Invoke();
     }
 
     public void SelectSlot(int index)
@@ -161,7 +198,7 @@ public class PlayerSkillManager : MonoBehaviour
         SkillData activeSkill = GetActiveSkill();
         if (activeSkill == null) return false;
 
-        return ultimateCooldownTimers[activeSlotIndex] <= 0f;
+        return GetCooldownRemaining(activeSlotIndex) <= 0f;
     }
 
     public void TriggerUltimateCooldown()
@@ -169,8 +206,20 @@ public class PlayerSkillManager : MonoBehaviour
         SkillData activeSkill = GetActiveSkill();
         if (activeSkill == null) return;
 
-        ultimateCooldownTimers[activeSlotIndex] = activeSkill.UltimateCooldown;
-        OnCooldownUpdated?.Invoke(activeSlotIndex, activeSkill.UltimateCooldown, activeSkill.UltimateCooldown);
+        float cooldown = Mathf.Max(0f, activeSkill.UltimateCooldown);
+        if (HasLinkedSynergy)
+        {
+            // Lock both buttons before notifying UI or other listeners.
+            ultimateCooldownTimers[0] = cooldown;
+            ultimateCooldownTimers[1] = cooldown;
+            OnCooldownUpdated?.Invoke(0, cooldown, cooldown);
+            OnCooldownUpdated?.Invoke(1, cooldown, cooldown);
+        }
+        else
+        {
+            ultimateCooldownTimers[activeSlotIndex] = cooldown;
+            OnCooldownUpdated?.Invoke(activeSlotIndex, cooldown, cooldown);
+        }
     }
 
     /// <summary>
@@ -234,17 +283,47 @@ public class PlayerSkillManager : MonoBehaviour
     {
         Debug.Log($"[Synergy Activated!] Kích hoạt: {synergy.SynergyName} trên {matchedIndices.Count} slot!");
 
+        // Preserve the longest remaining cooldown when two skills merge.
+        float sharedCooldown = 0f;
+        foreach (int index in matchedIndices)
+            sharedCooldown = Mathf.Max(sharedCooldown, ultimateCooldownTimers[index]);
+
+        // Update all participating slots before notifying the HUD.
         foreach (int index in matchedIndices)
         {
             slots[index] = synergy.ResultingSynergySkill;
-            OnSlotSkillChanged?.Invoke(index, synergy.ResultingSynergySkill);
+            ultimateCooldownTimers[index] = sharedCooldown;
         }
+
+        foreach (int index in matchedIndices)
+            OnSlotSkillChanged?.Invoke(index, synergy.ResultingSynergySkill);
+    }
+
+    public void RestoreSessionState(SkillData[] savedSkills, float[] savedCooldowns, int selectedSlot)
+    {
+        if (savedSkills == null) return;
+        // Restore both slots atomically, without EquipSkill resetting cooldowns or fusing midway.
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i] = i < savedSkills.Length ? savedSkills[i] : null;
+            ultimateCooldownTimers[i] = savedCooldowns != null && i < savedCooldowns.Length
+                ? Mathf.Max(0f, savedCooldowns[i]) : 0f;
+        }
+        activeSlotIndex = Mathf.Clamp(selectedSlot, 0, slots.Length - 1);
+        for (int i = 0; i < slots.Length; i++)
+        {
+            OnSlotSkillChanged?.Invoke(i, slots[i]);
+            OnCooldownUpdated?.Invoke(i, ultimateCooldownTimers[i], slots[i] != null ? slots[i].UltimateCooldown : 0f);
+        }
+        OnActiveSlotChanged?.Invoke(activeSlotIndex);
     }
 
     public float GetCooldownRemaining(int slotIndex)
     {
         if (slotIndex >= 0 && slotIndex < ultimateCooldownTimers.Length)
         {
+            if (HasLinkedSynergy && slotIndex < 2)
+                return Mathf.Max(ultimateCooldownTimers[0], ultimateCooldownTimers[1]);
             return ultimateCooldownTimers[slotIndex];
         }
         return 0f;

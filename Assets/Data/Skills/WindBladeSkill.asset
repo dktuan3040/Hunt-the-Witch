@@ -16,7 +16,7 @@ MonoBehaviour:
   skillName: "Gi\xF3 (Wind Blade)"
   description: "Ph\xE9p thu\u1EADt gi\xF3. Chu\u1ED9t ph\u1EA3i k\xEDch ho\u1EA1t
     Ultimate: b\xE3o dao gi\xF3 7 tia s\u1EAFc b\xE9n (H\u1ED3i chi\xEAu: 4s)."
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: 5986030973748356752, guid: a17b2d3fca965374b87d4504b4212f6e, type: 3}
   themeColor: {r: 0.2, g: 0.9, b: 0.5, a: 1}
   elementTag: Wind
   isSynergySkill: 0
