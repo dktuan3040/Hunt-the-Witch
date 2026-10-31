@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5350556045756440766}
   - component: {fileID: 5736326336573344761}
   - component: {fileID: 7661259046207433510}
-  - component: {fileID: 9100174160813813724}
+  - component: {fileID: 8865330189414350708}
   m_Layer: 0
   m_Name: Tengu
   m_TagString: Untagged
@@ -218,7 +218,7 @@ MonoBehaviour:
   onDied:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &9100174160813813724
+--- !u!114 &8865330189414350708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,14 +235,14 @@ MonoBehaviour:
   moveSpeed: 2.5
   spriteFacesRight: 1
   attackType: 0
-  attackRange: 3.88
+  attackRange: 1
   damage: 1
   attackCooldown: 1
-  attackDuration: 1
-  attackHitTime: 0.05
+  attackDuration: 0.85
+  attackHitTime: 0.4
   damageByAnimationEvent: 0
-  meleeReach: -0.04
-  meleeHitRadius: 3.67
+  meleeReach: 0.6
+  meleeHitRadius: 0.6
   targetLayers:
     serializedVersion: 2
     m_Bits: 0
