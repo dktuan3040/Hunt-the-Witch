@@ -36,6 +36,9 @@ public class TenguAttack : MonoBehaviour
     [SerializeField] private string isChasingParameter = "isChasing";
     [SerializeField] private string isAttackParameter = "isAttack";
 
+    [Header("Debug")]
+    [SerializeField] private bool drawGizmos = true;
+
     private Rigidbody2D rb;
     private Health health;
     private HitFeedback hitFeedback;
@@ -80,7 +83,58 @@ public class TenguAttack : MonoBehaviour
 
     private void OnValidate()
     {
+        // Đứng trong attackRange là phải được phép aggro + đánh trúng
+        detectionRadius = Mathf.Max(detectionRadius, attackRange);
         loseTargetRadius = Mathf.Max(loseTargetRadius, detectionRadius);
+
+        // Vòng gây damage phải phủ tới rìa attackRange (meleeReach + meleeHitRadius >= attackRange)
+        // -> player đã nằm trong tầm đánh thì Tengu không bao giờ vung hụt vì đứng quá xa
+        if (attackType == EnemyAttackType.Melee)
+            meleeHitRadius = Mathf.Max(meleeHitRadius, attackRange - meleeReach);
+    }
+
+    // =====================================================================
+    // DEBUG: vẽ vòng tròn range
+    // =====================================================================
+
+    // Chọn Tengu trong Hierarchy là thấy các vòng tròn (sửa số trong Inspector là vòng đổi theo ngay)
+    private void OnDrawGizmosSelected()
+    {
+        if (!drawGizmos) return;
+
+        Vector3 pos = transform.position;
+
+        Gizmos.color = Color.yellow;                 // detectionRadius: bắt đầu aggro
+        Gizmos.DrawWireSphere(pos, detectionRadius);
+
+        Gizmos.color = new Color(1f, 0.5f, 0f);      // loseTargetRadius: mất aggro
+        Gizmos.DrawWireSphere(pos, loseTargetRadius);
+
+        Gizmos.color = Color.red;                    // attackRange: vào tầm thì bắt đầu đánh
+        Gizmos.DrawWireSphere(pos, attackRange);
+
+        if (attackType == EnemyAttackType.Melee)     // vòng tròn gây sát thương thật
+        {
+            Vector2 dir = Vector2.right;
+            if (Application.isPlaying && target != null)
+            {
+                dir = ((Vector2)target.position - (Vector2)pos).normalized;
+            }
+            else
+            {
+                var sr = spriteRenderer != null ? spriteRenderer : GetComponentInChildren<SpriteRenderer>();
+                if (sr != null)
+                {
+                    bool facingRight = spriteFacesRight ? !sr.flipX : sr.flipX;
+                    dir = facingRight ? Vector2.right : Vector2.left;
+                }
+            }
+
+            Vector2 hitCenter = (Vector2)pos + dir * meleeReach;
+            Gizmos.color = Color.magenta;            // meleeReach + meleeHitRadius
+            Gizmos.DrawLine(pos, hitCenter);
+            Gizmos.DrawWireSphere(hitCenter, meleeHitRadius);
+        }
     }
 
     private void Update()
@@ -180,7 +234,7 @@ public class TenguAttack : MonoBehaviour
     /// Gắn hàm này vào FRAME CUỐI CÙNG (hoặc frame bạn chỉ định) trong Animation.
     /// Nó sẽ vừa gây sát thương, vừa kết thúc đòn đánh.
     /// </summary>
-    public void ExecuteHitAndFinishAttack()
+    public void DealDamage()
     {
         if (health.IsDead || !isAttacking) return;
 
