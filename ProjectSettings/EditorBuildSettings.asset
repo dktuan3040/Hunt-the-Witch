@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 8b6907e11cda8cd4497518f90cc2f666
   - enabled: 1
-    path: Assets/Scenes/Maps/Map1.unity
+    path: Assets/Scenes/Maps/M_F1.unity
     guid: 4beb2cea59244614cb4df70395b4a4a7
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
