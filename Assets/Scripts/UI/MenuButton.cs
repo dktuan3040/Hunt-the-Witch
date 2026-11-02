@@ -70,6 +70,13 @@ public class MenuButton : MonoBehaviour
         }
 
         Time.timeScale = 1f; // phòng khi trước đó game đang pause
+
+        // Khi bấm Play từ MainMenu để bắt đầu chơi, luôn reset session để player đầy máu và trang bị mới
+        if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            PlayerSessionState.StartNewGame();
+        }
+
         SceneManager.LoadScene(sceneName);
     }
 
