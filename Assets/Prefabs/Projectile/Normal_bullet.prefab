@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3701862888378223588}
   - component: {fileID: 5488266359571220922}
   m_Layer: 0
-  m_Name: Fireball
+  m_Name: Normal_bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
 --- !u!212 &8014133859920540714
 SpriteRenderer:
   serializedVersion: 3
@@ -85,12 +85,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -6607481912129624618, guid: cc66a5a00c71cb24b8bca161635d5532, type: 3}
+  m_Sprite: {fileID: -8154568645955431572, guid: a2637e3a10967154e8b1b6451c9ce351, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -193,5 +193,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb55074c8323e54c8e6f2c5945ac89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  projectileData: {fileID: 0}
+  team: 0
+  spriteRenderer: {fileID: 8014133859920540714}
+  animator: {fileID: 6826340514327886161}
   speed: 8
   lifeTime: 3
+  baseDamage: 1
+  pierceCount: 1
+  spriteOffset: 0
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
+  stickToTarget: 0
+  stickDuration: 0.5
+  stickDepth: 0.15

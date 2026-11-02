@@ -130,6 +130,8 @@ public class PauseMenuUI : MonoBehaviour
 
     private void Update()
     {
+        if (GameOverMenuUI.IsGameOver) return;
+
         // Nhấn Escape để mở/đóng Pause Menu
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
@@ -139,6 +141,8 @@ public class PauseMenuUI : MonoBehaviour
 
     public void HandleEscapePress()
     {
+        if (GameOverMenuUI.IsGameOver) return;
+
         // Nếu Settings Menu đang mở -> đóng Settings trước, quay lại Pause
         if (settingsMenu != null && settingsMenu.IsOpen)
         {
@@ -237,6 +241,7 @@ public class PauseMenuUI : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        PlayerSessionState.StartNewGame();
         Time.timeScale = 1f;
         if (!string.IsNullOrEmpty(mainMenuSceneName))
         {
