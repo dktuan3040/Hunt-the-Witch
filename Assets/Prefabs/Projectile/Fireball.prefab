@@ -193,5 +193,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb55074c8323e54c8e6f2c5945ac89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  projectileData: {fileID: 0}
+  team: 0
+  spriteRenderer: {fileID: 0}
+  animator: {fileID: 0}
   speed: 8
   lifeTime: 3
+  baseDamage: 1
+  pierceCount: 1
+  spriteOffset: -90
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
+  stickToTarget: 0
+  stickDuration: 0.5
+  stickDepth: 0.15
