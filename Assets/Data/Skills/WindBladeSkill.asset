@@ -20,6 +20,17 @@ MonoBehaviour:
   themeColor: {r: 0.2, g: 0.9, b: 0.5, a: 1}
   elementTag: Wind
   isSynergySkill: 0
+  unlockItems:
+  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
+    itemId: monster_hide
+    displayName: "Da qu\xE1i v\u1EADt"
+    icon: {fileID: 0}
+    amount: 5
+  - item: {fileID: 11400000, guid: 60bafbb9917377e4c846efeb939ca142, type: 2}
+    itemId: monster_claw
+    displayName: "M\xF3ng vu\u1ED1t qu\xE1i v\u1EADt"
+    icon: {fileID: 0}
+    amount: 2
   ultimateProjectile: {fileID: 0}
   ultimateCooldown: 4
   ultimateProjectilesPerShot: 7

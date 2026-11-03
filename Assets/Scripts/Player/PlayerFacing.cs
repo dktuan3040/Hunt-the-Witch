@@ -10,7 +10,7 @@ public class PlayerFacing : MonoBehaviour
     {
         if (playerSprite == null)
         {
-            playerSprite = GetComponentInChildren<SpriteRenderer>();
+            playerSprite = transform.Find("Visual")?.GetComponent<SpriteRenderer>() ?? GetComponentInChildren<SpriteRenderer>();
         }
     }
 
