@@ -1,4 +1,21 @@
 using UnityEngine;
+using System;
+using System.Collections.Generic;
+
+[Serializable]
+public sealed class SkillUnlockItemRequirement
+{
+    public ItemData item;
+    [Tooltip("Legacy fallback. Prefer assigning Item Data above.")]
+    public string itemId;
+    public string displayName;
+    public Sprite icon;
+    [Min(1)] public int amount = 1;
+    public string ItemId => item!=null?item.ItemId:itemId;
+    public string DisplayName => item!=null?item.DisplayName:displayName;
+    public Sprite Icon => item!=null?item.Icon:icon;
+}
+
 
 [CreateAssetMenu(fileName = "NewSkillData", menuName = "Hunt the Witch/Skills/Skill Data")]
 public class SkillData : ScriptableObject
@@ -16,6 +33,11 @@ public class SkillData : ScriptableObject
     [SerializeField] private string elementTag = "Fire";
     [Tooltip("Đánh dấu nếu đây là skill đã được hợp nhất từ Synergy.")]
     [SerializeField] private bool isSynergySkill = false;
+
+    [Header("Unlock requirements")]
+    [Tooltip("Picking up any listed item reveals this skill; unlocking consumes the required totals.")]
+    [SerializeField] private List<SkillUnlockItemRequirement> unlockItems = new List<SkillUnlockItemRequirement>();
+    public IReadOnlyList<SkillUnlockItemRequirement> UnlockItems => unlockItems;
 
     [Header("Ultimate Attack (Chuột phải - Có hồi chiêu)")]
     [Tooltip("Dữ liệu đạn/vụ nổ/hiệu ứng riêng của chiêu Ultimate.")]

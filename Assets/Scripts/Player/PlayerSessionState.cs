@@ -10,6 +10,7 @@ public static class PlayerSessionState
         public int CurrentHealth;
         public int MaxHealth;
         public SkillData[] Skills;
+        public SkillData[] SourceSkills;
         public float[] Cooldowns;
         public int ActiveSlot;
         public WeaponData Weapon;
@@ -61,6 +62,23 @@ public static class PlayerSessionState
         if (remaining == 0) inventory.Remove(itemId);
         else inventory[itemId] = remaining;
         InventoryChanged?.Invoke();
+        return true;
+    }
+    // Validate and spend the whole cost before sending one inventory change event.
+    public static bool TrySpendItems(IReadOnlyDictionary<string,int> costs)
+    {
+        if (costs == null) return false;
+        foreach (var pair in costs)
+            if (string.IsNullOrWhiteSpace(pair.Key) || pair.Value < 0 || GetItemCount(pair.Key) < pair.Value) return false;
+        bool changed = false;
+        foreach (var pair in costs)
+        {
+            if (pair.Value == 0) continue;
+            int remaining = GetItemCount(pair.Key) - pair.Value;
+            if (remaining == 0) inventory.Remove(pair.Key); else inventory[pair.Key] = remaining;
+            changed = true;
+        }
+        if (changed) InventoryChanged?.Invoke();
         return true;
     }
 }
