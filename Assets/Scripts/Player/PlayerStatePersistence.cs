@@ -45,20 +45,27 @@ public class PlayerStatePersistence : MonoBehaviour
             if (skills != null) skills.RestoreSessionState(saved.Skills, saved.Cooldowns, saved.ActiveSlot);
             if (weapon != null) weapon.EquipWeapon(saved.Weapon);
             if (skin != null && saved.Skin != null) skin.ApplySkin(saved.Skin);
-            if (health != null) health.RestoreSessionState(saved.CurrentHealth, saved.MaxHealth);
+
+            if (health != null)
+            {
+                int hp = saved.CurrentHealth <= 0 ? saved.MaxHealth : saved.CurrentHealth;
+                health.RestoreSessionState(hp, saved.MaxHealth);
+            }
         }
         initialized = true;
         Capture();
     }
 
-    // Capture when unloading the scene, including while paused or already dead.
+
+    // Capture when unloading the scene, including while paused.
     private void OnDisable() => Capture();
     private void LateUpdate() => Capture();
 
     public void Capture()
     {
         if (!initialized || generation != PlayerSessionState.Generation) return;
-        if (health == null) return;
+
+        if (health == null || health.IsDead || health.CurrentHealth <= 0) return;
         var saved = PlayerSessionState.Player ?? new PlayerSessionState.Snapshot();
         saved.CurrentHealth = health.CurrentHealth;
         saved.MaxHealth = health.MaxHealth;
