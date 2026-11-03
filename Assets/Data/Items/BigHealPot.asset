@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb27370f57c0524e9af4d31739d7069, type: 3}
+  m_Name: BigHealPot
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemId: big_heal_potion
+  displayName: "B\xECnh m\xE1u l\u1EDBn"
+  description: "T\u1EF1 h\u1ED3i 50% m\xE1u t\u1ED1i \u0111a khi \u0111i qua."
+  icon: {fileID: 5770743209833236987, guid: 444bf44cbdfb8a24ab262c7e96b19b29, type: 3}
+  rarity: 1
+  pickupEffect: 1
+  healFraction: 0.5

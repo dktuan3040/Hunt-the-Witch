@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5736326336573344761}
   - component: {fileID: 7661259046207433510}
   - component: {fileID: 8865330189414350708}
+  - component: {fileID: 3140066793107286175}
+  - component: {fileID: 471106703065100467}
   m_Layer: 0
   m_Name: Tengu
   m_TagString: Untagged
@@ -253,3 +255,31 @@ MonoBehaviour:
   retreatDistance: 0
   isChasingParameter: isChasing
   isAttackParameter: isAttack
+--- !u!114 &3140066793107286175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056499537027696979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8e1fdcd92d1fc418840adfa5e53761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyLootDropper
+  lootTable: {fileID: 11400000, guid: f900799b1d0d24149a09d07d4b155989, type: 2}
+  pickupPrefab: {fileID: 6077851749908981305, guid: 83129ecc5781ff540a93989a26f0e33b, type: 3}
+  scatterRadius: 0.6
+--- !u!114 &471106703065100467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056499537027696979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea92d0f4a65685489b476978bad5851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyIdentity
+  enemyType: {fileID: 11400000, guid: 2a2ca97253426844ab7b368ba1aeb3e4, type: 2}

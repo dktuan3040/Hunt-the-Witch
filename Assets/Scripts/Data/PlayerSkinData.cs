@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "NewSkinData", menuName = "Hunt the Witch/Character/Skin Data")]
 public class PlayerSkinData : ScriptableObject
@@ -18,6 +19,13 @@ public class PlayerSkinData : ScriptableObject
     [Header("Stats Modifiers")]
     [Tooltip("Tốc độ cộng thêm vào tốc độ cơ bản của nhân vật.")]
     [SerializeField] private float moveSpeedBonus = 0f;
+
+    [Header("Unlock requirements")]
+    [SerializeField] private List<ItemRequirement> unlockItems = new List<ItemRequirement>();
+    public IReadOnlyList<ItemRequirement> UnlockItems => unlockItems;
+    public bool IsUnlocked => ItemUnlockProgress.IsUnlocked(this, unlockItems);
+    public bool CanUnlock => ItemUnlockProgress.CanUnlock(this, unlockItems);
+    public bool TryUnlock() => ItemUnlockProgress.TryUnlock(this, unlockItems);
 
     // Public Getters
     public string SkinName => skinName;

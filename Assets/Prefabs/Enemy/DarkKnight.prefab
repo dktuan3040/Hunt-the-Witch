@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 2244044250249784297}
   - component: {fileID: 393620442533543851}
   - component: {fileID: 4684092070782844161}
+  - component: {fileID: 6685362575463302290}
+  - component: {fileID: 5107030592261508012}
   m_Layer: 6
   m_Name: DarkKnight
   m_TagString: Enemy
@@ -250,6 +252,7 @@ MonoBehaviour:
   attackCooldown: 1
   attackDuration: 0.85
   attackHitTime: 0.4
+  damageByAnimationEvent: 0
   meleeReach: 0.6
   meleeHitRadius: 0.6
   targetLayers:
@@ -262,3 +265,31 @@ MonoBehaviour:
   retreatDistance: 0
   isChasingParameter: isChasing
   isAttackParameter: isAttack
+--- !u!114 &6685362575463302290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7245188701215692496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8e1fdcd92d1fc418840adfa5e53761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyLootDropper
+  lootTable: {fileID: 11400000, guid: 04f9136fe9bdf8747bc1fee82230eab4, type: 2}
+  pickupPrefab: {fileID: 6077851749908981305, guid: 83129ecc5781ff540a93989a26f0e33b, type: 3}
+  scatterRadius: 0.6
+--- !u!114 &5107030592261508012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7245188701215692496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea92d0f4a65685489b476978bad5851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyIdentity
+  enemyType: {fileID: 11400000, guid: 931694b43a59a874ba94ebc01321e72c, type: 2}
