@@ -39,7 +39,7 @@ public class PauseMenuUI : MonoBehaviour
     {
         get
         {
-            if (combatPaused || Time.timeScale <= 0f) return true;
+            if (SkillScrollSelectionUI.BlocksGameplay || combatPaused || Time.timeScale <= 0f) return true;
             if (waitingForCombatRelease)
             {
                 bool mouseHeld = Mouse.current != null && Mouse.current.leftButton.isPressed;
@@ -130,7 +130,7 @@ public class PauseMenuUI : MonoBehaviour
 
     private void Update()
     {
-        if (GameOverMenuUI.IsGameOver) return;
+        if (GameOverMenuUI.IsGameOver || SkillScrollSelectionUI.BlocksGameplay) return;
 
         // Nhấn Escape để mở/đóng Pause Menu
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -141,7 +141,7 @@ public class PauseMenuUI : MonoBehaviour
 
     public void HandleEscapePress()
     {
-        if (GameOverMenuUI.IsGameOver) return;
+        if (GameOverMenuUI.IsGameOver || SkillScrollSelectionUI.BlocksGameplay) return;
 
         // Nếu Settings Menu đang mở -> đóng Settings trước, quay lại Pause
         if (settingsMenu != null && settingsMenu.IsOpen)

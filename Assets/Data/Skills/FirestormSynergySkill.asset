@@ -21,6 +21,17 @@ MonoBehaviour:
   themeColor: {r: 1, g: 0.2, b: 0.8, a: 1}
   elementTag: FireWind
   isSynergySkill: 1
+  unlockItems:
+  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
+    itemId: monster_hide
+    displayName: "Da qu\xE1i v\u1EADt"
+    icon: {fileID: 0}
+    amount: 10
+  - item: {fileID: 11400000, guid: a395b72e9f8beeb4cb267a0160a4f1c2, type: 2}
+    itemId: monster_essence
+    displayName: "Tinh ch\u1EA5t qu\xE1i v\u1EADt"
+    icon: {fileID: 0}
+    amount: 3
   ultimateProjectile: {fileID: 0}
   ultimateCooldown: 6
   ultimateProjectilesPerShot: 12

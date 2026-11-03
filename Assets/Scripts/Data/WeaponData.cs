@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "NewWeaponData", menuName = "Hunt the Witch/Combat/Weapon Data")]
 public class WeaponData : ScriptableObject
@@ -35,6 +36,13 @@ public class WeaponData : ScriptableObject
     [Header("Effects & Audio")]
     [SerializeField] private GameObject muzzleFlashPrefab;
     [SerializeField] private AudioClip shootSound;
+
+    [Header("Unlock requirements")]
+    [SerializeField] private List<ItemRequirement> unlockItems = new List<ItemRequirement>();
+    public IReadOnlyList<ItemRequirement> UnlockItems => unlockItems;
+    public bool IsUnlocked => ItemUnlockProgress.IsUnlocked(this, unlockItems);
+    public bool CanUnlock => ItemUnlockProgress.CanUnlock(this, unlockItems);
+    public bool TryUnlock() => ItemUnlockProgress.TryUnlock(this, unlockItems);
 
     // Public Getters
     public string WeaponName => weaponName;

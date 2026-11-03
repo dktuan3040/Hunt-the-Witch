@@ -42,7 +42,7 @@ public class PlayerStatePersistence : MonoBehaviour
         var saved = PlayerSessionState.Player;
         if (saved != null)
         {
-            if (skills != null) skills.RestoreSessionState(saved.Skills, saved.Cooldowns, saved.ActiveSlot);
+            if (skills != null) skills.RestoreSessionState(saved.Skills, saved.Cooldowns, saved.ActiveSlot, saved.SourceSkills);
             if (weapon != null) weapon.EquipWeapon(saved.Weapon);
             if (skin != null && saved.Skin != null) skin.ApplySkin(saved.Skin);
 
@@ -81,6 +81,8 @@ public class PlayerStatePersistence : MonoBehaviour
                 saved.Skills[i] = skills.Slots[i];
                 saved.Cooldowns[i] = skills.GetCooldownRemaining(i);
             }
+            saved.SourceSkills=new SkillData[skills.Slots.Length];
+            for(int i=0;i<saved.SourceSkills.Length;i++)saved.SourceSkills[i]=skills.GetReplacementSkill(i);
             saved.ActiveSlot = skills.ActiveSlotIndex;
         }
         saved.Weapon = weapon != null ? weapon.CurrentWeapon : null;
