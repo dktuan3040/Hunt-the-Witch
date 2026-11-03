@@ -93,7 +93,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!95 &6826340514327886161
@@ -194,14 +194,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   projectileData: {fileID: 0}
-  team: 0
+  team: 1
   spriteRenderer: {fileID: 0}
   animator: {fileID: 0}
   speed: 8
   lifeTime: 3
   baseDamage: 1
   pierceCount: 1
-  spriteOffset: -90
+  spriteOffset: 0
   impactVfxPrefab: {fileID: 0}
   impactSound: {fileID: 0}
   stickToTarget: 0
