@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c14e380f9b9ae46b9117f13564b22e, type: 3}
+  m_Name: BlueWizard
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkinData
+  skinName: Blue Wizard
+  description: The young wizard's ocean-blue robes and pointed hat.
+  skinIcon: {fileID: 7316008476745969496, guid: b0231bc32401d6542a0332daeacfcf0c, type: 3}
+  animatorController: {fileID: 9100000, guid: 129a8b234be33e34d84db60f179c94ad, type: 2}
+  defaultSprite: {fileID: 7316008476745969496, guid: b0231bc32401d6542a0332daeacfcf0c, type: 3}
+  moveSpeedBonus: 0
+  unlockItems: []

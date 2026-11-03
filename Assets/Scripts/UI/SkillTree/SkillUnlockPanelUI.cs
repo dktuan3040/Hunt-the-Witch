@@ -13,6 +13,10 @@ public sealed class SkillUnlockPanelUI : MonoBehaviour
         public string id, title;
         [TextArea] public string description;
         public SkillData skill;
+        public WeaponData weapon;
+        public PlayerSkinData skin;
+        public bool IsEquipment => weapon!=null||skin!=null;
+        public Sprite DisplayIcon => weapon!=null?(weapon.WeaponIcon!=null?weapon.WeaponIcon:weapon.WeaponSprite):skin!=null?(skin.SkinIcon!=null?skin.SkinIcon:skin.DefaultSprite):skill!=null?skill.SkillIcon:null;
         public SkillSynergyData recipe;
         public SkillKnowledge state;
         public bool invalidData;
@@ -73,10 +77,12 @@ public sealed class SkillUnlockPanelUI : MonoBehaviour
             foreach(var n in nodes) {SkillUnlockProgress.Register(n.skill);SkillUnlockProgress.RegisterRecipe(n.recipe);}
             SkillUnlockProgress.ObserveInventory();
             SkillUnlockProgress.Changed += OnProgressChanged;
+            ItemUnlockProgress.Changed += OnProgressChanged;
+            PlayerSessionState.InventoryChanged += OnProgressChanged;
         }
         FitToParent(); selectedIndex=-1; RefreshSelection();
     }
-    private void OnDisable() {SkillUnlockProgress.Changed -= OnProgressChanged;}
+    private void OnDisable() {SkillUnlockProgress.Changed -= OnProgressChanged;ItemUnlockProgress.Changed-=OnProgressChanged;PlayerSessionState.InventoryChanged-=OnProgressChanged;}
     private void Update()
     {
         FitToParent();
@@ -96,6 +102,8 @@ public sealed class SkillUnlockPanelUI : MonoBehaviour
     public SkillKnowledge StateOf(NodeView n)
     {
         if(n==null)return SkillKnowledge.Unknown;
+        if(n.weapon!=null)return n.weapon.IsUnlocked?SkillKnowledge.Unlocked:SkillKnowledge.Discovered;
+        if(n.skin!=null)return n.skin.IsUnlocked?SkillKnowledge.Unlocked:SkillKnowledge.Discovered;
         if(Application.isPlaying&&n.skill!=null)return SkillUnlockProgress.GetState(n.skill);
         if(n.state==SkillKnowledge.Unknown&&n.recipe!=null&&n.recipe.RequiredSkills.Count>0)
         {
@@ -152,7 +160,10 @@ public sealed class SkillUnlockPanelUI : MonoBehaviour
     }
     private bool CanLearn(NodeView n)
     {
-        if(n==null||n.invalidData||n.skill==null||StateOf(n)!=SkillKnowledge.Discovered)return false;
+        if(n==null||n.invalidData)return false;
+        if(n.weapon!=null)return n.weapon.CanUnlock;
+        if(n.skin!=null)return n.skin.CanUnlock;
+        if(n.skill==null||StateOf(n)!=SkillKnowledge.Discovered)return false;
         if(Application.isPlaying)return SkillUnlockProgress.CanUnlock(n.skill);
         if(!AllPrerequisitesMet(n))return false;
         var totals=new Dictionary<string,long>();
@@ -183,7 +194,7 @@ public sealed class SkillUnlockPanelUI : MonoBehaviour
             if(n.learnedBadge!=null)n.learnedBadge.SetActive(learned);
             if(n.icon!=null)
             {
-                n.icon.sprite=unknown?questionIcon:n.skill!=null&&n.skill.SkillIcon!=null?n.skill.SkillIcon:coreIcon;
+                n.icon.sprite=unknown?questionIcon:n.DisplayIcon!=null?n.DisplayIcon:coreIcon;
                 n.icon.rectTransform.sizeDelta=unknown?new Vector2(16,16):new Vector2(24,24);
             }
             if(n.label!=null)n.label.text=unknown?"?":n.title;
@@ -194,7 +205,9 @@ public sealed class SkillUnlockPanelUI : MonoBehaviour
         bool show=selectedIndex>=0&&selectedIndex<nodes.Count;
         if(detailsPanel!=null)detailsPanel.SetActive(show);
         if(!show||detailTitle==null)return;
-        var selected=nodes[selectedIndex];var selectedState=StateOf(selected);bool hidden=selectedState==SkillKnowledge.Unknown;
+        var selected=nodes[selectedIndex];
+        if(selected.IsEquipment){RenderEquipmentDetails(selected);return;}
+        var selectedState=StateOf(selected);bool hidden=selectedState==SkillKnowledge.Unknown;
         detailTitle.text=hidden?"?":selected.skill!=null?selected.skill.SkillName.TrimStart('★',' '):selected.title;
         detailCategory.text=hidden?"UNDISCOVERED SPELL":selected.recipe!=null?"SYNERGY":selected.skill!=null?"ACTIVE SPELL / "+selected.skill.ElementTag:"ARCANE FOUNDATION";
         detailDescription.text=hidden?"Find an item related to this spell to reveal its identity.":selected.skill!=null?selected.skill.Description:selected.description;
@@ -235,6 +248,35 @@ public sealed class SkillUnlockPanelUI : MonoBehaviour
         if(unlockButton!=null)unlockButton.interactable=ready;
         if(unlockButtonLabel!=null){unlockButtonLabel.text=selectedState==SkillKnowledge.Unlocked?"UNLOCKED":ready?"UNLOCK SKILL":"LOCKED";unlockButtonLabel.color=ready?Color.white:Muted;}
         if(detailHint!=null){detailHint.text=selectedState==SkillKnowledge.Unlocked?"This skill is already unlocked.":ready?"All requirements are ready.":hidden?"Discover this skill first.":"Some requirements are still locked.";detailHint.color=ready?Ready:Muted;}
+    }
+    private void RenderEquipmentDetails(NodeView node)
+    {
+        bool learned=StateOf(node)==SkillKnowledge.Unlocked,ready=CanLearn(node);
+        detailTitle.text=node.weapon!=null?node.weapon.WeaponName:node.skin.SkinName;
+        detailCategory.text=node.weapon!=null?"STAFF":"SKIN";
+        detailDescription.text=node.weapon!=null?node.weapon.Description:node.skin.Description;
+        detailIcon.sprite=node.DisplayIcon;detailIcon.preserveAspect=true;
+        requirementsTitle.text="REQUIREMENTS";
+        var costs=node.weapon!=null?node.weapon.UnlockItems:node.skin.UnlockItems;
+        var totals=new Dictionary<ItemData,long>();bool invalid=false;
+        foreach(var cost in costs)
+        {
+            if(cost==null||cost.item==null||cost.amount<1){invalid=true;continue;}
+            if(!totals.ContainsKey(cost.item))totals[cost.item]=0;
+            totals[cost.item]+=cost.amount;
+        }
+        var rows=new List<RequirementLine>();
+        foreach(var pair in totals)
+        {
+            int owned=PlayerSessionState.GetItemCount(pair.Key.ItemId);
+            rows.Add(new RequirementLine(pair.Key.DisplayName,learned?"Completed":owned+" / "+pair.Value,learned||owned>=pair.Value,pair.Key.Icon));
+        }
+        if(invalid)rows.Add(new RequirementLine("Missing item data","Unavailable",false,questionIcon));
+        if(rows.Count==0)rows.Add(new RequirementLine("Available by default","Unlocked",true,checkIcon));
+        RenderRows(rows);
+        if(unlockButton!=null)unlockButton.interactable=ready;
+        if(unlockButtonLabel!=null){unlockButtonLabel.text=learned?"UNLOCKED":ready?"UNLOCK "+(node.weapon!=null?"STAFF":"SKIN"):"LOCKED";unlockButtonLabel.color=ready?Color.white:Muted;}
+        if(detailHint!=null){detailHint.text=learned?"Already unlocked.":ready?"All requirements are ready.":"Collect the required materials.";detailHint.color=ready?Ready:Muted;}
     }
     private void RenderRows(List<RequirementLine> rows)
     {
@@ -349,7 +391,14 @@ public sealed class SkillUnlockPanelUI : MonoBehaviour
     public void RequestUnlock()
     {
         if(selectedIndex<0||selectedIndex>=nodes.Count||!CanLearn(nodes[selectedIndex]))return;
-        var skill=nodes[selectedIndex].skill;
+        var node=nodes[selectedIndex];
+        if(node.IsEquipment)
+        {
+            if(!Application.isPlaying)return;
+            if(node.weapon!=null)node.weapon.TryUnlock();else node.skin.TryUnlock();
+            RefreshSelection();return;
+        }
+        var skill=node.skill;
         if(Application.isPlaying&&!SkillUnlockProgress.TryUnlock(skill))return;
         UnlockRequested.Invoke(skill);RefreshSelection();
     }
