@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51377f8fa658ffd4384fb61a8c4f6517, type: 3}
+  m_Name: skeletonWarriorLoot
+  m_EditorClassIdentifier: Assembly-CSharp::LootTableData
+  entries:
+  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
+    chanceMultiplier: 0.6
+    minAmount: 1
+    maxAmount: 4
+    quantityDecay: 0.5
+  - item: {fileID: 11400000, guid: 92301f71842e8ad42b9a94ebbf2cf22b, type: 2}
+    chanceMultiplier: 1
+    minAmount: 1
+    maxAmount: 3
+    quantityDecay: 0.5
+  - item: {fileID: 11400000, guid: a395b72e9f8beeb4cb267a0160a4f1c2, type: 2}
+    chanceMultiplier: 0.4
+    minAmount: 1
+    maxAmount: 3
+    quantityDecay: 0.5
+  - item: {fileID: 11400000, guid: ed66dc35f6243564abdc4b8e1f6d709a, type: 2}
+    chanceMultiplier: 0.15384616
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.5
+  - item: {fileID: 11400000, guid: 5ea9867d21d111b4f8c7db62aa9f1eb8, type: 2}
+    chanceMultiplier: 0.057142857
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.5
+  guaranteeAtLeastOne: 0
+  scrollLoot: {fileID: 11400000, guid: f7d419fd06cf4bf44a32f52dd122a080, type: 2}
+  skillScrollChance: 0.001

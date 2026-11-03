@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5158a1885211b4fa14f51edebb5646, type: 3}
+  m_Name: SkillTreeCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::SkillTreeCatalog
+  entries:
+  - assetGuid: 4b35d14ae12eaf6488c52a18a8b3c5e9
+    skill: {fileID: 11400000, guid: 4b35d14ae12eaf6488c52a18a8b3c5e9, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 926, y: -426}
+    invalid: 0
+  - assetGuid: 6ffd9be800543aa42a4303ed4eb459e5
+    skill: {fileID: 11400000, guid: 6ffd9be800543aa42a4303ed4eb459e5, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 626, y: -426}
+    invalid: 0
+  - assetGuid: a1f346b89381c5e45964713e42112ea2
+    skill: {fileID: 11400000, guid: a1f346b89381c5e45964713e42112ea2, type: 2}
+    recipe: {fileID: 11400000, guid: 55b34208956d22b439f9057a3fbd961c, type: 2}
+    position: {x: 776, y: -656}
+    invalid: 0
+  validationErrors: 

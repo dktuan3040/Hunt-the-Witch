@@ -231,6 +231,9 @@ GameObject:
   - component: {fileID: 22506374058130069}
   - component: {fileID: 5823211050564782156}
   - component: {fileID: 8543452315644154568}
+  - component: {fileID: 8393911598613751637}
+  - component: {fileID: 3266150828980022484}
+  - component: {fileID: -5336235644611192365}
   m_Layer: 0
   m_Name: ArcherSkeleton
   m_TagString: Untagged
@@ -400,6 +403,7 @@ MonoBehaviour:
   attackCooldown: 1
   attackDuration: 0.85
   attackHitTime: 0.4
+  damageByAnimationEvent: 0
   meleeReach: 0.6
   meleeHitRadius: 0.6
   targetLayers:
@@ -412,6 +416,52 @@ MonoBehaviour:
   retreatDistance: 2
   isChasingParameter: isChasing
   isAttackParameter: isAttack
+--- !u!114 &8393911598613751637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286637927231244535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8e1fdcd92d1fc418840adfa5e53761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyLootDropper
+  lootTable: {fileID: 11400000, guid: 9d55b06302194c045924895947f9f166, type: 2}
+  pickupPrefab: {fileID: 6077851749908981305, guid: 83129ecc5781ff540a93989a26f0e33b, type: 3}
+  scatterRadius: 0.6
+--- !u!114 &3266150828980022484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286637927231244535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea92d0f4a65685489b476978bad5851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyIdentity
+  enemyType: {fileID: 11400000, guid: 472cea879ad89084d94481cdb10dfbeb, type: 2}
+--- !u!114 &-5336235644611192365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286637927231244535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f4be8d21b16284ab457505d76492b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitFeedback
+  flashColor: {r: 1, g: 0.2, b: 0.2, a: 1}
+  flashHoldTime: 0.06
+  flashFadeTime: 0.14
+  knockbackDistance: 0.6
+  knockbackDuration: 0.15
+  knockbackResistance: 0
 --- !u!1 &5494371469849389676
 GameObject:
   m_ObjectHideFlags: 0

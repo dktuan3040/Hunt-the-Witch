@@ -23,6 +23,9 @@ public class PlayerSkillManager : MonoBehaviour
     private InputAction boundSlot2Action;
 
     // Normal skills cool down independently; linked synergy slots share a cooldown.
+    private SkillData[] sourceSkills = new SkillData[2];
+    private bool sourcesInitialized;
+
     private float[] ultimateCooldownTimers = new float[2];
 
     // Events để kết nối Canvas UI
@@ -57,6 +60,7 @@ public class PlayerSkillManager : MonoBehaviour
 
     private void Awake()
     {
+        EnsureSources();
         if (playerInput == null)
         {
             playerInput = GetComponent<PlayerInput>();
@@ -116,6 +120,7 @@ public class PlayerSkillManager : MonoBehaviour
 
     private void Start()
     {
+        foreach (var skill in slots) SkillUnlockProgress.MarkUnlocked(skill);
         // Kích hoạt slot ban đầu
         SelectSlot(activeSlotIndex);
 
@@ -229,10 +234,15 @@ public class PlayerSkillManager : MonoBehaviour
     {
         if (slotIndex < 0 || slotIndex >= slots.Length) return;
 
+        EnsureSources();
+        if (HasLinkedSynergy)
+            for(int i=0;i<slots.Length;i++) slots[i]=sourceSkills[i];
         slots[slotIndex] = skill;
+        sourceSkills[slotIndex] = skill;
+        SkillUnlockProgress.MarkUnlocked(skill);
         ultimateCooldownTimers[slotIndex] = 0f; // Reset cooldown cho skill mới
 
-        OnSlotSkillChanged?.Invoke(slotIndex, skill);
+        for(int i=0;i<slots.Length;i++) OnSlotSkillChanged?.Invoke(i,slots[i]);
 
         // Sau khi trang bị, tự động kiểm tra công thức Synergy!
         EvaluateSynergies();
@@ -264,6 +274,7 @@ public class PlayerSkillManager : MonoBehaviour
     /// </summary>
     public void EvaluateSynergies()
     {
+        EnsureSources();
         if (synergyDatabase == null || synergyDatabase.Count == 0) return;
 
         // Kiểm tra các công thức Synergy
@@ -281,6 +292,8 @@ public class PlayerSkillManager : MonoBehaviour
     }
     private void ApplySynergyToSlots(SkillSynergyData synergy, List<int> matchedIndices)
     {
+        foreach(int index in matchedIndices)sourceSkills[index]=slots[index];
+        SkillUnlockProgress.MarkUnlocked(synergy.ResultingSynergySkill);
         Debug.Log($"[Synergy Activated!] Kích hoạt: {synergy.SynergyName} trên {matchedIndices.Count} slot!");
 
         // Preserve the longest remaining cooldown when two skills merge.
@@ -299,16 +312,21 @@ public class PlayerSkillManager : MonoBehaviour
             OnSlotSkillChanged?.Invoke(index, synergy.ResultingSynergySkill);
     }
 
-    public void RestoreSessionState(SkillData[] savedSkills, float[] savedCooldowns, int selectedSlot)
+    public void RestoreSessionState(SkillData[] savedSkills, float[] savedCooldowns, int selectedSlot, SkillData[] savedSources = null)
     {
+        sourcesInitialized=false;
         if (savedSkills == null) return;
         // Restore both slots atomically, without EquipSkill resetting cooldowns or fusing midway.
         for (int i = 0; i < slots.Length; i++)
         {
             slots[i] = i < savedSkills.Length ? savedSkills[i] : null;
+            SkillUnlockProgress.MarkUnlocked(slots[i]);
             ultimateCooldownTimers[i] = savedCooldowns != null && i < savedCooldowns.Length
                 ? Mathf.Max(0f, savedCooldowns[i]) : 0f;
         }
+        EnsureSources();
+        if(savedSources!=null&&savedSources.Length==slots.Length)
+            for(int i=0;i<slots.Length;i++)sourceSkills[i]=savedSources[i];
         activeSlotIndex = Mathf.Clamp(selectedSlot, 0, slots.Length - 1);
         for (int i = 0; i < slots.Length; i++)
         {
@@ -316,6 +334,21 @@ public class PlayerSkillManager : MonoBehaviour
             OnCooldownUpdated?.Invoke(i, ultimateCooldownTimers[i], slots[i] != null ? slots[i].UltimateCooldown : 0f);
         }
         OnActiveSlotChanged?.Invoke(activeSlotIndex);
+    }
+
+    private void EnsureSources()
+    {
+        if(sourcesInitialized)return;
+        sourcesInitialized=true;sourceSkills=new SkillData[slots.Length];
+        Array.Copy(slots,sourceSkills,slots.Length);
+        if(HasLinkedSynergy&&synergyDatabase!=null)
+            foreach(var recipe in synergyDatabase)
+                if(recipe!=null&&recipe.ResultingSynergySkill==slots[0]&&recipe.RequiredSkills.Count==slots.Length)
+                {for(int i=0;i<slots.Length;i++)sourceSkills[i]=recipe.RequiredSkills[i];break;}
+    }
+    public SkillData GetReplacementSkill(int index)
+    {
+        EnsureSources();return index>=0&&index<slots.Length?(HasLinkedSynergy?sourceSkills[index]:slots[index]):null;
     }
 
     public float GetCooldownRemaining(int slotIndex)
