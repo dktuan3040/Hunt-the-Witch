@@ -29,3 +29,8 @@ MonoBehaviour:
   damageMultiplier: 1.25
   muzzleFlashPrefab: {fileID: 0}
   shootSound: {fileID: 0}
+  unlockItems:
+  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
+    amount: 10
+  - item: {fileID: 11400000, guid: 92301f71842e8ad42b9a94ebbf2cf22b, type: 2}
+    amount: 3

@@ -15,7 +15,7 @@ public class PlayerSkinController : MonoBehaviour
     private void Awake()
     {
         if (playerSpriteRenderer == null)
-            playerSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            playerSpriteRenderer = transform.Find("Visual")?.GetComponent<SpriteRenderer>() ?? GetComponentInChildren<SpriteRenderer>();
 
         if (animator == null)
             animator = GetComponent<Animator>();

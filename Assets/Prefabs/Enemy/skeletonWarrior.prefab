@@ -293,6 +293,8 @@ GameObject:
   - component: {fileID: 2283439254342222315}
   - component: {fileID: 5262929887070735726}
   - component: {fileID: 13684806649432246}
+  - component: {fileID: 5698242427510123829}
+  - component: {fileID: 157391868493637480}
   m_Layer: 0
   m_Name: skeletonWarrior
   m_TagString: Untagged
@@ -529,6 +531,7 @@ MonoBehaviour:
   attackCooldown: 1
   attackDuration: 0.85
   attackHitTime: 0.4
+  damageByAnimationEvent: 0
   meleeReach: 0.6
   meleeHitRadius: 0.6
   targetLayers:
@@ -541,3 +544,31 @@ MonoBehaviour:
   retreatDistance: 0
   isChasingParameter: isChasing
   isAttackParameter: isAttack
+--- !u!114 &5698242427510123829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624143497939742282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8e1fdcd92d1fc418840adfa5e53761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyLootDropper
+  lootTable: {fileID: 11400000, guid: fe2427d0e08c7974b82e8486d8227a0b, type: 2}
+  pickupPrefab: {fileID: 6077851749908981305, guid: 83129ecc5781ff540a93989a26f0e33b, type: 3}
+  scatterRadius: 0.6
+--- !u!114 &157391868493637480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624143497939742282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea92d0f4a65685489b476978bad5851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyIdentity
+  enemyType: {fileID: 11400000, guid: 1d1f5967fc460594d97679f7d013bc93, type: 2}
