@@ -14,11 +14,10 @@ GameObject:
   - component: {fileID: 5350556045756440766}
   - component: {fileID: 5736326336573344761}
   - component: {fileID: 7661259046207433510}
-  - component: {fileID: 8865330189414350708}
   - component: {fileID: 123737570192927781}
-  - component: {fileID: 3140066793107286175}
-  - component: {fileID: 471106703065100467}
-  m_Layer: 0
+  - component: {fileID: 5079799252877115422}
+  - component: {fileID: 3138934864238709648}
+  m_Layer: 6
   m_Name: Tengu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,41 +220,6 @@ MonoBehaviour:
   onDied:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8865330189414350708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8056499537027696979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea23bc8dc2ffbc04eb8dc220499a9e29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  detectionRadius: 6
-  loseTargetRadius: 8
-  moveSpeed: 2.5
-  spriteFacesRight: 1
-  attackType: 0
-  attackRange: 2.5
-  damage: 1
-  attackCooldown: 1
-  attackDuration: 1.08
-  attackHitTime: 1
-  damageByAnimationEvent: 1
-  meleeReach: 0.8
-  meleeHitRadius: 1.7
-  targetLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  projectilePrefab: {fileID: 0}
-  firePoint: {fileID: 0}
-  projectileSpeed: 6
-  projectileLifeTime: 3
-  retreatDistance: 0
-  isChasingParameter: isChasing
-  isAttackParameter: isAttack
 --- !u!114 &123737570192927781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,13 +235,13 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   playerRb: {fileID: 0}
   fireBallZonePrefab: {fileID: 0}
-  fallingFireballPrefab: {fileID: 8473560615706035657, guid: f1b01b760f256e841afe1eb35b92a754, type: 3}
+  fallingFireballPrefab: {fileID: 8473560615706035657, guid: 8d3f73b18e0c6184ab4a6b657118bba9, type: 3}
   fallHeight: 6
   fallOffsetX: 6
   spriteAngleOffset: 0
   skillCoolDown: 5
   autoCast: 1
-  castRange: 8
+  castRange: 100
   predictionTime: 1
   fireCount: 3
   timeBetweenFires: 0.4
@@ -288,7 +252,7 @@ MonoBehaviour:
   targetLayers:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &3140066793107286175
+--- !u!114 &5079799252877115422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,13 +261,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8056499537027696979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e8e1fdcd92d1fc418840adfa5e53761, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ab50c3097a783342a50f69093c2e02f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyLootDropper
-  lootTable: {fileID: 11400000, guid: f900799b1d0d24149a09d07d4b155989, type: 2}
-  pickupPrefab: {fileID: 6077851749908981305, guid: 83129ecc5781ff540a93989a26f0e33b, type: 3}
-  scatterRadius: 0.6
---- !u!114 &471106703065100467
+  m_EditorClassIdentifier: Assembly-CSharp::SpreadFireball
+  fireBallPrefab: {fileID: 8473560615706035657, guid: 8d3f73b18e0c6184ab4a6b657118bba9, type: 3}
+  numberOfFireBall: 12
+  fireBallspeed: 5
+  damage: 1
+--- !u!114 &3138934864238709648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,7 +277,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 8056499537027696979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aea92d0f4a65685489b476978bad5851, type: 3}
+  m_Script: {fileID: 11500000, guid: d235b96d3225dde42b3218b4530041a0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyIdentity
-  enemyType: {fileID: 11400000, guid: 2a2ca97253426844ab7b368ba1aeb3e4, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::TenguAttack
+  detectionRadius: 6
+  loseTargetRadius: 8
+  moveSpeed: 2.5
+  spriteFacesRight: 1
+  attackType: 0
+  attackRange: 4.32
+  damage: 1
+  attackCooldown: 1
+  meleeReach: 0.13
+  meleeHitRadius: 4.96
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  projectileSpeed: 6
+  projectileLifeTime: 3
+  retreatDistance: 0
+  isChasingParameter: isChasing
+  isAttackParameter: isAttack
+  drawGizmos: 1

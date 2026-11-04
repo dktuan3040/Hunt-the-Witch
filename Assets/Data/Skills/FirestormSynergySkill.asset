@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: FirestormSynergySkill
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: firestorm
-  skillName: "\u2605 B\xE3o L\u1EEDa (Firestorm)"
-  description: "Synergy [L\u1EEDa + Gi\xF3]. Chu\u1ED9t ph\u1EA3i k\xEDch ho\u1EA1t
-    Ultimate: b\xE3o l\u1EEDa 12 tia t\u1ECFa r\u1ED9ng 75 \u0111\u1ED9 h\u1EE7y
-    di\u1EC7t (H\u1ED3i chi\xEAu: 6s)!"
+  skillName: Explosion Projectile
+  description: Fire three bolts that detonate and burn nearby foes.
   skillIcon: {fileID: 4006003791991473683, guid: c60e7b4c0c6ea3743a0daeb427d531d5, type: 3}
   themeColor: {r: 1, g: 0.2, b: 0.8, a: 1}
   elementTag: FireWind
@@ -32,9 +30,42 @@ MonoBehaviour:
     displayName: "Tinh ch\u1EA5t qu\xE1i v\u1EADt"
     icon: {fileID: 0}
     amount: 3
-  ultimateProjectile: {fileID: 0}
-  ultimateCooldown: 6
-  ultimateProjectilesPerShot: 12
-  ultimateSpreadAngle: 75
+  ultimateProjectile: {fileID: 11400000, guid: 2fadf48adf94e684ca26d1ee39e8cf9e, type: 2}
+  ultimateCooldown: 7
+  ultimateProjectilesPerShot: 3
+  ultimateSpreadAngle: 26
   ultimateMuzzleFlash: {fileID: 0}
   ultimateSound: {fileID: 0}
+  combat:
+    pattern: 3
+    duration: 1.15
+    tickInterval: 0.4
+    damage: 0
+    radius: 0.38
+    range: 9
+    speed: 8
+    targetCount: 1
+    repeatTargets: 0
+    pierce: 0
+    hitDuringEnding: 0
+    damageOverTime: 0
+    radial: 0
+    followCaster: 0
+    knockbackDistance: 0
+    knockbackDuration: 0.18
+    pullSpeed: 0
+    trailDamage: 0
+    trailRadius: 0
+    explosionRadius: 1.45
+    explosionDamage: 25
+    wallSpacing: 1
+    wallDelay: 0.13
+    arcHeight: 1.6
+    vortexDegreesPerSecond: 140
+    status: 4
+    statusDuration: 3
+    slowMultiplier: 0.55
+    thawSlowDuration: 2
+    burnDamage: 3
+    burnInterval: 1
+    onHitSkill: {fileID: 0}

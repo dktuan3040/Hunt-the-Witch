@@ -207,13 +207,23 @@ public class WeaponShoot : MonoBehaviour
         float dmgMultiplier = currentWeapon != null ? currentWeapon.DamageMultiplier : 1f;
 
         // Bắn đạn Ultimate (lấy ProjectileData và hiệu ứng riêng của Ultimate)
-        SpawnProjectiles(
-            effectivePrefab,
-            activeSkill.UltimateProjectilesPerShot,
-            activeSkill.UltimateSpreadAngle,
-            dmgMultiplier,
-            activeSkill.UltimateProjectile
-        );
+        var ultimate = activeSkill.UltimateProjectile;
+        if (activeSkill.Combat != null && activeSkill.Combat.pattern != SkillCastPattern.Legacy &&
+            ultimate != null && ultimate.Effect != null && ultimate.Effect.IsConfigured)
+        {
+            SkillCombatRunner.Cast(activeSkill, transform.root, firePoint, weaponSpriteRenderer, dmgMultiplier);
+        }
+        else if (ultimate != null && ultimate.Effect != null &&
+            ultimate.Effect.IsConfigured && ultimate.Effect.areaRadius > 0)
+        {
+            SkillEffectPlayer.CastArea(weaponSpriteRenderer, firePoint.position, firePoint.right,
+                ultimate, dmgMultiplier);
+        }
+        else
+        {
+            SpawnProjectiles(effectivePrefab, activeSkill.UltimateProjectilesPerShot,
+                activeSkill.UltimateSpreadAngle, dmgMultiplier, ultimate);
+        }
 
         // Hiệu ứng Ultimate
         if (activeSkill.UltimateMuzzleFlash != null)

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: EarthProjectileEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Earth Projectile
+  projectileSprite: {fileID: 9125033750213160777, guid: 307562e44f88f0448bd9f0525f0f8444, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup: []
+    active:
+    - {fileID: 9125033750213160777, guid: 307562e44f88f0448bd9f0525f0f8444, type: 3}
+    - {fileID: -8163900990811487334, guid: 307562e44f88f0448bd9f0525f0f8444, type: 3}
+    - {fileID: -271955057595768327, guid: 307562e44f88f0448bd9f0525f0f8444, type: 3}
+    - {fileID: -7089001165508236209, guid: 307562e44f88f0448bd9f0525f0f8444, type: 3}
+    - {fileID: 763240299693949468, guid: 307562e44f88f0448bd9f0525f0f8444, type: 3}
+    - {fileID: 5886385986030733825, guid: 307562e44f88f0448bd9f0525f0f8444, type: 3}
+    ending: []
+    impact:
+    - {fileID: 6869906754827242424, guid: 307562e44f88f0448bd9f0525f0f8444, type: 3}
+    - {fileID: -7013855302929415921, guid: 307562e44f88f0448bd9f0525f0f8444, type: 3}
+    - {fileID: 8072253390963543479, guid: 307562e44f88f0448bd9f0525f0f8444, type: 3}
+    - {fileID: -2266807800892066527, guid: 307562e44f88f0448bd9f0525f0f8444, type: 3}
+    framesPerSecond: 18
+    areaRadius: 0
+    castDistance: 0
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}

@@ -9,12 +9,19 @@ public static class PlayerSessionState
     {
         public int CurrentHealth;
         public int MaxHealth;
+        public WeaponData Weapon;
+        public PlayerSkinData Skin;
         public SkillData[] Skills;
         public SkillData[] SourceSkills;
         public float[] Cooldowns;
         public int ActiveSlot;
-        public WeaponData Weapon;
-        public PlayerSkinData Skin;
+    }
+
+    private static readonly HashSet<string> visitedMaps = new HashSet<string>();
+
+    public static bool VisitMap(UnityEngine.SceneManagement.Scene scene)
+    {
+        return visitedMaps.Add(string.IsNullOrEmpty(scene.path) ? scene.name : scene.path);
     }
 
     public static Snapshot Player { get; private set; }
@@ -28,6 +35,7 @@ public static class PlayerSessionState
     {
         Player = null;
         Generation = 0;
+        visitedMaps.Clear();
         inventory.Clear();
         InventoryChanged = null;
     }
@@ -38,6 +46,7 @@ public static class PlayerSessionState
     public static void StartNewGame()
     {
         Generation++;
+        visitedMaps.Clear();
         Player = null;
         inventory.Clear();
         InventoryChanged?.Invoke();

@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e147e7b0249a136408994a7de861dfcf, type: 3}
+  m_Name: ThunderStrikeSkill
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  skillId: thunder_strike
+  skillName: Thunder Strike
+  description: Strike nearby enemies repeatedly with lightning.
+  skillIcon: {fileID: 21300000, guid: 62a123e418883a542be864eed9c2a026, type: 3}
+  themeColor: {r: 1, g: 0.4, b: 0, a: 1}
+  elementTag: Thunder
+  isSynergySkill: 0
+  unlockItems:
+  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
+    itemId: 
+    displayName: 
+    icon: {fileID: 0}
+    amount: 3
+  ultimateProjectile: {fileID: 11400000, guid: 03c438a052ae53349918f6264aeb9001, type: 2}
+  ultimateCooldown: 6
+  ultimateProjectilesPerShot: 1
+  ultimateSpreadAngle: 0
+  ultimateMuzzleFlash: {fileID: 0}
+  ultimateSound: {fileID: 0}
+  combat:
+    pattern: 9
+    duration: 1.35
+    tickInterval: 0.36
+    damage: 10
+    radius: 2.35
+    range: 5
+    speed: 8
+    targetCount: 1
+    repeatTargets: 0
+    pierce: 0
+    hitDuringEnding: 0
+    damageOverTime: 1
+    radial: 0
+    followCaster: 0
+    knockbackDistance: 0
+    knockbackDuration: 0.18
+    pullSpeed: 0
+    trailDamage: 0
+    trailRadius: 0
+    explosionRadius: 0
+    explosionDamage: 0
+    wallSpacing: 1
+    wallDelay: 0.13
+    arcHeight: 1.6
+    vortexDegreesPerSecond: 140
+    status: 0
+    statusDuration: 2
+    slowMultiplier: 0.55
+    thawSlowDuration: 2
+    burnDamage: 2
+    burnInterval: 1
+    onHitSkill: {fileID: 0}
