@@ -53,6 +53,10 @@ public class SkillData : ScriptableObject
     [Tooltip("Âm thanh thi triển Ultimate.")]
     [SerializeField] private AudioClip ultimateSound;
 
+    [Header("Combat behavior")]
+    [SerializeField] private SkillCombatSettings combat;
+    public SkillCombatSettings Combat => combat;
+
     // Public Getters
     public string SkillId => string.IsNullOrEmpty(skillId) ? name : skillId;
     public string SkillName => skillName;

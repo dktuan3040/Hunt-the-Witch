@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: WaterSplashEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Water Splash
+  projectileSprite: {fileID: 3109470909850504698, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup: []
+    active:
+    - {fileID: 3109470909850504698, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: -7609535237323443635, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: -2027876315440518237, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: -2368767539886661019, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: -3205715758782977763, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: -9177692410689661837, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: -3673581181279213846, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: -7447389970213424469, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    ending:
+    - {fileID: -7373771848812239136, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: 4572360671505134735, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: -1740359438833560927, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: 7903994299277808371, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: 235865687645202636, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: -2007287464530656788, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: 2139753521422748101, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: 5431892008758484318, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: 2200493597289002331, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: -426532118882398678, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    - {fileID: 1661996702974966079, guid: 0afc88d46a44fbc439fd091168de0001, type: 3}
+    impact: []
+    framesPerSecond: 18
+    areaRadius: 1.4
+    castDistance: 3
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}

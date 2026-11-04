@@ -1,0 +1,738 @@
+fileFormatVersion: 2
+guid: 9768c01d1bf5b214296bd96b015c8806
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7475295747300752836
+    second: WaterSpike_0
+  - first:
+      213: -727454583666771867
+    second: WaterSpike_1
+  - first:
+      213: 4450988880546695861
+    second: WaterSpike_2
+  - first:
+      213: -5508430823084509326
+    second: WaterSpike_3
+  - first:
+      213: 4501733141946020312
+    second: WaterSpike_4
+  - first:
+      213: -6660995164053597148
+    second: WaterSpike_5
+  - first:
+      213: -3109145352249846237
+    second: WaterSpike_6
+  - first:
+      213: 7419372650414823727
+    second: WaterSpike_7
+  - first:
+      213: -2530328304270350303
+    second: WaterSpike_8
+  - first:
+      213: -3810344104151271540
+    second: WaterSpike_9
+  - first:
+      213: 5397960755980301442
+    second: WaterSpike_10
+  - first:
+      213: 5140179261899093064
+    second: WaterSpike_11
+  - first:
+      213: -7284375909886823381
+    second: WaterSpike_12
+  - first:
+      213: -3317754728656022048
+    second: WaterSpike_13
+  - first:
+      213: -4350451143361200275
+    second: WaterSpike_14
+  - first:
+      213: 2539480098504653188
+    second: WaterSpike_15
+  - first:
+      213: -937522580593035485
+    second: WaterSpike_16
+  - first:
+      213: -5180788498803164495
+    second: WaterSpike_17
+  - first:
+      213: 2242755027725020641
+    second: WaterSpike_18
+  - first:
+      213: 7004587147569712961
+    second: WaterSpike_19
+  - first:
+      213: -4122413723302232121
+    second: WaterSpike_20
+  - first:
+      213: -1985050362020983304
+    second: WaterSpike_21
+  - first:
+      213: -6204892360516249160
+    second: WaterSpike_22
+  - first:
+      213: -4711685259400491714
+    second: WaterSpike_23
+  - first:
+      213: -8795027298046217170
+    second: WaterSpike_24
+  - first:
+      213: -697510287762966566
+    second: WaterSpike_25
+  - first:
+      213: -2648426120325363227
+    second: WaterSpike_26
+  - first:
+      213: 3215774834077113030
+    second: WaterSpike_27
+  - first:
+      213: 2024441356169574009
+    second: WaterSpike_28
+  - first:
+      213: -6007484442667739649
+    second: WaterSpike_29
+  - first:
+      213: -8429920588271581667
+    second: WaterSpike_30
+  - first:
+      213: -7136926340474593396
+    second: WaterSpike_31
+  - first:
+      213: -1584718722008848289
+    second: WaterSpike_32
+  - first:
+      213: -5750377608453057208
+    second: WaterSpike_33
+  - first:
+      213: -4114854544556130213
+    second: WaterSpike_34
+  - first:
+      213: -8311217011897560529
+    second: WaterSpike_35
+  - first:
+      213: 5458216509031166809
+    second: WaterSpike_36
+  - first:
+      213: -14228462666179004
+    second: WaterSpike_37
+  - first:
+      213: -1470464868805548790
+    second: WaterSpike_38
+  - first:
+      213: -1836967185180617927
+    second: WaterSpike_39
+  - first:
+      213: -4372173652050922493
+    second: WaterSpike_40
+  - first:
+      213: 886460006855598046
+    second: WaterSpike_41
+  - first:
+      213: -4307447162591782667
+    second: WaterSpike_42
+  - first:
+      213: 1596813294811585717
+    second: WaterSpike_43
+  - first:
+      213: -461881595325443672
+    second: WaterSpike_44
+  - first:
+      213: -7997442869307722255
+    second: WaterSpike_45
+  - first:
+      213: -8752818341041789511
+    second: WaterSpike_46
+  - first:
+      213: -4648123558145910161
+    second: WaterSpike_47
+  - first:
+      213: 6900585486842268604
+    second: WaterSpike_48
+  - first:
+      213: -1897981752064681656
+    second: WaterSpike_49
+  - first:
+      213: -5603299209008989059
+    second: WaterSpike_50
+  - first:
+      213: -7738693650999073449
+    second: WaterSpike_51
+  - first:
+      213: -7139145592512175978
+    second: WaterSpike_52
+  - first:
+      213: 5227802496084974611
+    second: WaterSpike_53
+  - first:
+      213: -906256260537202094
+    second: WaterSpike_54
+  - first:
+      213: 8585842926837827016
+    second: WaterSpike_55
+  - first:
+      213: -7181306065597992669
+    second: WaterSpike_56
+  - first:
+      213: 3277216503657342428
+    second: WaterSpike_57
+  - first:
+      213: 1556833865798017407
+    second: WaterSpike_58
+  - first:
+      213: -1385483351049687081
+    second: WaterSpike_59
+  - first:
+      213: -4662046951847113144
+    second: WaterSpike_60
+  - first:
+      213: 2180566863141702527
+    second: WaterSpike_61
+  - first:
+      213: -3293508042293674330
+    second: WaterSpike_62
+  - first:
+      213: -7959777304032035954
+    second: WaterSpike_63
+  - first:
+      213: 1625395667631435607
+    second: WaterSpike_64
+  - first:
+      213: 5024638737880706005
+    second: WaterSpike_65
+  - first:
+      213: -8136437828673537739
+    second: WaterSpike_66
+  - first:
+      213: 2428292948619603252
+    second: WaterSpike_67
+  - first:
+      213: 5626677985776212026
+    second: WaterSpike_68
+  - first:
+      213: 7746510081910524118
+    second: WaterSpike_69
+  - first:
+      213: -7176715445945435194
+    second: WaterSpike_70
+  - first:
+      213: 8894242880684751246
+    second: WaterSpike_71
+  - first:
+      213: -8805799986361553696
+    second: WaterSpike_72
+  - first:
+      213: -3480703603876162517
+    second: WaterSpike_73
+  - first:
+      213: 398837100826863665
+    second: WaterSpike_74
+  - first:
+      213: 7359616434846780200
+    second: WaterSpike_75
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WaterSpike_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cd79d850e59db760800000000000000
+      internalID: 7475295747300752836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 240
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 568ff4e09ef87e5f0800000000000000
+      internalID: -727454583666771867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 240
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ba0334fdc615cd30800000000000000
+      internalID: 4450988880546695861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 240
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2773c30f95f1e83b0800000000000000
+      internalID: -5508430823084509326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 240
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d1bb4ff07e597e30800000000000000
+      internalID: 4501733141946020312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4249df390346f83a0800000000000000
+      internalID: -6660995164053597148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 326571c66c81ad4d0800000000000000
+      internalID: -3109145352249846237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f295934bd18e6f660800000000000000
+      internalID: 7419372650414823727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 160
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12869d240d772ecd0800000000000000
+      internalID: -2530328304270350303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_9
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 160
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c873f00b930fe1bc0800000000000000
+      internalID: -3810344104151271540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28474bb35b869ea40800000000000000
+      internalID: 5397960755980301442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 80
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 844335b0ec5955740800000000000000
+      internalID: 5140179261899093064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_12
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 80
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2478c844b2b8ea90800000000000000
+      internalID: -7284375909886823381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_13
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 80
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e5d59a07a7f4f1d0800000000000000
+      internalID: -3317754728656022048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 80
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6f734b1cb710a3c0800000000000000
+      internalID: -4350451143361200275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4893b81e1bb0e3320800000000000000
+      internalID: 2539480098504653188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSpike_16
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32738de1e204df2f0800000000000000
+      internalID: -937522580593035485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 337043e2c26ce044781fdb0804adff36
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":80.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      WaterSpike_0: 7475295747300752836
+      WaterSpike_1: -727454583666771867
+      WaterSpike_10: 5397960755980301442
+      WaterSpike_11: 5140179261899093064
+      WaterSpike_12: -7284375909886823381
+      WaterSpike_13: -3317754728656022048
+      WaterSpike_14: -4350451143361200275
+      WaterSpike_15: 2539480098504653188
+      WaterSpike_16: -937522580593035485
+      WaterSpike_2: 4450988880546695861
+      WaterSpike_3: -5508430823084509326
+      WaterSpike_4: 4501733141946020312
+      WaterSpike_5: -6660995164053597148
+      WaterSpike_6: -3109145352249846237
+      WaterSpike_7: 7419372650414823727
+      WaterSpike_8: -2530328304270350303
+      WaterSpike_9: -3810344104151271540
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

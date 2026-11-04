@@ -124,6 +124,19 @@ public class EnemyAI : MonoBehaviour
     {
         if (health.IsDead) return;
 
+        if (TryGetComponent<EnemySkillStatus>(out var status) && status.Immobilized)
+        {
+            if (isAttacking)
+            {
+                StopAllCoroutines();
+                isAttacking = false;
+                SetAttack(false);
+            }
+            desiredVelocity = Vector2.zero;
+            SetChasing(false);
+            return;
+        }
+
         FindTargetIfNeeded();
 
         if (!HasValidTarget)
@@ -200,7 +213,8 @@ public class EnemyAI : MonoBehaviour
         // Đang bị knockback thì để HitFeedback điều khiển velocity
         if (hitFeedback != null && hitFeedback.IsKnockedBack) return;
 
-        rb.linearVelocity = desiredVelocity;
+        float speedFactor = TryGetComponent<EnemySkillStatus>(out var status) ? status.MovementMultiplier : 1;
+        rb.linearVelocity = desiredVelocity * speedFactor;
     }
 
 private IEnumerator AttackRoutine()
@@ -225,6 +239,7 @@ private IEnumerator AttackRoutine()
 /// <summary>Gọi từ Animation Event trong clip Attack (chỉ có tác dụng khi damageByAnimationEvent = true).</summary>
     public void DealDamage()
     {
+        if (TryGetComponent<EnemySkillStatus>(out var status) && status.Immobilized) return;
         if (!damageByAnimationEvent || !isAttacking || health.IsDead) return;
         PerformAttack();
     }
