@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: ice_projectile
   skillName: Ice Projectile
   description: Fire three ice bolts that slow enemies.
-  skillIcon: {fileID: 21300000, guid: b04d3da4d1bda2847aa7c36c95ee33ca, type: 3}
+  skillIcon: {fileID: 21300000, guid: 31e5dee7b66312b418fa7ab8dc3eb8e7, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Ice
   isSynergySkill: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: air_explosion
   skillName: Air Explosion
   description: Fire three vortices that pull foes in before exploding.
-  skillIcon: {fileID: 21300000, guid: a3724f8d08cd1fd45b9be29b3bc744e1, type: 3}
+  skillIcon: {fileID: 21300000, guid: 02d14e7c68a75b54fa71a031e42d7a70, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Wind
   isSynergySkill: 1

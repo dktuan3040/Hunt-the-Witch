@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: thunder_strike
   skillName: Thunder Strike
   description: Strike nearby enemies repeatedly with lightning.
-  skillIcon: {fileID: 21300000, guid: 62a123e418883a542be864eed9c2a026, type: 3}
+  skillIcon: {fileID: 21300000, guid: 269afe17f75a35f4b948d8f26f71d944, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Thunder
   isSynergySkill: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
     duration: 1.35
     tickInterval: 0.36
     damage: 10
-    radius: 2.35
+    radius: 10
     range: 5
     speed: 8
     targetCount: 1
@@ -46,6 +46,13 @@ MonoBehaviour:
     damageOverTime: 1
     radial: 0
     followCaster: 0
+    mirrorWhenAimingLeft: 0
+    keepSpriteHorizontal: 0
+    visualOffset: {x: 0, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 1
+    targetFootOffsetY: 1
     knockbackDistance: 0
     knockbackDuration: 0.18
     pullSpeed: 0
@@ -53,9 +60,11 @@ MonoBehaviour:
     trailRadius: 0
     explosionRadius: 0
     explosionDamage: 0
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 0
     statusDuration: 2

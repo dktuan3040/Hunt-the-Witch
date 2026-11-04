@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: earth_wall
   skillName: Earth Wall
   description: Raise three staggered lines of stunning walls.
-  skillIcon: {fileID: 21300000, guid: bd31441e69e37f049bbc98782f1f4194, type: 3}
+  skillIcon: {fileID: 21300000, guid: f84063852b1c2d64cb93b9c516284dd8, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Earth
   isSynergySkill: 1

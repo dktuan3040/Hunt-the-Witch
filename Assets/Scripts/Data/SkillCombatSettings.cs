@@ -30,6 +30,16 @@ public sealed class SkillCombatSettings
     public bool damageOverTime;
     public bool radial;
     public bool followCaster;
+    public bool mirrorWhenAimingLeft;
+    public bool keepSpriteHorizontal;
+    [Tooltip("Sprite offset in world units along and across the aim, leaving the cast origin at FirePoint.")]
+    public Vector2 visualOffset;
+    [Tooltip("Move the damage area together with Visual Offset.")]
+    public bool hitboxFollowsVisual;
+    [Tooltip("Optional extra hitbox offset in sprite axes, in world units.")]
+    public Vector2 hitboxOffset;
+    public bool placeAtTargetFeet;
+    public float targetFootOffsetY;
     [Min(0)] public float knockbackDistance;
     [Min(.01f)] public float knockbackDuration = .18f;
     [Min(0)] public float pullSpeed;

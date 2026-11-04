@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: air_pull_in
   skillName: Air Pull In
   description: Place a trap that pulls enemies and deals damage over time.
-  skillIcon: {fileID: 21300000, guid: 4e385f9386ed49e4fb2f7c9ee078b097, type: 3}
+  skillIcon: {fileID: 21300000, guid: 3c45218b1035aaf4abaf362f1e8a26e3, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Wind
   isSynergySkill: 0

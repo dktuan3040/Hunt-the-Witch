@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: explosion
   skillName: Explosion
   description: Detonate near the closest enemy and burn nearby foes.
-  skillIcon: {fileID: 21300000, guid: d4c42f2a8fc5e464ca9f76bb2a0ff85a, type: 3}
+  skillIcon: {fileID: 21300000, guid: 39284f96066412c448878b6e1d7efd83, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Fire
   isSynergySkill: 0
