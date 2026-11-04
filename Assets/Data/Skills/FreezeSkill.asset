@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: freeze
   skillName: Freeze
   description: Freeze nearby foes, then slow them as they thaw.
-  skillIcon: {fileID: 21300000, guid: 9759e506c4a4e684294325b797efc4fe, type: 3}
+  skillIcon: {fileID: 21300000, guid: 450ffd781618f0e409351f3840c364f8, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Ice
   isSynergySkill: 0
@@ -46,6 +46,8 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 0
     followCaster: 0
+    placeAtTargetFeet: 1
+    targetFootOffsetY: 0.16
     knockbackDistance: 0
     knockbackDuration: 0.18
     pullSpeed: 0

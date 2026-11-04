@@ -11,11 +11,13 @@ public sealed class SkillCombatRunner : MonoBehaviour
     private Transform anchor;
     private Transform caster;
     private Health target;
+    private Collider2D targetFootCollider;
     private Vector2 origin;
     private Vector2 direction;
     private float multiplier;
     private float phase;
     private float delay;
+    private float previewReach;
     private HashSet<Health> struck = new HashSet<Health>();
     private readonly Dictionary<Health, float> nextDamage = new Dictionary<Health, float>();
     private readonly List<Collider2D> overlaps = new List<Collider2D>();
@@ -34,6 +36,13 @@ public sealed class SkillCombatRunner : MonoBehaviour
         int count = skill.UltimateProjectilesPerShot;
         switch (config.pattern)
         {
+            case SkillCastPattern.Area:
+                var affected = new List<Health>();
+                Collect(caster.gameObject.scene.GetPhysicsScene2D(), atPlayer, Mathf.Max(.05f, config.radius),
+                    new List<Collider2D>(), affected);
+                foreach (var enemy in affected)
+                    StartVisual(skill, source, caster, enemy.transform.position, aim, multiplier, target: enemy);
+                break;
             case SkillCastPattern.Nearest:
                 var targets = new List<Health>();
                 Collect(caster.gameObject.scene.GetPhysicsScene2D(), atPlayer, config.range,
@@ -69,14 +78,13 @@ public sealed class SkillCombatRunner : MonoBehaviour
                 {
                     Vector2 dir = config.radial ? Rotate(Vector2.up, i * 360f / count)
                         : Spread(aim, i, count, skill.UltimateSpreadAngle);
-                    Vector2 origin = config.radial || config.pattern == SkillCastPattern.Burst ? atPlayer : atMuzzle;
-                    StartVisual(skill, source, caster, origin, dir, multiplier,
-                        anchor: config.followCaster ? (config.pattern == SkillCastPattern.Burst ? caster : muzzle) : null,
+                    StartVisual(skill, source, caster, atMuzzle, dir, multiplier,
+                        anchor: config.followCaster ? muzzle : null,
                         phase: i * 360f / count, sharedHits: sharedHits);
                 }
                 break;
             default:
-                Vector2 point = config.pattern == SkillCastPattern.Channel ? atMuzzle : atPlayer;
+                Vector2 point = config.pattern == SkillCastPattern.PullTrap ? atPlayer : atMuzzle;
                 StartVisual(skill, source, caster, point, aim, multiplier,
                     anchor: config.followCaster ? muzzle : null);
                 break;
@@ -88,15 +96,21 @@ public sealed class SkillCombatRunner : MonoBehaviour
         Health target = null, float phase = 0, float delay = 0, HashSet<Health> sharedHits = null)
     {
         var data = skill.UltimateProjectile;
-        var visualObject = SkillEffectPlayer.Create(source, point, Quaternion.identity, data.ProjectileScale);
+        var visualObject = SkillEffectPlayer.Create(source, point, Quaternion.identity, data.ProjectileScale,
+            separateVisual: skill.Combat.visualOffset != Vector2.zero);
         var runner = visualObject.gameObject.AddComponent<SkillCombatRunner>();
         runner.settings = skill.Combat;
         runner.effect = data.Effect;
-        runner.visual = visualObject.GetComponent<SpriteRenderer>();
+        runner.visual = visualObject.GetComponentInChildren<SpriteRenderer>();
         runner.physicsScene = visualObject.gameObject.scene.GetPhysicsScene2D();
         runner.caster = caster;
         runner.anchor = anchor;
         runner.target = target;
+        if (target != null && runner.settings.placeAtTargetFeet)
+        {
+            runner.targetFootCollider = FindFootCollider(target);
+            runner.transform.position = runner.GetTargetFeet();
+        }
         runner.origin = point;
         runner.direction = direction;
         runner.phase = phase;
@@ -105,7 +119,7 @@ public sealed class SkillCombatRunner : MonoBehaviour
         if (sharedHits != null) runner.struck = sharedHits;
         if (runner.settings.pattern == SkillCastPattern.Channel || runner.settings.pattern == SkillCastPattern.Projectile ||
             runner.settings.pattern == SkillCastPattern.Burst)
-            runner.transform.rotation = Rotation(direction);
+            runner.AimVisual();
         runner.StartCoroutine(runner.Run());
     }
 
@@ -147,15 +161,51 @@ public sealed class SkillCombatRunner : MonoBehaviour
         if (anchor != null)
         {
             origin = anchor.position;
-            if (settings.pattern == SkillCastPattern.Channel)
+            if (settings.pattern == SkillCastPattern.Channel ||
+                (settings.pattern == SkillCastPattern.Burst && !settings.radial))
             {
                 direction = anchor.right;
-                transform.rotation = Rotation(direction);
+                AimVisual();
             }
             transform.position = origin;
         }
         else if (target != null && !target.IsDead)
-            transform.position = target.transform.position;
+            transform.position = settings.placeAtTargetFeet
+                ? GetTargetFeet() : target.transform.position;
+    }
+
+    private void AimVisual()
+    {
+        bool facingLeft = direction.x < 0f;
+        transform.rotation = settings.keepSpriteHorizontal ? Quaternion.identity : Rotation(direction);
+        visual.flipX = settings.keepSpriteHorizontal && facingLeft;
+        visual.flipY = !settings.keepSpriteHorizontal && settings.mirrorWhenAimingLeft && facingLeft;
+
+        if (visual.transform != transform)
+        {
+            var offset = settings.visualOffset;
+            visual.transform.localPosition = new Vector3(
+                offset.x * (visual.flipX ? -1 : 1) / transform.localScale.x,
+                offset.y * (visual.flipY ? -1 : 1) / transform.localScale.y,
+                0);
+        }
+    }
+
+    private static Collider2D FindFootCollider(Health enemy)
+    {
+        foreach (var collider in enemy.GetComponentsInChildren<Collider2D>())
+            if (collider.enabled && !collider.isTrigger)
+                return collider;
+        return null;
+    }
+
+    private Vector3 GetTargetFeet()
+    {
+        var position = target.transform.position;
+        if (targetFootCollider != null && targetFootCollider.enabled)
+            position.y = targetFootCollider.bounds.min.y;
+        position.y += settings.targetFootOffsetY;
+        return position;
     }
 
     private IEnumerator Phase(Sprite[] frames, bool damage)
@@ -194,9 +244,26 @@ public sealed class SkillCombatRunner : MonoBehaviour
         yield return Phase(effect.ending, settings.hitDuringEnding);
     }
 
+    private Vector2 HitboxWorldOffset()
+    {
+        Vector2 offset = settings.hitboxOffset;
+        if (visual.flipX) offset.x = -offset.x;
+        if (visual.flipY) offset.y = -offset.y;
+        Vector2 worldOffset = transform.rotation * (Vector3)offset;
+        if (settings.hitboxFollowsVisual)
+            worldOffset += (Vector2)(visual.transform.position - transform.position);
+        return worldOffset;
+    }
+
     private void TickStationary(float elapsed)
     {
-        Vector2 center = transform.position;
+        Vector2 center = (Vector2)transform.position + HitboxWorldOffset();
+        if (settings.pattern == SkillCastPattern.Area)
+        {
+            if (target != null && !target.IsDead)
+                Damage(target, settings.damage, settings.damageOverTime);
+            return;
+        }
         if (settings.pattern == SkillCastPattern.Nearest && settings.explosionRadius <= 0)
         {
             if (target != null && !target.IsDead) Damage(target, settings.damage, true);
@@ -204,13 +271,15 @@ public sealed class SkillCombatRunner : MonoBehaviour
         }
         if (settings.pattern == SkillCastPattern.Channel || settings.pattern == SkillCastPattern.Burst)
         {
-            float reach = WallDistance(physicsScene, origin, direction, settings.range);
+            float reach = Mathf.Min(WallDistance(physicsScene, origin, direction, settings.range),
+                WallDistance(physicsScene, center, direction, settings.range));
             if (settings.pattern == SkillCastPattern.Burst)
                 reach = Mathf.Min(reach, Mathf.Max(Radius, settings.speed * elapsed));
-            Collect(physicsScene, origin + direction * (reach * .5f), reach * .5f + Radius, overlaps, enemies);
+            previewReach = reach;
+            Collect(physicsScene, center + direction * (reach * .5f), reach * .5f + Radius, overlaps, enemies);
             foreach (var enemy in enemies)
             {
-                Vector2 offset = (Vector2)enemy.transform.position - origin;
+                Vector2 offset = (Vector2)enemy.transform.position - center;
                 float along = Vector2.Dot(offset, direction);
                 if (along < -Radius * .4f || along > reach || (offset - direction * along).sqrMagnitude > Radius * Radius)
                     continue;
@@ -238,7 +307,8 @@ public sealed class SkillCombatRunner : MonoBehaviour
         {
             SetFrame(effect.active, t, true);
             float step = Mathf.Min(speed * Mathf.Min(Time.deltaTime, Duration - t), range - flown);
-            float clear = WallDistance(physicsScene, at, direction, step);
+            float clear = Mathf.Min(WallDistance(physicsScene, at, direction, step),
+                WallDistance(physicsScene, at + HitboxWorldOffset(), direction, step));
             int samples = Mathf.Max(1, Mathf.CeilToInt(clear / Mathf.Max(.04f, Radius * .5f)));
             for (int i = 0; i <= samples; i++)
             {
@@ -262,6 +332,7 @@ public sealed class SkillCombatRunner : MonoBehaviour
 
     private bool Sweep(Vector2 point)
     {
+        point += HitboxWorldOffset();
         Collect(physicsScene, point, settings.trailRadius > 0 ? settings.trailRadius : Radius, overlaps, enemies);
         if (settings.onHitSkill != null)
             enemies.Sort((a, b) => Vector2.Dot(a.transform.position, direction)
@@ -319,7 +390,7 @@ public sealed class SkillCombatRunner : MonoBehaviour
 
     private void Explode(Vector2 center, bool playImpact = true)
     {
-        Collect(physicsScene, center, settings.explosionRadius, overlaps, enemies);
+        Collect(physicsScene, center + HitboxWorldOffset(), settings.explosionRadius, overlaps, enemies);
         foreach (var enemy in enemies)
             Damage(enemy, settings.explosionDamage, false, playImpact: playImpact, useSeparateHit: true);
     }
@@ -353,6 +424,7 @@ public sealed class SkillCombatRunner : MonoBehaviour
     private void SpawnAttachedImpact(Health enemy)
     {
         var hit = SkillEffectPlayer.Create(visual, enemy.transform.position, transform.rotation, transform.localScale);
+        hit.GetComponent<SpriteRenderer>().flipY = visual.flipY;
         hit.PlayAttached(enemy.transform, effect.impact, FrameTime);
     }
 
@@ -383,6 +455,28 @@ public sealed class SkillCombatRunner : MonoBehaviour
         if (count == 0) return;
         int index = Mathf.FloorToInt(elapsed / FrameTime);
         visual.sprite = frames[repeat ? index % count : Mathf.Min(index, count - 1)];
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (settings == null || visual == null || !Application.isPlaying) return;
+        Gizmos.color = new Color(.25f, 1f, .6f, .9f);
+        Vector2 center = (Vector2)transform.position + HitboxWorldOffset();
+        if (settings.pattern == SkillCastPattern.Channel || settings.pattern == SkillCastPattern.Burst)
+        {
+            Vector2 side = new Vector2(-direction.y, direction.x) * Radius;
+            Vector2 start = center - direction * (Radius * .4f);
+            Vector2 end = center + direction * previewReach;
+            Gizmos.DrawLine(start + side, end + side);
+            Gizmos.DrawLine(start - side, end - side);
+            Gizmos.DrawLine(start + side, start - side);
+            Gizmos.DrawLine(end + side, end - side);
+            return;
+        }
+
+        float radius = settings.trailRadius > 0 ? settings.trailRadius : Radius;
+        Gizmos.DrawWireSphere(center, radius);
+        if (settings.explosionRadius > 0) Gizmos.DrawWireSphere(center, settings.explosionRadius);
     }
 
     private static int Length(Sprite[] frames) => frames == null ? 0 : frames.Length;

@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: air_burst_ring
   skillName: Air Burst Ring
   description: Unleash stronger air bursts in every direction.
-  skillIcon: {fileID: 21300000, guid: 44c74696dc4e91a4d81515f712e761d0, type: 3}
+  skillIcon: {fileID: 21300000, guid: e3b5c0acc7a6e5444a23dd6100abe1d0, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Wind
   isSynergySkill: 1
@@ -46,6 +46,8 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 1
     followCaster: 1
+    mirrorWhenAimingLeft: 1
+    visualOffset: {x: 0.72, y: 0}
     knockbackDistance: 2.25
     knockbackDuration: 0.18
     pullSpeed: 0

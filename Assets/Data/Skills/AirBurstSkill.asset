@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: air_burst
   skillName: Air Burst
   description: Prepare a burst and blast enemies away from the caster.
-  skillIcon: {fileID: 21300000, guid: 44c74696dc4e91a4d81515f712e761d0, type: 3}
+  skillIcon: {fileID: 21300000, guid: ce8199a4c9002ea45a755d6bc2cb3000, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Wind
   isSynergySkill: 0
@@ -46,6 +46,8 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 0
     followCaster: 1
+    mirrorWhenAimingLeft: 1
+    visualOffset: {x: 0.72, y: 0}
     knockbackDistance: 1.4
     knockbackDuration: 0.18
     pullSpeed: 0

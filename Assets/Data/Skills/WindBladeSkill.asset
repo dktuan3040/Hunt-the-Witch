@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: wind_blade
   skillName: Wind Projectile
   description: Fire three piercing blades of wind.
-  skillIcon: {fileID: 5986030973748356752, guid: a17b2d3fca965374b87d4504b4212f6e, type: 3}
+  skillIcon: {fileID: 21300000, guid: 36c8ca833d985a249b8cb4d68fe8b7b4, type: 3}
   themeColor: {r: 0.2, g: 0.9, b: 0.5, a: 1}
   elementTag: Wind
   isSynergySkill: 0
