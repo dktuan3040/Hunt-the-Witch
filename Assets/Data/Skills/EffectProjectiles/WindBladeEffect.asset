@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: WindBladeEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Wind Projectile
+  projectileSprite: {fileID: 3922947334420469022, guid: a5e70a0e83f858549ace1bf5df8c12f6, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup: []
+    active:
+    - {fileID: 3922947334420469022, guid: a5e70a0e83f858549ace1bf5df8c12f6, type: 3}
+    - {fileID: 7815942008280344566, guid: a5e70a0e83f858549ace1bf5df8c12f6, type: 3}
+    - {fileID: 8283415478252822504, guid: a5e70a0e83f858549ace1bf5df8c12f6, type: 3}
+    - {fileID: 199648027558637222, guid: a5e70a0e83f858549ace1bf5df8c12f6, type: 3}
+    - {fileID: -3820610122884018697, guid: a5e70a0e83f858549ace1bf5df8c12f6, type: 3}
+    - {fileID: 5888282493799030969, guid: a5e70a0e83f858549ace1bf5df8c12f6, type: 3}
+    ending: []
+    impact:
+    - {fileID: -6332939809186309373, guid: 75c852b8d5605544eb040e762a15cec1, type: 3}
+    - {fileID: -1780530402258229259, guid: 75c852b8d5605544eb040e762a15cec1, type: 3}
+    - {fileID: -8128283118744106991, guid: 75c852b8d5605544eb040e762a15cec1, type: 3}
+    - {fileID: 5869185045024866341, guid: 75c852b8d5605544eb040e762a15cec1, type: 3}
+    framesPerSecond: 18
+    areaRadius: 0
+    castDistance: 0
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}

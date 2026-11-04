@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: AirPullInEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Air Pull In
+  projectileSprite: {fileID: 4116989290456868382, guid: 84b94e1b111f2414e862b25415797702, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup: []
+    active:
+    - {fileID: 4116989290456868382, guid: 84b94e1b111f2414e862b25415797702, type: 3}
+    - {fileID: -5370646289979438120, guid: 84b94e1b111f2414e862b25415797702, type: 3}
+    - {fileID: 1218408585247190522, guid: 84b94e1b111f2414e862b25415797702, type: 3}
+    - {fileID: -307333200389850526, guid: 84b94e1b111f2414e862b25415797702, type: 3}
+    - {fileID: 8294419806639723770, guid: 84b94e1b111f2414e862b25415797702, type: 3}
+    - {fileID: -1491959801990740827, guid: 84b94e1b111f2414e862b25415797702, type: 3}
+    - {fileID: 8521075783316060884, guid: 84b94e1b111f2414e862b25415797702, type: 3}
+    ending: []
+    impact: []
+    framesPerSecond: 18
+    areaRadius: 1.15
+    castDistance: 3
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}

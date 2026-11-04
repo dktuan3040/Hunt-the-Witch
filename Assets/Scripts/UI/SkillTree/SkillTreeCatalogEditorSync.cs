@@ -71,7 +71,7 @@ public static class SkillTreeCatalogEditorSync
             {
                 var target=entries.FirstOrDefault(e=>e.skill==recipe.ResultingSynergySkill);
                 var matching=recipes.Count(r=>r.ResultingSynergySkill==recipe.ResultingSynergySkill);
-                bool valid=target!=null&&matching==1&&recipe.RequiredSkills!=null&&recipe.RequiredSkills.Count>=2&&recipe.RequiredSkills.Distinct().Count()==recipe.RequiredSkills.Count
+                bool valid=target!=null&&matching==1&&recipe.RequiredSkills!=null&&recipe.RequiredSkills.Count>=2
                     &&recipe.RequiredSkills.All(s=>s!=null&&s!=recipe.ResultingSynergySkill&&entries.Any(e=>e.skill==s&&!e.invalid));
                 if(!valid){errors.Add("Invalid recipe: "+AssetDatabase.GetAssetPath(recipe)+" (missing/duplicate result or prerequisites)");if(target!=null)target.invalid=true;}
                 else target.recipe=recipe;

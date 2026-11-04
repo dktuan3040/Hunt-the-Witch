@@ -18,6 +18,7 @@ public sealed class SkillScrollSelectionUI : MonoBehaviour
     public int SelectedSlot {get;private set;}
     private PlayerSkillManager manager;
     private SkillScrollPickup incoming;
+    private SkillData startingSkill;
     private float previousScale;
     private bool ownsPause;
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -33,49 +34,105 @@ public sealed class SkillScrollSelectionUI : MonoBehaviour
         return instance;
     }
     private void Awake(){if(instance==null)instance=this;if(panelRoot!=null)panelRoot.SetActive(false);}
-    private void OnDisable(){if(instance==this&&ownsPause)Cancel();}
-    private void OnDestroy(){if(instance==this){if(ownsPause)Cancel();instance=null;}}
+    private void OnDisable(){if(instance==this&&ownsPause)Close(true);}
+    private void OnDestroy(){if(instance==this){if(ownsPause)Close(true);instance=null;}}
     public static bool Show(PlayerSkillManager player,SkillScrollPickup scroll)
     {
         if(IsOpen||player==null||scroll==null)return false;
         var ui=Ensure();if(ui==null||ui.panelRoot==null)return false;
-        ui.manager=player;ui.incoming=scroll;ui.previousScale=Time.timeScale;ui.ownsPause=true;
-        ui.SelectedSlot=0;ui.panelRoot.SetActive(true);Time.timeScale=0;
-        ui.Refresh();return true;
+        ui.incoming=scroll;
+        ui.Open(player);
+        return true;
+    }
+
+    public static bool ShowStartingSkill(PlayerSkillManager player, SkillData skill)
+    {
+        if (IsOpen || player == null || skill == null ||
+            player.GetReplacementSkill(0) != null || player.GetReplacementSkill(1) != null ||
+            SkillUnlockProgress.GetState(skill) != SkillKnowledge.Unlocked) return false;
+
+        var ui = Ensure();
+        if (ui == null || ui.panelRoot == null) return false;
+        ui.startingSkill = skill;
+        ui.Open(player);
+        return true;
+    }
+
+    private void Open(PlayerSkillManager player)
+    {
+        manager = player;
+        previousScale = Time.timeScale;
+        ownsPause = true;
+        SelectedSlot = 0;
+        SetModeText();
+        panelRoot.SetActive(true);
+        Time.timeScale = 0;
+        Refresh();
+    }
+
+    private void SetModeText()
+    {
+        bool isStarting = startingSkill != null;
+        var title = panelRoot.transform.Find("Window/Title")?.GetComponent<TMP_Text>();
+        var instructions = panelRoot.transform.Find("Window/Instructions")?.GetComponent<TMP_Text>();
+        var cancel = panelRoot.transform.Find("Window/Cancel");
+        if (title != null) title.text = isStarting ? "CHOOSE A SLOT" : "CHOOSE A SKILL TO REPLACE";
+        if (instructions != null) instructions.text = isStarting
+            ? "Left click Q or E to equip"
+            : "Hover a slot - Left click to replace";
+        if (cancel != null) cancel.gameObject.SetActive(!isStarting);
     }
     private void Update()
     {
         if(!IsOpen||instance!=this)return;
-        if(manager==null||incoming==null||manager.GetComponent<Health>()==null||manager.GetComponent<Health>().IsDead){Cancel();return;}
-        if(Keyboard.current!=null&&Keyboard.current.escapeKey.wasPressedThisFrame){Cancel();return;}
+        var health = manager != null ? manager.GetComponent<Health>() : null;
+        if (health == null || health.IsDead || (incoming == null && startingSkill == null))
+        {
+            Close(true);
+            return;
+        }
+        if (startingSkill == null && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+            Cancel();
 
     }
     public void SelectSlot(int slot){if(manager==null||slot<0||slot>1)return;SelectedSlot=slot;Refresh();}
     private void Refresh()
     {
         var a=manager.GetReplacementSkill(0);var b=manager.GetReplacementSkill(1);
-        incomingIcon.sprite=incoming.Skill.SkillIcon;incomingName.text=incoming.Skill.SkillName.TrimStart('★',' ');
+        var offered = startingSkill != null ? startingSkill : incoming.Skill;
+        incomingIcon.sprite=offered.SkillIcon;incomingName.text=offered.SkillName.TrimStart('★',' ');
         qIcon.sprite=a!=null?a.SkillIcon:null;eIcon.sprite=b!=null?b.SkillIcon:null;
         qName.text=a!=null?a.SkillName.TrimStart('★',' '):"-";eName.text=b!=null?b.SkillName.TrimStart('★',' '):"-";
         qSelected.SetActive(SelectedSlot==0);eSelected.SetActive(SelectedSlot==1);
-        confirmButton.interactable=manager.GetReplacementSkill(SelectedSlot)!=null;
+        var current = manager.GetReplacementSkill(SelectedSlot);
+        if (confirmButton != null) confirmButton.interactable = startingSkill != null ? current == null : current != null;
     }
     public void ChooseSlot(int slot){SelectSlot(slot);Confirm();}
     public bool Confirm()
     {
-        if(!IsOpen||instance!=this||manager==null||incoming==null)return false;
+        if(!IsOpen||instance!=this||manager==null)return false;
+        if (startingSkill != null)
+        {
+            if (manager.GetReplacementSkill(SelectedSlot) != null) return false;
+            manager.EquipSkill(SelectedSlot, startingSkill);
+            manager.SelectSlot(SelectedSlot);
+            Close(false);
+            return true;
+        }
+
+        if (incoming == null) return false;
         var old=manager.GetReplacementSkill(SelectedSlot);if(old==null)return false;
         var dropped=incoming.DropReplacement(old,manager.GetComponent<Health>());if(dropped==null)return false;
         manager.EquipSkill(SelectedSlot,incoming.Skill);manager.SelectSlot(SelectedSlot);incoming.Consume();
         Close(false);return true;
     }
-    public void Cancel(){Close(true);}
+    public void Cancel(){if(startingSkill==null)Close(true);}
     private void Close(bool release)
     {
         if(!ownsPause)return;
         ownsPause=false;
         if(release&&incoming!=null)incoming.Release(manager!=null?manager.GetComponent<Health>():null);
-        manager=null;incoming=null;closedFrame=Time.frameCount;
+        manager=null;incoming=null;startingSkill=null;closedFrame=Time.frameCount;
         if(panelRoot!=null)panelRoot.SetActive(false);Time.timeScale=previousScale;
     }
 }

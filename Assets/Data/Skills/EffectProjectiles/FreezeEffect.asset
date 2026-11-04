@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: FreezeEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Freeze
+  projectileSprite: {fileID: 5206658813074621721, guid: 12bd9a2718056424eb4b2fde5a58930c, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup:
+    - {fileID: 5206658813074621721, guid: 12bd9a2718056424eb4b2fde5a58930c, type: 3}
+    - {fileID: -1048099131337399618, guid: 12bd9a2718056424eb4b2fde5a58930c, type: 3}
+    - {fileID: 8725983819431953740, guid: 12bd9a2718056424eb4b2fde5a58930c, type: 3}
+    - {fileID: -122644590563166477, guid: 12bd9a2718056424eb4b2fde5a58930c, type: 3}
+    - {fileID: 1600879960718958076, guid: 12bd9a2718056424eb4b2fde5a58930c, type: 3}
+    - {fileID: -3020022457635925272, guid: 12bd9a2718056424eb4b2fde5a58930c, type: 3}
+    - {fileID: -6189142479885419064, guid: 12bd9a2718056424eb4b2fde5a58930c, type: 3}
+    - {fileID: -5925753062700032515, guid: 12bd9a2718056424eb4b2fde5a58930c, type: 3}
+    active:
+    - {fileID: -8327306063690401027, guid: 06161ce839c10154f95d1b43dcb5ea49, type: 3}
+    - {fileID: 3633911380212670485, guid: 06161ce839c10154f95d1b43dcb5ea49, type: 3}
+    - {fileID: 1006702038834214836, guid: 06161ce839c10154f95d1b43dcb5ea49, type: 3}
+    - {fileID: 265124857326788471, guid: 06161ce839c10154f95d1b43dcb5ea49, type: 3}
+    - {fileID: 3551280217266570879, guid: 06161ce839c10154f95d1b43dcb5ea49, type: 3}
+    - {fileID: 4941648196598716840, guid: 06161ce839c10154f95d1b43dcb5ea49, type: 3}
+    - {fileID: 5718477359232421878, guid: 06161ce839c10154f95d1b43dcb5ea49, type: 3}
+    - {fileID: -8180047979456478456, guid: 06161ce839c10154f95d1b43dcb5ea49, type: 3}
+    ending: []
+    impact: []
+    framesPerSecond: 18
+    areaRadius: 1.35
+    castDistance: 3
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}

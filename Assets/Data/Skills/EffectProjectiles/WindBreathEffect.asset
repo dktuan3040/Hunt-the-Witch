@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: WindBreathEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Wind Breath
+  projectileSprite: {fileID: 2782278253864421802, guid: 3db08e6f8596bf046a5c69b4550e8b30, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup:
+    - {fileID: 2782278253864421802, guid: 3db08e6f8596bf046a5c69b4550e8b30, type: 3}
+    - {fileID: 7541683706324072265, guid: 3db08e6f8596bf046a5c69b4550e8b30, type: 3}
+    - {fileID: 7508660217430832753, guid: 3db08e6f8596bf046a5c69b4550e8b30, type: 3}
+    - {fileID: -516336376512167396, guid: 3db08e6f8596bf046a5c69b4550e8b30, type: 3}
+    active:
+    - {fileID: 3598699384485335006, guid: 3db08e6f8596bf046a5c69b4550e8b30, type: 3}
+    - {fileID: -9024979458508472140, guid: 3db08e6f8596bf046a5c69b4550e8b30, type: 3}
+    - {fileID: 6341467740097221850, guid: 3db08e6f8596bf046a5c69b4550e8b30, type: 3}
+    ending:
+    - {fileID: 1697595319177233797, guid: 3db08e6f8596bf046a5c69b4550e8b30, type: 3}
+    - {fileID: 5009558556664432155, guid: 3db08e6f8596bf046a5c69b4550e8b30, type: 3}
+    - {fileID: -6531920707316635049, guid: 3db08e6f8596bf046a5c69b4550e8b30, type: 3}
+    - {fileID: -6678817242142616784, guid: 3db08e6f8596bf046a5c69b4550e8b30, type: 3}
+    impact:
+    - {fileID: -6332939809186309373, guid: 75c852b8d5605544eb040e762a15cec1, type: 3}
+    - {fileID: -1780530402258229259, guid: 75c852b8d5605544eb040e762a15cec1, type: 3}
+    - {fileID: -8128283118744106991, guid: 75c852b8d5605544eb040e762a15cec1, type: 3}
+    - {fileID: 5869185045024866341, guid: 75c852b8d5605544eb040e762a15cec1, type: 3}
+    framesPerSecond: 18
+    areaRadius: 1.3
+    castDistance: 1.25
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}

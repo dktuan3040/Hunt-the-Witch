@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: AirBurstEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Air Burst
+  projectileSprite: {fileID: 3976863041626000742, guid: ae32e1df7af9f6d4580f8f8120d32d10, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup:
+    - {fileID: 3976863041626000742, guid: ae32e1df7af9f6d4580f8f8120d32d10, type: 3}
+    - {fileID: 7320969404686093127, guid: ae32e1df7af9f6d4580f8f8120d32d10, type: 3}
+    - {fileID: 8287392061090696340, guid: ae32e1df7af9f6d4580f8f8120d32d10, type: 3}
+    - {fileID: -3018101229259554236, guid: ae32e1df7af9f6d4580f8f8120d32d10, type: 3}
+    - {fileID: 5494533276230643260, guid: ae32e1df7af9f6d4580f8f8120d32d10, type: 3}
+    - {fileID: 2318569785917407184, guid: ae32e1df7af9f6d4580f8f8120d32d10, type: 3}
+    - {fileID: 1129616249638549662, guid: ae32e1df7af9f6d4580f8f8120d32d10, type: 3}
+    - {fileID: -1504993519954870139, guid: ae32e1df7af9f6d4580f8f8120d32d10, type: 3}
+    - {fileID: 8149668148294942082, guid: ae32e1df7af9f6d4580f8f8120d32d10, type: 3}
+    active:
+    - {fileID: 1586163436078421409, guid: 2103dfad42042ee448c78f71cf443b4b, type: 3}
+    - {fileID: -8931572146811203989, guid: 2103dfad42042ee448c78f71cf443b4b, type: 3}
+    - {fileID: 5945081630054022074, guid: 2103dfad42042ee448c78f71cf443b4b, type: 3}
+    - {fileID: -3500500125322871106, guid: 2103dfad42042ee448c78f71cf443b4b, type: 3}
+    - {fileID: 103765426463475453, guid: 2103dfad42042ee448c78f71cf443b4b, type: 3}
+    - {fileID: 7067746560027327115, guid: 2103dfad42042ee448c78f71cf443b4b, type: 3}
+    - {fileID: -4615270458522554370, guid: 2103dfad42042ee448c78f71cf443b4b, type: 3}
+    ending: []
+    impact: []
+    framesPerSecond: 18
+    areaRadius: 1.2
+    castDistance: 1.25
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}

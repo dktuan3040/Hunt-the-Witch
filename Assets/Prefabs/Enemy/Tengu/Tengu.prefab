@@ -280,21 +280,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d235b96d3225dde42b3218b4530041a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TenguAttack
-  detectionRadius: 100
-  loseTargetRadius: 200
+  detectionRadius: 6
+  loseTargetRadius: 8
   moveSpeed: 2.5
   spriteFacesRight: 1
-  attackType: 1
-  attackRange: 50
+  attackType: 0
+  attackRange: 4.32
   damage: 1
   attackCooldown: 1
   meleeReach: 0.13
-  meleeHitRadius: 49.87
+  meleeHitRadius: 4.96
   targetLayers:
     serializedVersion: 2
     m_Bits: 8
-  projectilePrefab: {fileID: 5488266359571220922, guid: 8d3f73b18e0c6184ab4a6b657118bba9, type: 3}
-  firePoint: {fileID: 2115839912028430412}
+  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
   projectileSpeed: 6
   projectileLifeTime: 3
   retreatDistance: 0

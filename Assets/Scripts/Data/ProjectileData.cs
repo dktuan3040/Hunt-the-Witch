@@ -28,6 +28,8 @@ public class ProjectileData : ScriptableObject
     [SerializeField] private int pierceCount = 1;
 
     [Header("Effects")]
+    [SerializeField] private SkillEffectSequence effect;
+    public SkillEffectSequence Effect => effect;
     [SerializeField] private GameObject impactVfxPrefab;
     [SerializeField] private AudioClip impactSound;
 

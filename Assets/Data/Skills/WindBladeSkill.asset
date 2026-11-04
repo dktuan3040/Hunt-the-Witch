@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: WindBladeSkill
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: wind_blade
-  skillName: "Gi\xF3 (Wind Blade)"
-  description: "Ph\xE9p thu\u1EADt gi\xF3. Chu\u1ED9t ph\u1EA3i k\xEDch ho\u1EA1t
-    Ultimate: b\xE3o dao gi\xF3 7 tia s\u1EAFc b\xE9n (H\u1ED3i chi\xEAu: 4s)."
+  skillName: Wind Projectile
+  description: Fire three piercing blades of wind.
   skillIcon: {fileID: 5986030973748356752, guid: a17b2d3fca965374b87d4504b4212f6e, type: 3}
   themeColor: {r: 0.2, g: 0.9, b: 0.5, a: 1}
   elementTag: Wind
@@ -31,9 +30,42 @@ MonoBehaviour:
     displayName: "M\xF3ng vu\u1ED1t qu\xE1i v\u1EADt"
     icon: {fileID: 0}
     amount: 2
-  ultimateProjectile: {fileID: 0}
-  ultimateCooldown: 4
-  ultimateProjectilesPerShot: 7
-  ultimateSpreadAngle: 45
+  ultimateProjectile: {fileID: 11400000, guid: ce52498599469f04a80474002c0c9495, type: 2}
+  ultimateCooldown: 5
+  ultimateProjectilesPerShot: 3
+  ultimateSpreadAngle: 24
   ultimateMuzzleFlash: {fileID: 0}
   ultimateSound: {fileID: 0}
+  combat:
+    pattern: 3
+    duration: 1.1
+    tickInterval: 0.4
+    damage: 10
+    radius: 0.44
+    range: 10
+    speed: 9
+    targetCount: 1
+    repeatTargets: 0
+    pierce: 1
+    hitDuringEnding: 0
+    damageOverTime: 0
+    radial: 0
+    followCaster: 0
+    knockbackDistance: 0
+    knockbackDuration: 0.18
+    pullSpeed: 0
+    trailDamage: 0
+    trailRadius: 0
+    explosionRadius: 0
+    explosionDamage: 0
+    wallSpacing: 1
+    wallDelay: 0.13
+    arcHeight: 1.6
+    vortexDegreesPerSecond: 140
+    status: 0
+    statusDuration: 2
+    slowMultiplier: 0.55
+    thawSlowDuration: 2
+    burnDamage: 2
+    burnInterval: 1
+    onHitSkill: {fileID: 0}
