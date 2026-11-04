@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: RockThrowEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Rock Throw
+  projectileSprite: {fileID: 6817854425926531477, guid: fd92263a94cab6c4f9b83223722994bc, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup:
+    - {fileID: 6817854425926531477, guid: fd92263a94cab6c4f9b83223722994bc, type: 3}
+    - {fileID: 3929869733720270682, guid: fd92263a94cab6c4f9b83223722994bc, type: 3}
+    - {fileID: 4127516468003071197, guid: fd92263a94cab6c4f9b83223722994bc, type: 3}
+    - {fileID: 1028570765121418880, guid: fd92263a94cab6c4f9b83223722994bc, type: 3}
+    - {fileID: 9065550577972586202, guid: fd92263a94cab6c4f9b83223722994bc, type: 3}
+    active:
+    - {fileID: -8989927587475101345, guid: fd92263a94cab6c4f9b83223722994bc, type: 3}
+    ending:
+    - {fileID: 6241315977421750294, guid: fd92263a94cab6c4f9b83223722994bc, type: 3}
+    - {fileID: 7533774863159523364, guid: fd92263a94cab6c4f9b83223722994bc, type: 3}
+    - {fileID: 4652531855074350399, guid: fd92263a94cab6c4f9b83223722994bc, type: 3}
+    - {fileID: 6534051041330954201, guid: fd92263a94cab6c4f9b83223722994bc, type: 3}
+    - {fileID: -3343438215909404515, guid: fd92263a94cab6c4f9b83223722994bc, type: 3}
+    impact:
+    - {fileID: 9066965552410547421, guid: ac47e4d756b282a48a1f36d093b0628b, type: 3}
+    - {fileID: -3851906661081855135, guid: ac47e4d756b282a48a1f36d093b0628b, type: 3}
+    - {fileID: 5878554744230872006, guid: ac47e4d756b282a48a1f36d093b0628b, type: 3}
+    - {fileID: -3553073731317177779, guid: ac47e4d756b282a48a1f36d093b0628b, type: 3}
+    - {fileID: -5849094817486955999, guid: ac47e4d756b282a48a1f36d093b0628b, type: 3}
+    - {fileID: -3552854882224405840, guid: ac47e4d756b282a48a1f36d093b0628b, type: 3}
+    - {fileID: -2396827876381916806, guid: ac47e4d756b282a48a1f36d093b0628b, type: 3}
+    framesPerSecond: 18
+    areaRadius: 0
+    castDistance: 0
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}

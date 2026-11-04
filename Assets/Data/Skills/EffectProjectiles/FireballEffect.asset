@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: FireballEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Firebolt
+  projectileSprite: {fileID: -5125016487584988340, guid: 1e44e8ba0f4e3ce4eb15264b1866f566, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup: []
+    active:
+    - {fileID: -5125016487584988340, guid: 1e44e8ba0f4e3ce4eb15264b1866f566, type: 3}
+    - {fileID: 2079069499431681214, guid: 1e44e8ba0f4e3ce4eb15264b1866f566, type: 3}
+    - {fileID: 7930330267075456573, guid: 1e44e8ba0f4e3ce4eb15264b1866f566, type: 3}
+    - {fileID: 3204815983637903098, guid: 1e44e8ba0f4e3ce4eb15264b1866f566, type: 3}
+    ending: []
+    impact:
+    - {fileID: -6396962492907036362, guid: 1e44e8ba0f4e3ce4eb15264b1866f566, type: 3}
+    - {fileID: -3759525729366353760, guid: 1e44e8ba0f4e3ce4eb15264b1866f566, type: 3}
+    - {fileID: -3009201117534637810, guid: 1e44e8ba0f4e3ce4eb15264b1866f566, type: 3}
+    - {fileID: 1054467374018352463, guid: 1e44e8ba0f4e3ce4eb15264b1866f566, type: 3}
+    - {fileID: -9133990114370815636, guid: 1e44e8ba0f4e3ce4eb15264b1866f566, type: 3}
+    - {fileID: -6064172515678140447, guid: 1e44e8ba0f4e3ce4eb15264b1866f566, type: 3}
+    framesPerSecond: 18
+    areaRadius: 0
+    castDistance: 0
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}

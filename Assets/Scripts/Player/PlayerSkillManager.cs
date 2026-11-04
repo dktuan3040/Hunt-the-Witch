@@ -5,8 +5,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerSkillManager : MonoBehaviour
 {
-    [Header("Skill Slots (Q: 0, E: 1)")]
-    [SerializeField] private SkillData[] slots = new SkillData[2];
+    [Header("Skills already learned at scene entry")]
+    [UnityEngine.Serialization.FormerlySerializedAs("slots")]
+    [SerializeField] private SkillData[] startingLearnedSkills;
+    [SerializeField] private bool offerSkillOnFirstVisit = true;
+    private readonly SkillData[] slots = new SkillData[2];
     [SerializeField] private int activeSlotIndex = 0;
 
     [Header("Synergy Database")]
@@ -41,6 +44,7 @@ public class PlayerSkillManager : MonoBehaviour
 
     public int ActiveSlotIndex => activeSlotIndex;
     public SkillData[] Slots => slots;
+    public bool LoadoutInitialized { get; private set; }
 
     public bool HasLinkedSynergy
     {
@@ -60,6 +64,10 @@ public class PlayerSkillManager : MonoBehaviour
 
     private void Awake()
     {
+        if (synergyDatabase == null) synergyDatabase = new List<SkillSynergyData>();
+        foreach (var recipe in Resources.LoadAll<SkillSynergyData>("SkillSynergies"))
+            if (!synergyDatabase.Contains(recipe)) synergyDatabase.Add(recipe);
+
         EnsureSources();
         if (playerInput == null)
         {
@@ -120,12 +128,34 @@ public class PlayerSkillManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (var skill in slots) SkillUnlockProgress.MarkUnlocked(skill);
-        // Kích hoạt slot ban đầu
         SelectSlot(activeSlotIndex);
+        var health = GetComponent<Health>();
+        if (health == null || health.Team != Team.Player || health.IsDead) return;
 
-        // Kiểm tra synergy nếu đã gán sẵn skill ban đầu trong Inspector
-        EvaluateSynergies();
+        var scene = gameObject.scene;
+        foreach (var root in scene.GetRootGameObjects())
+            foreach (var panel in root.GetComponentsInChildren<SkillUnlockPanelUI>(true))
+                panel.Close();
+
+        if (!PlayerSessionState.VisitMap(scene))
+        {
+            var saved = PlayerSessionState.Player;
+            if (saved != null)
+                RestoreSessionState(saved.Skills, saved.Cooldowns, saved.ActiveSlot, saved.SourceSkills);
+            LoadoutInitialized = true;
+            return;
+        }
+
+        LoadoutInitialized = true;
+        if (startingLearnedSkills != null)
+            foreach (var skill in startingLearnedSkills)
+                SkillUnlockProgress.MarkUnlocked(skill);
+
+        if (!offerSkillOnFirstVisit) return;
+
+        var offered = SkillUnlockProgress.PickLearnedSkill();
+        if (offered != null)
+            SkillScrollSelectionUI.ShowStartingSkill(this, offered);
     }
 
     private void Update()
