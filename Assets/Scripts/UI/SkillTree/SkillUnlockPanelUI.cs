@@ -274,10 +274,65 @@ public sealed class SkillUnlockPanelUI : MonoBehaviour
         if(invalid)rows.Add(new RequirementLine("Missing item data","Unavailable",false,questionIcon));
         if(rows.Count==0)rows.Add(new RequirementLine("Available by default","Unlocked",true,checkIcon));
         RenderRows(rows);
-        if(unlockButton!=null)unlockButton.interactable=ready;
-        if(unlockButtonLabel!=null){unlockButtonLabel.text=learned?"UNLOCKED":ready?"UNLOCK "+(node.weapon!=null?"STAFF":"SKIN"):"LOCKED";unlockButtonLabel.color=ready?Color.white:Muted;}
-        if(detailHint!=null){detailHint.text=learned?"Already unlocked.":ready?"All requirements are ready.":"Collect the required materials.";detailHint.color=ready?Ready:Muted;}
+
+        var player = learned ? FindEquipmentPlayer() : null;
+        var weapon = player != null && node.weapon != null ? player.GetComponentInChildren<WeaponShoot>() : null;
+        var skin = player != null && node.skin != null ? player.GetComponent<PlayerSkinController>() : null;
+        bool equipped = weapon != null ? weapon.CurrentWeapon == node.weapon : skin != null && skin.IsWearing(node.skin);
+        bool canEquip = learned && !equipped && (weapon != null || skin != null);
+        bool interactable = learned ? canEquip : ready;
+
+        if (unlockButton != null) unlockButton.interactable = interactable;
+        if (unlockButtonLabel != null)
+        {
+            unlockButtonLabel.text = learned ? (equipped ? "EQUIPPED" : "EQUIP")
+                : ready ? "UNLOCK " + (node.weapon != null ? "STAFF" : "SKIN") : "LOCKED";
+            unlockButtonLabel.color = equipped ? Ready : interactable ? Color.white : Muted;
+        }
+        if (detailHint != null)
+        {
+            if (equipped) detailHint.text = node.weapon != null ? "Currently held." : "Currently worn.";
+            else if (canEquip) detailHint.text = "Ready to equip.";
+            else if (learned) detailHint.text = "Available to equip in game.";
+            else detailHint.text = ready ? "All requirements are ready." : "Collect the required materials.";
+            detailHint.color = equipped || interactable ? Ready : Muted;
+        }
     }
+
+    private Health FindEquipmentPlayer()
+    {
+        if (!Application.isPlaying) return null;
+        foreach (var player in FindObjectsByType<PlayerMovement>())
+        {
+            if (player.gameObject.scene == gameObject.scene && player.TryGetComponent<Health>(out var health)
+                && health.Team == Team.Player && !health.IsDead)
+                return health;
+        }
+        return null;
+    }
+
+    private void Equip(NodeView node)
+    {
+        var player = FindEquipmentPlayer();
+        if (player == null) return;
+
+        if (node.weapon != null)
+        {
+            var weapon = player.GetComponentInChildren<WeaponShoot>();
+            if (weapon == null || weapon.CurrentWeapon == node.weapon) return;
+            weapon.EquipWeapon(node.weapon);
+        }
+        else
+        {
+            var skin = player.GetComponent<PlayerSkinController>();
+            if (skin == null || skin.IsWearing(node.skin)) return;
+            skin.ApplySkin(node.skin);
+        }
+
+        if (player.TryGetComponent<PlayerStatePersistence>(out var persistence))
+            persistence.Capture();
+    }
+
     private void RenderRows(List<RequirementLine> rows)
     {
         while(requirementRows.Count<rows.Count&&requirementTemplate!=null&&requirementContent!=null)
@@ -390,14 +445,25 @@ public sealed class SkillUnlockPanelUI : MonoBehaviour
     }
     public void RequestUnlock()
     {
-        if(selectedIndex<0||selectedIndex>=nodes.Count||!CanLearn(nodes[selectedIndex]))return;
-        var node=nodes[selectedIndex];
-        if(node.IsEquipment)
+        if (selectedIndex < 0 || selectedIndex >= nodes.Count) return;
+        var node = nodes[selectedIndex];
+        if (node == null || node.invalidData) return;
+
+        if (node.IsEquipment)
         {
-            if(!Application.isPlaying)return;
-            if(node.weapon!=null)node.weapon.TryUnlock();else node.skin.TryUnlock();
-            RefreshSelection();return;
+            if (!Application.isPlaying) return;
+            if (StateOf(node) == SkillKnowledge.Unlocked)
+                Equip(node);
+            else if (CanLearn(node))
+            {
+                if (node.weapon != null) node.weapon.TryUnlock();
+                else node.skin.TryUnlock();
+            }
+            RefreshSelection();
+            return;
         }
+
+        if (!CanLearn(node)) return;
         var skill=node.skill;
         if(Application.isPlaying&&!SkillUnlockProgress.TryUnlock(skill))return;
         UnlockRequested.Invoke(skill);RefreshSelection();

@@ -8,7 +8,17 @@ public sealed class UnlockMenuTabs : MonoBehaviour
     public Button[] buttons;
     public Sprite activeFrame,inactiveFrame;
     [Range(0,2)] public int selectedTab;
-    private void OnEnable(){Bind();SelectTab(selectedTab);}
+    private void OnEnable()
+    {
+        if (Application.isPlaying) GameplayPause.Acquire(this);
+        Bind();
+        SelectTab(selectedTab);
+    }
+
+    private void OnDisable()
+    {
+        GameplayPause.Release(this);
+    }
     public void Bind()
     {
         if(buttons==null)return;

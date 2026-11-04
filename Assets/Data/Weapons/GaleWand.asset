@@ -16,8 +16,8 @@ MonoBehaviour:
   description: "T\u1EA7m b\u1EAFn xa, \u0111\u1EA1n bay x\xE9 gi\xF3 c\u1EF1c nhanh
     v\xE0 b\u1EAFn li\xEAn thanh, nh\u01B0ng s\xE1t th\u01B0\u01A1ng m\u1ED7i vi\xEAn
     th\u1EA5p h\u01A1n."
-  weaponSprite: {fileID: 1191002196291150918, guid: e1357a84f9787244c99aa371a2b4a1cc, type: 3}
-  weaponIcon: {fileID: 0}
+  weaponSprite: {fileID: -5750353039905602045, guid: cb8d657ff5e20bc4cb1f917da41795cd, type: 3}
+  weaponIcon: {fileID: -5750353039905602045, guid: cb8d657ff5e20bc4cb1f917da41795cd, type: 3}
   projectilePrefab: {fileID: 5488266359571220922, guid: 8d3f73b18e0c6184ab4a6b657118bba9, type: 3}
   primaryBulletSprite: {fileID: 0}
   damage: 6
@@ -30,7 +30,9 @@ MonoBehaviour:
   muzzleFlashPrefab: {fileID: 0}
   shootSound: {fileID: 0}
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    amount: 8
-  - item: {fileID: 11400000, guid: 60bafbb9917377e4c846efeb939ca142, type: 2}
-    amount: 3
+  - item: {fileID: 11400000, guid: 0c0b50b7ee7f4ad39c4f01525d9c32c9, type: 2}
+    amount: 2
+  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: f5f619ffccd1415c87ccbfd40dae6d88, type: 2}
+    amount: 1

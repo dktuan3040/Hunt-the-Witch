@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c14e380f9b9ae46b9117f13564b22e, type: 3}
+  m_Name: PurpleWizard
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkinData
+  skinName: Purple Wizard
+  description: The young wizard's purple hat, scarf, and cloak.
+  skinIcon: {fileID: 7316008476745969496, guid: 7b263a7e3b4c4a9aa014f1707fe26346, type: 3}
+  animatorController: {fileID: 22100000, guid: fe1331ea8be44bf43924c291745430e8, type: 2}
+  defaultSprite: {fileID: 7316008476745969496, guid: 7b263a7e3b4c4a9aa014f1707fe26346, type: 3}
+  moveSpeedBonus: 0
+  unlockItems:
+  - item: {fileID: 11400000, guid: 7976e3fde26f471abbc0fd0de07c8f0e, type: 2}
+    amount: 3

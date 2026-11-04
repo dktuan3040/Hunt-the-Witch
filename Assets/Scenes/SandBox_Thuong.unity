@@ -1090,7 +1090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponShoot
   skillManager: {fileID: 1185166696}
-  currentWeapon: {fileID: 0}
+  currentWeapon: {fileID: 11400000, guid: abba1e84baeac144a871daad6369605f, type: 2}
   commonPrimaryProjectileSprite: {fileID: 0}
   firePoint: {fileID: 1049543830}
   weaponSpriteRenderer: {fileID: 914908847}

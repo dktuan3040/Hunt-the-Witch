@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PurpleWizard
+  m_Controller: {fileID: 9100000, guid: 129a8b234be33e34d84db60f179c94ad, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 9cd9f29f3a9268844a06918ecafe4a34, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8b217ad5aa62a234dba35e710709b124, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d4edae3131bdc8446bcc2e068184d672, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b9ec03168599f0c4caa02d4a523db72b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 65950ca35631b5d4ebdf385e8fce33a2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bda4d365615b9e34987cabd9417c1bab, type: 2}
