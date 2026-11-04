@@ -71,6 +71,11 @@ public static class SkillTreeCatalogEditorSync
             {
                 var target=entries.FirstOrDefault(e=>e.skill==recipe.ResultingSynergySkill);
                 var matching=recipes.Count(r=>r.ResultingSynergySkill==recipe.ResultingSynergySkill);
+                if(target!=null&&!target.skill.IsSynergySkill)
+                {
+                    errors.Add("Recipe result must be a synergy skill: "+AssetDatabase.GetAssetPath(recipe));
+                    continue;
+                }
                 bool valid=target!=null&&matching==1&&recipe.RequiredSkills!=null&&recipe.RequiredSkills.Count>=2
                     &&recipe.RequiredSkills.All(s=>s!=null&&s!=recipe.ResultingSynergySkill&&entries.Any(e=>e.skill==s&&!e.invalid));
                 if(!valid){errors.Add("Invalid recipe: "+AssetDatabase.GetAssetPath(recipe)+" (missing/duplicate result or prerequisites)");if(target!=null)target.invalid=true;}
@@ -102,7 +107,7 @@ public static class SkillTreeCatalogEditorSync
     }
     private static void CapturePositions()
     {
-        if(synchronizing||EditorApplication.isPlayingOrWillChangePlaymode||EditorApplication.timeSinceStartup<nextCapture)return;
+        if(queued||synchronizing||EditorApplication.isPlayingOrWillChangePlaymode||EditorApplication.timeSinceStartup<nextCapture)return;
         nextCapture=EditorApplication.timeSinceStartup+.2;
         foreach(var p in Panels())
         {

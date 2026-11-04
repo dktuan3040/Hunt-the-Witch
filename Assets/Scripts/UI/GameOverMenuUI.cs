@@ -295,7 +295,7 @@ public class GameOverMenuUI : MonoBehaviour
         }
 
         // Dừng thời gian thế giới game
-        Time.timeScale = 0f;
+        GameplayPause.Acquire(this);
     }
 
     public void RestartGame()
@@ -305,7 +305,7 @@ public class GameOverMenuUI : MonoBehaviour
 
         IsGameOver = false;
         PlayerSessionState.StartNewGame();
-        Time.timeScale = 1f;
+        GameplayPause.Release(this);
 
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
@@ -318,7 +318,7 @@ public class GameOverMenuUI : MonoBehaviour
 
         IsGameOver = false;
         PlayerSessionState.StartNewGame();
-        Time.timeScale = 1f;
+        GameplayPause.Release(this);
 
         if (!string.IsNullOrEmpty(mainMenuSceneName))
         {
@@ -333,10 +333,7 @@ public class GameOverMenuUI : MonoBehaviour
     private void OnDestroy()
     {
         IsGameOver = false;
-        if (Time.timeScale == 0f)
-        {
-            Time.timeScale = 1f;
-        }
+        GameplayPause.Release(this);
 
         if (playerHealth != null)
         {

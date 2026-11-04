@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: monster_claw
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: monster_claw
-  displayName: "M\xF3ng vu\u1ED1t qu\xE1i v\u1EADt"
+  displayName: Monster Claw
   description: 
-  icon: {fileID: 21300000, guid: 2f4a72f1b9a091d44aae38572f02260a, type: 3}
+  icon: {fileID: 21300000, guid: 0fa9a4a96bdd4394bc817d4fa813316e, type: 3}
   rarity: 1

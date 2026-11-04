@@ -43,6 +43,46 @@ MonoBehaviour:
     minAmount: 1
     maxAmount: 1
     quantityDecay: 0.5
+  - item: {fileID: 11400000, guid: 6df4daf4bd6b4464b1401ce52aa9db35, type: 2}
+    chanceMultiplier: 0.2857143
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.5
+  - item: {fileID: 11400000, guid: 2fcbaa2e04d24beea270d93c3bfb436d, type: 2}
+    chanceMultiplier: 0.2857143
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.5
+  - item: {fileID: 11400000, guid: 92225360ccc14c848320ddb6f2c0fe15, type: 2}
+    chanceMultiplier: 0.2857143
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.5
+  - item: {fileID: 11400000, guid: a6d68b03ade541e29ce2e18f7d38f5e8, type: 2}
+    chanceMultiplier: 0.2857143
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.5
+  - item: {fileID: 11400000, guid: 7976e3fde26f471abbc0fd0de07c8f0e, type: 2}
+    chanceMultiplier: 0.2857143
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.5
+  - item: {fileID: 11400000, guid: f5f619ffccd1415c87ccbfd40dae6d88, type: 2}
+    chanceMultiplier: 0.2857143
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.5
+  - item: {fileID: 11400000, guid: b2095a5985bd10d4a999421884647951, type: 2}
+    chanceMultiplier: 1
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.5
+  - item: {fileID: 11400000, guid: 0c0b50b7ee7f4ad39c4f01525d9c32c9, type: 2}
+    chanceMultiplier: 0.2857143
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.5
   guaranteeAtLeastOne: 1
   scrollLoot: {fileID: 11400000, guid: f7d419fd06cf4bf44a32f52dd122a080, type: 2}
-  skillScrollChance: 0.005
+  skillScrollChance: 0.25

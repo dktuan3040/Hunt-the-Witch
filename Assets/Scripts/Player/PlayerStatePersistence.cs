@@ -36,6 +36,8 @@ public class PlayerStatePersistence : MonoBehaviour
         health = GetComponent<Health>();
         weapon = GetComponentInChildren<WeaponShoot>(true);
         skin = GetComponent<PlayerSkinController>();
+        if (skin == null && health != null && health.Team == Team.Player)
+            skin = gameObject.AddComponent<PlayerSkinController>();
         generation = PlayerSessionState.Generation;
         var saved = PlayerSessionState.Player;
         if (saved != null)
