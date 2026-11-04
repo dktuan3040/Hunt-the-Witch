@@ -40,6 +40,7 @@ private Rigidbody2D rb;
     private int currentPierce;
     private int finalDamage;
     private bool isInitialized = false;
+    private bool preparing;
     private bool consumed = false; // đã hết xuyên thấu / đã nổ, bỏ qua va chạm thừa trong cùng frame
 
     private void Awake()
@@ -109,7 +110,51 @@ void Start()
         // Thời gian tồn tại theo tầm bay (range) của gậy hoặc lifetime của đạn
         float currentLifeTime = customLifeTime > 0f ? customLifeTime 
             : (projectileData != null ? projectileData.LifeTime : lifeTime);
-        Destroy(gameObject, currentLifeTime);
+        if (projectileData != null && projectileData.Effect != null &&
+            projectileData.Effect.IsConfigured && spriteRenderer != null)
+        {
+            if (animator != null) animator.enabled = false;
+            rb.linearVelocity = Vector2.zero;
+            preparing = true;
+            StartCoroutine(PlaySkillEffect(currentSpeed, currentLifeTime));
+        }
+        else
+        {
+            Destroy(gameObject, currentLifeTime);
+        }
+    }
+
+    private System.Collections.IEnumerator PlaySkillEffect(float flightSpeed, float duration)
+    {
+        var effect = projectileData.Effect;
+        if (effect.startup != null && effect.startup.Length > 0)
+        {
+            var disabledHitboxes = new System.Collections.Generic.List<Collider2D>();
+            foreach (var hitbox in GetComponentsInChildren<Collider2D>())
+            {
+                if (!hitbox.enabled) continue;
+                disabledHitboxes.Add(hitbox);
+                hitbox.enabled = false;
+            }
+            yield return SkillEffectPlayer.PlayFrames(spriteRenderer, effect.startup, effect.FrameTime);
+            foreach (var hitbox in disabledHitboxes)
+                if (hitbox != null) hitbox.enabled = true;
+        }
+        preparing = false;
+        rb.linearVelocity = moveDirection * flightSpeed;
+
+        int frame = 0;
+        float expiresAt = Time.time + duration;
+        while (!consumed && Time.time < expiresAt)
+        {
+            spriteRenderer.sprite = effect.active[frame++ % effect.active.Length];
+            yield return new WaitForSeconds(Mathf.Min(effect.FrameTime, expiresAt - Time.time));
+        }
+
+        if (consumed) yield break;
+        SkillEffectPlayer.SpawnOneShot(spriteRenderer, transform.position, transform.rotation,
+            transform.lossyScale, effect.ending, effect.FrameTime);
+        Destroy(gameObject);
     }
 
     private void ApplyVisualData(Sprite customSprite = null)
@@ -163,7 +208,7 @@ void Start()
 
 private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (consumed) return;
+        if (consumed || preparing) return;
 
         var damageable = collision.GetComponentInParent<IDamageable>();
         if (damageable != null)
@@ -206,6 +251,14 @@ private void StickTo(Transform target)
 
     private void SpawnImpactEffects()
     {
+        var effect = projectileData != null ? projectileData.Effect : null;
+        if (effect != null && effect.IsConfigured)
+        {
+            var frames = effect.impact != null && effect.impact.Length > 0 ? effect.impact : effect.ending;
+            SkillEffectPlayer.SpawnOneShot(spriteRenderer, transform.position, transform.rotation,
+                transform.lossyScale, frames, effect.FrameTime);
+        }
+
         GameObject vfx = projectileData != null ? projectileData.ImpactVfxPrefab : impactVfxPrefab;
         if (vfx != null)
         {

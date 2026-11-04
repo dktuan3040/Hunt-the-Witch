@@ -73,6 +73,21 @@ public static class SkillUnlockProgress
         return skill != null && knowledge.TryGetValue(skill.SkillId, out value) ? value : SkillKnowledge.Unknown;
     }
 
+    public static SkillData PickLearnedSkill()
+    {
+        SkillData selected = null;
+        int eligible = 0;
+        foreach (var skill in skills.Values)
+        {
+            if (skill == null || skill.IsSynergySkill || blocked.Contains(skill) ||
+                GetState(skill) != SkillKnowledge.Unlocked) continue;
+
+            if (UnityEngine.Random.Range(0, ++eligible) == 0)
+                selected = skill;
+        }
+        return selected;
+    }
+
     public static void RevealSkill(SkillData skill)
     {
         Register(skill);

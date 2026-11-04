@@ -235,13 +235,13 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   playerRb: {fileID: 0}
   fireBallZonePrefab: {fileID: 0}
-  fallingFireballPrefab: {fileID: 8473560615706035657, guid: f1b01b760f256e841afe1eb35b92a754, type: 3}
+  fallingFireballPrefab: {fileID: 8473560615706035657, guid: 8d3f73b18e0c6184ab4a6b657118bba9, type: 3}
   fallHeight: 6
   fallOffsetX: 6
   spriteAngleOffset: 0
   skillCoolDown: 5
   autoCast: 1
-  castRange: 8
+  castRange: 100
   predictionTime: 1
   fireCount: 3
   timeBetweenFires: 0.4
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab50c3097a783342a50f69093c2e02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpreadFireball
-  fireBallPrefab: {fileID: 8473560615706035657, guid: f1b01b760f256e841afe1eb35b92a754, type: 3}
+  fireBallPrefab: {fileID: 8473560615706035657, guid: 8d3f73b18e0c6184ab4a6b657118bba9, type: 3}
   numberOfFireBall: 12
   fireBallspeed: 5
   damage: 1
@@ -280,21 +280,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d235b96d3225dde42b3218b4530041a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TenguAttack
-  detectionRadius: 6
-  loseTargetRadius: 8
+  detectionRadius: 100
+  loseTargetRadius: 200
   moveSpeed: 2.5
   spriteFacesRight: 1
-  attackType: 0
-  attackRange: 4.32
+  attackType: 1
+  attackRange: 50
   damage: 1
   attackCooldown: 1
   meleeReach: 0.13
-  meleeHitRadius: 4.96
+  meleeHitRadius: 49.87
   targetLayers:
     serializedVersion: 2
     m_Bits: 8
-  projectilePrefab: {fileID: 0}
-  firePoint: {fileID: 0}
+  projectilePrefab: {fileID: 5488266359571220922, guid: 8d3f73b18e0c6184ab4a6b657118bba9, type: 3}
+  firePoint: {fileID: 2115839912028430412}
   projectileSpeed: 6
   projectileLifeTime: 3
   retreatDistance: 0
