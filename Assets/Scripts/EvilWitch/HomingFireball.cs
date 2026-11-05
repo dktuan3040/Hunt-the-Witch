@@ -106,16 +106,16 @@ public class HomingFireball : MonoBehaviour
             if (damageable.Team == team || damageable.IsDead) return;
 
             damageable.TakeDamage(damage, direction);
-            Explode();
+            Explode(playSound: damageable.Team == Team.Player || damageable.Team == Team.Enemy);
             return;
         }
 
         // 2) Chạm Wall
         if (((1 << other.gameObject.layer) & wallLayers.value) != 0)
-            Explode();
+            Explode(playSound: false);
     }
 
-    private void Explode()
+    private void Explode(bool playSound)
     {
         consumed = true;
         rb.linearVelocity = Vector2.zero;
@@ -123,8 +123,8 @@ public class HomingFireball : MonoBehaviour
         if (impactVfxPrefab != null)
             Instantiate(impactVfxPrefab, transform.position, Quaternion.identity);
 
-        if (impactSound != null)
-            AudioSource.PlayClipAtPoint(impactSound, transform.position);
+        if (playSound && impactSound != null)
+            SfxAudio.PlayAtPoint(impactSound, transform.position);
 
         Destroy(gameObject);
     }

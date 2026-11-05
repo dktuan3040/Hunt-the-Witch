@@ -234,7 +234,7 @@ public class WeaponShoot : MonoBehaviour
         // Skills use their own sound; an unassigned clip should stay silent.
         if (activeSkill.UltimateSound != null)
         {
-            AudioSource.PlayClipAtPoint(activeSkill.UltimateSound, firePoint.position);
+            SfxAudio.PlayAtPoint(activeSkill.UltimateSound, firePoint.position);
         }
 
         Debug.Log($"[Ultimate Unleashed!] Thi triển: {activeSkill.SkillName} (Cooldown: {activeSkill.UltimateCooldown}s)");
@@ -286,7 +286,7 @@ public class WeaponShoot : MonoBehaviour
 
         if (currentWeapon.ShootSound != null)
         {
-            AudioSource.PlayClipAtPoint(currentWeapon.ShootSound, firePoint.position);
+            SfxAudio.PlayAtPoint(currentWeapon.ShootSound, firePoint.position);
         }
     }
 }

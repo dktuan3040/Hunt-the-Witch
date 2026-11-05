@@ -110,17 +110,19 @@ public class SettingsMenuUI : MonoBehaviour
     {
         // 1. Master Volume (0f .. 1f, mặc định 0.8f)
         float masterVol = PlayerPrefs.GetFloat(PREF_MASTER_VOL, 0.8f);
-        if (masterVolumeSlider != null) masterVolumeSlider.value = masterVol;
+        AudioListener.volume = Mathf.Clamp01(masterVol);
+        if (masterVolumeSlider != null) masterVolumeSlider.SetValueWithoutNotify(masterVol);
         UpdateMasterVolumeDisplay(masterVol);
 
         // 2. BGM Volume
         float bgmVol = PlayerPrefs.GetFloat(PREF_BGM_VOL, 0.8f);
-        if (bgmVolumeSlider != null) bgmVolumeSlider.value = bgmVol;
+        if (bgmVolumeSlider != null) bgmVolumeSlider.SetValueWithoutNotify(bgmVol);
         UpdateBgmVolumeDisplay(bgmVol);
 
         // 3. SFX Volume
         float sfxVol = PlayerPrefs.GetFloat(PREF_SFX_VOL, 0.8f);
-        if (sfxVolumeSlider != null) sfxVolumeSlider.value = sfxVol;
+        SfxAudio.SetVolume(sfxVol);
+        if (sfxVolumeSlider != null) sfxVolumeSlider.SetValueWithoutNotify(sfxVol);
         UpdateSfxVolumeDisplay(sfxVol);
 
         // 4. Fullscreen
@@ -144,7 +146,7 @@ public class SettingsMenuUI : MonoBehaviour
 
     private void OnSfxVolumeChanged(float value)
     {
-        PlayerPrefs.SetFloat(PREF_SFX_VOL, value);
+        SfxAudio.SetVolume(value);
         UpdateSfxVolumeDisplay(value);
     }
 
