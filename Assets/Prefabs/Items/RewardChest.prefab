@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6214102897534789433
 Transform:
   m_ObjectHideFlags: 0
@@ -156,6 +156,8 @@ MonoBehaviour:
   lootTable: {fileID: 11400000, guid: 2b824a160d4fffc4f9100a66cfe308cc, type: 2}
   pickupPrefab: {fileID: 6077851749908981305, guid: 83129ecc5781ff540a93989a26f0e33b, type: 3}
   interactionRange: 1.5
+  lootClearance: 0.45
+  lootScatterRadius: 0.45
   openedSprite: {fileID: 0}
   onOpened:
     m_PersistentCalls:

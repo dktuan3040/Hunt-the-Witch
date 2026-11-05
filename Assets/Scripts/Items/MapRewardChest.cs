@@ -65,7 +65,7 @@ public sealed class MapRewardChest : MonoBehaviour
             if(!enemySpawningComplete)return false;
             // Query the current population, not a snapshot or per-type kill quota.
             // Inactive pooled enemies are not part of the current encounter.
-            foreach(var health in FindObjectsByType<Health>(FindObjectsSortMode.None))
+            foreach(var health in FindObjectsByType<Health>())
             {
                 if(health.gameObject.scene!=gameObject.scene||health.Team!=Team.Enemy||health.IsDead||health.IsBoss)continue;
                 return false;
