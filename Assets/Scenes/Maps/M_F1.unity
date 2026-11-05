@@ -8003,6 +8003,7 @@ GameObject:
   m_Component:
   - component: {fileID: 309303199}
   - component: {fileID: 309303198}
+  - component: {fileID: 910001100}
   m_Layer: 0
   m_Name: Map_Music
   m_TagString: Untagged
@@ -8023,7 +8024,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 1fe9f9b1a59a7534f84dbc89113ccf38, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.019
+  m_Volume: 0.04800000
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -89595,6 +89596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1190530569}
   - component: {fileID: 1190530568}
+  - component: {fileID: 910001101}
   - component: {fileID: 1190530570}
   m_Layer: 0
   m_Name: BattleBoss_music
@@ -89616,7 +89618,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 1db94c19a03b04a4bba8da34df06c782, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.032
+  m_Volume: 0.03032083
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -416619,6 +416621,34 @@ MonoBehaviour:
   bossPrefab: {fileID: 7661259046207433510, guid: 1eb616132e2504947b92ceb80ab79667, type: 3}
   spawnPoint: {fileID: 1140901425}
   entryDirection: {x: 1, y: 0}
+--- !u!114 &910001100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309303196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4f3ca57576426890881224f160b383, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::BgmAudio
+  baseVolume: 0.06
+  trackGain: 1.0
+--- !u!114 &910001101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190530567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4f3ca57576426890881224f160b383, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::BgmAudio
+  baseVolume: 0.06
+  trackGain: 0.631684
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

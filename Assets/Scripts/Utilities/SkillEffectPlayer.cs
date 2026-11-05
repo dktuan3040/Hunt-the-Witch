@@ -38,7 +38,7 @@ public sealed class SkillEffectPlayer : MonoBehaviour
     }
 
     public static void CastArea(SpriteRenderer source, Vector3 origin, Vector2 direction,
-        ProjectileData data, float multiplier)
+        ProjectileData data, float multiplier, AudioClip impactSound)
     {
         var effect = data.Effect;
         var position = origin + (Vector3)(direction * effect.castDistance);
@@ -46,7 +46,7 @@ public sealed class SkillEffectPlayer : MonoBehaviour
             ? Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + data.SpriteOffset)
             : Quaternion.identity;
         var player = Create(source, position, rotation, data.ProjectileScale);
-        player.StartCoroutine(player.PlayArea(data, direction, multiplier));
+        player.StartCoroutine(player.PlayArea(data, direction, multiplier, impactSound));
     }
 
     internal static SkillEffectPlayer Create(SpriteRenderer source, Vector3 position, Quaternion rotation, Vector3 scale, bool separateVisual = false)
@@ -95,7 +95,7 @@ public sealed class SkillEffectPlayer : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private IEnumerator PlayArea(ProjectileData data, Vector2 direction, float multiplier)
+    private IEnumerator PlayArea(ProjectileData data, Vector2 direction, float multiplier, AudioClip impactSound)
     {
         var effect = data.Effect;
         var renderer = GetComponent<SpriteRenderer>();
@@ -111,8 +111,8 @@ public sealed class SkillEffectPlayer : MonoBehaviour
             var target = collider.GetComponentInParent<IDamageable>();
             if (target == null || target.Team != Team.Enemy || target.IsDead || !damaged.Add(target)) continue;
             target.TakeDamage(Mathf.RoundToInt(data.Damage * multiplier), direction);
-            if (data.ImpactSound != null)
-                SfxAudio.PlayAtPoint(data.ImpactSound, collider.bounds.center);
+            if (impactSound != null)
+                SfxAudio.PlayAtPoint(impactSound, collider.bounds.center);
             SpawnOneShot(renderer, collider.bounds.center, transform.rotation, transform.localScale,
                 effect.impact, effect.FrameTime);
         }

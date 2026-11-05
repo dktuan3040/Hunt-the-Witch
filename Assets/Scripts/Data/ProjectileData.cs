@@ -31,6 +31,7 @@ public class ProjectileData : ScriptableObject
     [SerializeField] private SkillEffectSequence effect;
     public SkillEffectSequence Effect => effect;
     [SerializeField] private GameObject impactVfxPrefab;
+    [Tooltip("Tiếng va chạm cho projectile độc lập. Chiêu của người chơi dùng Skill Impact Sound trong SkillData.")]
     [SerializeField] private AudioClip impactSound;
 
     // Public Getters

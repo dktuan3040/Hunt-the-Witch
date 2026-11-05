@@ -41943,6 +41943,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1083325687}
   - component: {fileID: 1083325686}
+  - component: {fileID: 910001100}
   m_Layer: 0
   m_Name: Home_music
   m_TagString: Untagged
@@ -41963,7 +41964,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 2674a26f3fdf7b744b72da6b81afda2d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.082
+  m_Volume: 0.04332528
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -157483,6 +157484,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &910001100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083325685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4f3ca57576426890881224f160b383, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::BgmAudio
+  baseVolume: 0.06
+  trackGain: 0.90261
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

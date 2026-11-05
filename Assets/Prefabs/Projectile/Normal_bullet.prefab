@@ -199,12 +199,13 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8014133859920540714}
   animator: {fileID: 6826340514327886161}
   speed: 8
-  lifeTime: 3
+  lifeTime: 0.6
+  primaryLifetimeLimit: 0.6
   baseDamage: 1
   pierceCount: 1
   spriteOffset: 0
   impactVfxPrefab: {fileID: 0}
-  impactSound: {fileID: 8300000, guid: 862ad026e77ed5845abfbe40942fb42d, type: 3}
+  impactSound: {fileID: 8300000, guid: f5dd6a378af14ffc89548b4e01d81e94, type: 3}
   stickToTarget: 0
   stickDuration: 0.5
   stickDepth: 0.15

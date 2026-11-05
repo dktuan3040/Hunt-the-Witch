@@ -52,6 +52,8 @@ public class SkillData : ScriptableObject
     [SerializeField] private GameObject ultimateMuzzleFlash;
     [Tooltip("Âm thanh thi triển Ultimate.")]
     [SerializeField] private AudioClip ultimateSound;
+    [Tooltip("Tiếng trúng đòn riêng của chiêu này. Để trống sẽ im lặng, không dùng tiếng từ chiêu gốc hay projectile dùng chung.")]
+    [SerializeField] private AudioClip skillImpactSound;
 
     [Header("Combat behavior")]
     [SerializeField] private SkillCombatSettings combat;
@@ -72,4 +74,5 @@ public class SkillData : ScriptableObject
     public float UltimateSpreadAngle => ultimateSpreadAngle;
     public GameObject UltimateMuzzleFlash => ultimateMuzzleFlash;
     public AudioClip UltimateSound => ultimateSound;
+    public AudioClip SkillImpactSound => skillImpactSound;
 }

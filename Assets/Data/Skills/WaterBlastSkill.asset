@@ -45,7 +45,8 @@ MonoBehaviour:
   ultimateProjectilesPerShot: 3
   ultimateSpreadAngle: 360
   ultimateMuzzleFlash: {fileID: 0}
-  ultimateSound: {fileID: 0}
+  ultimateSound: {fileID: 8300000, guid: 3ad9b52c31f541939513e184c7bf3daa, type: 3}
+  skillImpactSound: {fileID: 8300000, guid: 78fab6c85e8b4c67af9bf47210f0e0ce, type: 3}
   combat:
     pattern: 8
     duration: 2.6
