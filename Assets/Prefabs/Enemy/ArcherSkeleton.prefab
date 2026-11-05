@@ -401,7 +401,7 @@ MonoBehaviour:
   moveSpeed: 2.2
   spriteFacesRight: 1
   attackType: 1
-  attackRange: 6.3
+  attackRange: 10
   damage: 10
   attackCooldown: 0.85
   attackDuration: 0.5
