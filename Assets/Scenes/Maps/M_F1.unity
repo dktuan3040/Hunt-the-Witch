@@ -8024,7 +8024,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 1fe9f9b1a59a7534f84dbc89113ccf38, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.04800000
+  m_Volume: 0.048
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8474,8 +8474,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.14068273, y: -0.18205982}
-  m_Size: {x: 0.3937269, y: 0.6205559}
+  m_Offset: {x: 0.1105423, y: -0.12781417}
+  m_Size: {x: 0.5142822, y: 1.0085356}
   m_Direction: 0
 --- !u!114 &439048942
 MonoBehaviour:
@@ -88559,6 +88559,34 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 58, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &910001100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309303196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4f3ca57576426890881224f160b383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BgmAudio
+  baseVolume: 0.06
+  trackGain: 1
+--- !u!114 &910001101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190530567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4f3ca57576426890881224f160b383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BgmAudio
+  baseVolume: 0.06
+  trackGain: 0.631684
 --- !u!1001 &921137413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -416621,34 +416649,6 @@ MonoBehaviour:
   bossPrefab: {fileID: 7661259046207433510, guid: 1eb616132e2504947b92ceb80ab79667, type: 3}
   spawnPoint: {fileID: 1140901425}
   entryDirection: {x: 1, y: 0}
---- !u!114 &910001100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 309303196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4f3ca57576426890881224f160b383, type: 3}
-  m_Name:
-  m_EditorClassIdentifier: Assembly-CSharp::BgmAudio
-  baseVolume: 0.06
-  trackGain: 1.0
---- !u!114 &910001101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1190530567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4f3ca57576426890881224f160b383, type: 3}
-  m_Name:
-  m_EditorClassIdentifier: Assembly-CSharp::BgmAudio
-  baseVolume: 0.06
-  trackGain: 0.631684
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
