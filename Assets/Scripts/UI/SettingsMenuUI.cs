@@ -117,6 +117,7 @@ public class SettingsMenuUI : MonoBehaviour
 
         // 2. BGM Volume
         float bgmVol = PlayerPrefs.GetFloat(PREF_BGM_VOL, 0.8f);
+        BgmAudio.SetVolume(bgmVol);
         if (bgmVolumeSlider != null) bgmVolumeSlider.SetValueWithoutNotify(bgmVol);
         UpdateBgmVolumeDisplay(bgmVol);
 
@@ -141,7 +142,7 @@ public class SettingsMenuUI : MonoBehaviour
 
     private void OnBgmVolumeChanged(float value)
     {
-        PlayerPrefs.SetFloat(PREF_BGM_VOL, value);
+        BgmAudio.SetVolume(value);
         UpdateBgmVolumeDisplay(value);
     }
 

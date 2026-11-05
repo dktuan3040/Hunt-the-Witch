@@ -20,6 +20,8 @@ public class Projectile : MonoBehaviour
     [Header("Fallback Settings (Dùng khi không gắn ProjectileData)")]
     [SerializeField] private float speed = 8f;
     [SerializeField] private float lifeTime = 3f;
+    [Tooltip("Giới hạn thời gian bay của đạn bắn thường. 0 = dùng tầm bắn của gậy.")]
+    [SerializeField, Min(0f)] private float primaryLifetimeLimit;
     [SerializeField] private int baseDamage = 1;
     [SerializeField] private int pierceCount = 1;
     [SerializeField] private float spriteOffset = -90f;
@@ -42,6 +44,9 @@ private Rigidbody2D rb;
     private bool isInitialized = false;
     private bool preparing;
     private bool consumed = false; // đã hết xuyên thấu / đã nổ, bỏ qua va chạm thừa trong cùng frame
+    private SkillData audioSkill;
+
+    public void SetSkillAudio(SkillData skill) => audioSkill = skill;
 
     private void Awake()
     {
@@ -76,7 +81,7 @@ void Start()
         float customSpeed = -1f, 
         float customLifeTime = -1f, 
         int customDamage = -1,
-        Sprite customSprite = null)
+        Sprite customSprite = null, bool primaryAttack = false)
     {
         isInitialized = true;
         projectileData = customData;
@@ -110,6 +115,8 @@ void Start()
         // Thời gian tồn tại theo tầm bay (range) của gậy hoặc lifetime của đạn
         float currentLifeTime = customLifeTime > 0f ? customLifeTime 
             : (projectileData != null ? projectileData.LifeTime : lifeTime);
+        if (primaryAttack && primaryLifetimeLimit > 0f)
+            currentLifeTime = Mathf.Min(currentLifeTime, primaryLifetimeLimit);
         if (projectileData != null && projectileData.Effect != null &&
             projectileData.Effect.IsConfigured && spriteRenderer != null)
         {
@@ -167,19 +174,23 @@ void Start()
             spriteRenderer.sprite = customSprite;
         }
 
-        // Nếu là chiêu Ultimate có ProjectileData riêng
+        // Both regular bullets and skill projectiles may have independent data.
         if (projectileData != null)
         {
             if (spriteRenderer != null)
             {
-                if (projectileData.ProjectileSprite != null)
+                if (customSprite == null && projectileData.ProjectileSprite != null)
                 {
                     spriteRenderer.sprite = projectileData.ProjectileSprite;
                 }
                 spriteRenderer.color = projectileData.SpriteColor;
             }
 
-            if (animator != null && projectileData.AnimatorController != null)
+            if (customSprite != null && animator != null)
+            {
+                animator.enabled = false;
+            }
+            else if (animator != null && projectileData.AnimatorController != null)
             {
                 animator.enabled = true;
                 animator.runtimeAnimatorController = projectileData.AnimatorController;
@@ -265,7 +276,8 @@ private void StickTo(Transform target)
             Instantiate(vfx, transform.position, Quaternion.identity);
         }
 
-        AudioClip sound = projectileData != null ? projectileData.ImpactSound : impactSound;
+        AudioClip sound = audioSkill != null ? audioSkill.SkillImpactSound
+            : projectileData != null ? projectileData.ImpactSound : impactSound;
         if (playSound && sound != null)
         {
             SfxAudio.PlayAtPoint(sound, transform.position);

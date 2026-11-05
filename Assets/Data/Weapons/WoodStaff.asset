@@ -18,6 +18,7 @@ MonoBehaviour:
   weaponSprite: {fileID: 4251608956460758469, guid: abf06e25cdaf252479ccc6a38a30bb44, type: 3}
   weaponIcon: {fileID: 4251608956460758469, guid: abf06e25cdaf252479ccc6a38a30bb44, type: 3}
   projectilePrefab: {fileID: 5488266359571220922, guid: 8d3f73b18e0c6184ab4a6b657118bba9, type: 3}
+  primaryProjectileData: {fileID: 11400000, guid: a2fb9d81d9d640cf9319bb88484acb72, type: 2}
   primaryBulletSprite: {fileID: 0}
   damage: 6
   projectileSpeed: 13.5
@@ -27,5 +28,5 @@ MonoBehaviour:
   spreadAngle: 0
   damageMultiplier: 1
   muzzleFlashPrefab: {fileID: 0}
-  shootSound: {fileID: 8300000, guid: 862ad026e77ed5845abfbe40942fb42d, type: 3}
+  shootSound: {fileID: 8300000, guid: d8e87f671bc94063b852917eb18cd78c, type: 3}
   unlockItems: []

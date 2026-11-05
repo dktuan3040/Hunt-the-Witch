@@ -88,7 +88,15 @@ public static class SkillTreeCatalogEditorSync
             catalog.entries=entries;catalog.validationErrors=string.Join("\n",errors);
             if(before!=EditorJsonUtility.ToJson(catalog))
             {EditorUtility.SetDirty(catalog);AssetDatabase.SaveAssetIfDirty(catalog);if(errors.Count>0)Debug.LogWarning(catalog.validationErrors,catalog);}
-            foreach(var p in Panels()) {p.Rebuild();EditorUtility.SetDirty(p.panel);UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(p.gameObject.scene);}
+            foreach(var p in Panels())
+            {
+                if(Application.isPlaying||EditorApplication.isPlayingOrWillChangePlaymode)break;
+                p.Rebuild();
+                // Rebuilding can process editor callbacks that start Play Mode.
+                if(Application.isPlaying||EditorApplication.isPlayingOrWillChangePlaymode)break;
+                EditorUtility.SetDirty(p.panel);
+                UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(p.gameObject.scene);
+            }
         }
         finally{synchronizing=false;}
     }

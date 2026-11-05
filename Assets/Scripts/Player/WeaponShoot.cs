@@ -156,20 +156,21 @@ public class WeaponShoot : MonoBehaviour
         int damage = currentWeapon != null ? currentWeapon.Damage : fallbackDamage;
         float dmgMultiplier = currentWeapon != null ? currentWeapon.DamageMultiplier : 1f;
 
-        // Sprite đạn thường: ưu tiên sprite gậy nếu có, hoặc sprite chung, hoặc giữ nguyên sprite của prefab
+        var primaryData = currentWeapon != null ? currentWeapon.PrimaryProjectileData : null;
+        // Explicit weapon sprite overrides the data; otherwise let the primary data supply the visual.
         Sprite bulletSprite = (currentWeapon != null && currentWeapon.PrimaryBulletSprite != null)
             ? currentWeapon.PrimaryBulletSprite
-            : commonPrimaryProjectileSprite;
+            : (primaryData == null ? commonPrimaryProjectileSprite : null);
 
         nextFireTime = Time.time + effectiveFireRate;
 
-        // Bắn đạn thường (không truyền skillData, đạn không bị đổi sang visual của skill)
+        // Primary data is independent of the equipped Q/E skills.
         SpawnProjectiles(
             effectivePrefab, 
             count, 
             spread, 
             dmgMultiplier, 
-            skillData: null, 
+            skillData: primaryData,
             customSpeed: speed, 
             customLifeTime: lifeTime, 
             customDamage: damage, 
@@ -219,12 +220,12 @@ public class WeaponShoot : MonoBehaviour
             ultimate.Effect.IsConfigured && ultimate.Effect.areaRadius > 0)
         {
             SkillEffectPlayer.CastArea(weaponSpriteRenderer, firePoint.position, firePoint.right,
-                ultimate, dmgMultiplier);
+                ultimate, dmgMultiplier, activeSkill.SkillImpactSound);
         }
         else
         {
             SpawnProjectiles(effectivePrefab, activeSkill.UltimateProjectilesPerShot,
-                activeSkill.UltimateSpreadAngle, dmgMultiplier, ultimate);
+                activeSkill.UltimateSpreadAngle, dmgMultiplier, ultimate, audioSkill: activeSkill);
         }
 
         // Hiệu ứng Ultimate
@@ -251,14 +252,16 @@ public class WeaponShoot : MonoBehaviour
         float customSpeed = -1f,
         float customLifeTime = -1f,
         int customDamage = -1,
-        Sprite customSprite = null)
+        Sprite customSprite = null, SkillData audioSkill = null)
     {
         Vector2 baseDirection = firePoint.right;
 
         if (count <= 1)
         {
             Projectile projectile = Instantiate(prefab, firePoint.position, firePoint.rotation);
-            projectile.Initialize(baseDirection, dmgMultiplier, skillData, customSpeed, customLifeTime, customDamage, customSprite);
+            projectile.Initialize(baseDirection, dmgMultiplier, skillData, customSpeed, customLifeTime, customDamage, customSprite,
+                primaryAttack: audioSkill == null);
+            projectile.SetSkillAudio(audioSkill);
             return;
         }
 
@@ -273,7 +276,9 @@ public class WeaponShoot : MonoBehaviour
             Vector2 shootDir = rotation * baseDirection;
 
             Projectile projectile = Instantiate(prefab, firePoint.position, Quaternion.identity);
-            projectile.Initialize(shootDir, dmgMultiplier, skillData, customSpeed, customLifeTime, customDamage, customSprite);
+            projectile.Initialize(shootDir, dmgMultiplier, skillData, customSpeed, customLifeTime, customDamage, customSprite,
+                primaryAttack: audioSkill == null);
+            projectile.SetSkillAudio(audioSkill);
         }
     }
 

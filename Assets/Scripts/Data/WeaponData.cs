@@ -19,6 +19,8 @@ public class WeaponData : ScriptableObject
     [Header("Primary Attack - Đòn bắn thường")]
     [Tooltip("Prefab đạn mà gậy này bắn ra.")]
     [SerializeField] private Projectile projectilePrefab;
+    [Tooltip("Hình ảnh, màu và tiếng va chạm riêng của đạn thường. Sát thương, tốc độ và tầm bay vẫn dùng thông số gậy bên dưới.")]
+    [SerializeField] private ProjectileData primaryProjectileData;
     [Tooltip("Sprite đạn dùng cho đòn bắn thường. Nếu để trống sẽ dùng sprite chung mặc định.")]
     [SerializeField] private Sprite primaryBulletSprite;
     [Tooltip("Sát thương cơ bản của viên đạn bắn ra từ gậy.")]
@@ -53,6 +55,7 @@ public class WeaponData : ScriptableObject
     public Sprite WeaponSprite => weaponSprite;
     public Sprite WeaponIcon => weaponIcon;
     public Projectile ProjectilePrefab => projectilePrefab;
+    public ProjectileData PrimaryProjectileData => primaryProjectileData;
     public Sprite PrimaryBulletSprite => primaryBulletSprite;
     public int Damage => damage;
     public float ProjectileSpeed => projectileSpeed;

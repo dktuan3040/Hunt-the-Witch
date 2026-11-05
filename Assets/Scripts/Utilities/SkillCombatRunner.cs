@@ -7,6 +7,7 @@ public sealed class SkillCombatRunner : MonoBehaviour
     private SkillCombatSettings settings;
     private SkillEffectSequence effect;
     private AudioClip impactSound;
+    private SkillData audioSkill;
     private SpriteRenderer visual;
     private PhysicsScene2D physicsScene;
     private Transform anchor;
@@ -95,7 +96,8 @@ public sealed class SkillCombatRunner : MonoBehaviour
 
     private static void StartVisual(SkillData skill, SpriteRenderer source, Transform caster,
         Vector2 point, Vector2 direction, float multiplier, Transform anchor = null,
-        Health target = null, float phase = 0, float delay = 0, HashSet<Health> sharedHits = null)
+        Health target = null, float phase = 0, float delay = 0, HashSet<Health> sharedHits = null,
+        SkillData audioSkill = null)
     {
         var data = skill.UltimateProjectile;
         var visualObject = SkillEffectPlayer.Create(source, point, Quaternion.identity, data.ProjectileScale,
@@ -103,7 +105,8 @@ public sealed class SkillCombatRunner : MonoBehaviour
         var runner = visualObject.gameObject.AddComponent<SkillCombatRunner>();
         runner.settings = skill.Combat;
         runner.effect = data.Effect;
-        runner.impactSound = data.ImpactSound;
+        runner.audioSkill = audioSkill != null ? audioSkill : skill;
+        runner.impactSound = runner.audioSkill.SkillImpactSound;
         runner.visual = visualObject.GetComponentInChildren<SpriteRenderer>();
         runner.physicsScene = visualObject.gameObject.scene.GetPhysicsScene2D();
         runner.caster = caster;
@@ -415,7 +418,8 @@ public sealed class SkillCombatRunner : MonoBehaviour
         if (playImpact && Length(effect.impact) > 0)
             SpawnAttachedImpact(enemy);
         if (applyStatus && settings.onHitSkill != null && settings.onHitSkill.Combat != null)
-            StartVisual(settings.onHitSkill, visual, caster, position, direction, multiplier, target: enemy);
+            StartVisual(settings.onHitSkill, visual, caster, position, direction, multiplier,
+                target: enemy, audioSkill: audioSkill);
 
         enemy.TakeDamage(Mathf.RoundToInt(amount * multiplier));
         if (!applyStatus || enemy.IsDead) return;
