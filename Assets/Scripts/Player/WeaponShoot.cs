@@ -231,13 +231,10 @@ public class WeaponShoot : MonoBehaviour
             Instantiate(activeSkill.UltimateMuzzleFlash, firePoint.position, firePoint.rotation);
         }
 
+        // Skills use their own sound; an unassigned clip should stay silent.
         if (activeSkill.UltimateSound != null)
         {
             AudioSource.PlayClipAtPoint(activeSkill.UltimateSound, firePoint.position);
-        }
-        else
-        {
-            PlayShootEffects();
         }
 
         Debug.Log($"[Ultimate Unleashed!] Thi triển: {activeSkill.SkillName} (Cooldown: {activeSkill.UltimateCooldown}s)");

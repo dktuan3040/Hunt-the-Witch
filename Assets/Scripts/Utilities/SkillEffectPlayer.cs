@@ -111,6 +111,8 @@ public sealed class SkillEffectPlayer : MonoBehaviour
             var target = collider.GetComponentInParent<IDamageable>();
             if (target == null || target.Team != Team.Enemy || target.IsDead || !damaged.Add(target)) continue;
             target.TakeDamage(Mathf.RoundToInt(data.Damage * multiplier), direction);
+            if (data.ImpactSound != null)
+                AudioSource.PlayClipAtPoint(data.ImpactSound, collider.bounds.center);
             SpawnOneShot(renderer, collider.bounds.center, transform.rotation, transform.localScale,
                 effect.impact, effect.FrameTime);
         }
