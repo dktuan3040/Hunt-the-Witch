@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: ThunderProjectileEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Thunder Projectile
+  projectileSprite: {fileID: 5237196187907127750, guid: 213fb64034a619645b296511dd85bae7, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup: []
+    active:
+    - {fileID: 5237196187907127750, guid: 213fb64034a619645b296511dd85bae7, type: 3}
+    - {fileID: -8124683630765045626, guid: 213fb64034a619645b296511dd85bae7, type: 3}
+    - {fileID: 4591628148199619244, guid: 213fb64034a619645b296511dd85bae7, type: 3}
+    - {fileID: 996775807268595254, guid: 213fb64034a619645b296511dd85bae7, type: 3}
+    - {fileID: -4666120963698996224, guid: 213fb64034a619645b296511dd85bae7, type: 3}
+    ending: []
+    impact: []
+    framesPerSecond: 18
+    areaRadius: 0
+    castDistance: 0
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}

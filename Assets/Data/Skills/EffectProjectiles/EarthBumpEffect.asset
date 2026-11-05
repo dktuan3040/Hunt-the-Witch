@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: EarthBumpEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Earth Bump
+  projectileSprite: {fileID: -2522831147897201818, guid: 5977b7f1757cd6b4793e33876d64eec1, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup:
+    - {fileID: -2522831147897201818, guid: 5977b7f1757cd6b4793e33876d64eec1, type: 3}
+    - {fileID: -6853931747340288083, guid: 5977b7f1757cd6b4793e33876d64eec1, type: 3}
+    - {fileID: -8814317966300713543, guid: 5977b7f1757cd6b4793e33876d64eec1, type: 3}
+    active:
+    - {fileID: 2036008279053402745, guid: 5977b7f1757cd6b4793e33876d64eec1, type: 3}
+    - {fileID: -4137048082979778335, guid: 5977b7f1757cd6b4793e33876d64eec1, type: 3}
+    - {fileID: 668620543578258213, guid: 5977b7f1757cd6b4793e33876d64eec1, type: 3}
+    - {fileID: 2688018393614460006, guid: 5977b7f1757cd6b4793e33876d64eec1, type: 3}
+    - {fileID: 3506772047954781692, guid: 5977b7f1757cd6b4793e33876d64eec1, type: 3}
+    - {fileID: 7623186255397188418, guid: 5977b7f1757cd6b4793e33876d64eec1, type: 3}
+    ending:
+    - {fileID: -7828837818377647729, guid: 5977b7f1757cd6b4793e33876d64eec1, type: 3}
+    - {fileID: 1228424518285727231, guid: 5977b7f1757cd6b4793e33876d64eec1, type: 3}
+    - {fileID: 1411176968, guid: 5977b7f1757cd6b4793e33876d64eec1, type: 3}
+    impact: []
+    framesPerSecond: 18
+    areaRadius: 1.2
+    castDistance: 3
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}

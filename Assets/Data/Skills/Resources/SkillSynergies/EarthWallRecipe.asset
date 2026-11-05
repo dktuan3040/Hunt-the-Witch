@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291310aa392567345921f935753ffed6, type: 3}
+  m_Name: EarthWallRecipe
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSynergyData
+  synergyName: Earth Wall
+  description: Earth Bump + Earth Projectile
+  requiredSkills:
+  - {fileID: 11400000, guid: 5f6f957175151184eac9ca1e2e5c05f1, type: 2}
+  - {fileID: 11400000, guid: 4848323ef60bef341ac38719a16c7f07, type: 2}
+  resultingSynergySkill: {fileID: 11400000, guid: c38762b2974f1a04ba940f9a03e07e0d, type: 2}

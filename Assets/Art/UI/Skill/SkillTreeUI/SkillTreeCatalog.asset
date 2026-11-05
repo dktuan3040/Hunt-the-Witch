@@ -13,19 +13,129 @@ MonoBehaviour:
   m_Name: SkillTreeCatalog
   m_EditorClassIdentifier: Assembly-CSharp::SkillTreeCatalog
   entries:
+  - assetGuid: 0309fa8592f526a47991217f68c8eca6
+    skill: {fileID: 11400000, guid: 0309fa8592f526a47991217f68c8eca6, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 386, y: -286}
+    invalid: 0
+  - assetGuid: 04f8c7243c6334943be2fd000c2f453e
+    skill: {fileID: 11400000, guid: 04f8c7243c6334943be2fd000c2f453e, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 546, y: -286}
+    invalid: 0
+  - assetGuid: 0fe579acbaec72a49860cf5345cc63fd
+    skill: {fileID: 11400000, guid: 0fe579acbaec72a49860cf5345cc63fd, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 706, y: -286}
+    invalid: 0
+  - assetGuid: 20530ed687f5a83488f5fc43970b5e82
+    skill: {fileID: 11400000, guid: 20530ed687f5a83488f5fc43970b5e82, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 866, y: -286}
+    invalid: 0
+  - assetGuid: 2b0b5cc54db15884a84541750f0e636c
+    skill: {fileID: 11400000, guid: 2b0b5cc54db15884a84541750f0e636c, type: 2}
+    recipe: {fileID: 11400000, guid: 66dfebcc004fd5d40bb24d67ecd05dcc, type: 2}
+    position: {x: 1026, y: -286}
+    invalid: 0
+  - assetGuid: 430bb6d63d7840145a6fd070b0428bf4
+    skill: {fileID: 11400000, guid: 430bb6d63d7840145a6fd070b0428bf4, type: 2}
+    recipe: {fileID: 11400000, guid: 13c7e879ff14f35458ff30a9a725b24b, type: 2}
+    position: {x: 1026, y: -846}
+    invalid: 0
+  - assetGuid: 4848323ef60bef341ac38719a16c7f07
+    skill: {fileID: 11400000, guid: 4848323ef60bef341ac38719a16c7f07, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 1186, y: -286}
+    invalid: 0
   - assetGuid: 4b35d14ae12eaf6488c52a18a8b3c5e9
     skill: {fileID: 11400000, guid: 4b35d14ae12eaf6488c52a18a8b3c5e9, type: 2}
     recipe: {fileID: 0}
     position: {x: 926, y: -426}
+    invalid: 0
+  - assetGuid: 4dcfc22fb1c624b428349a06f318b395
+    skill: {fileID: 11400000, guid: 4dcfc22fb1c624b428349a06f318b395, type: 2}
+    recipe: {fileID: 11400000, guid: e4c45ed8a10a29f4faee6518802b58f4, type: 2}
+    position: {x: 386, y: -426}
+    invalid: 0
+  - assetGuid: 53cf5b1a725fdba4682dc4c5287186df
+    skill: {fileID: 11400000, guid: 53cf5b1a725fdba4682dc4c5287186df, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 1026, y: -426}
+    invalid: 0
+  - assetGuid: 57eecbe01e94aea4e8bad34c318a5819
+    skill: {fileID: 11400000, guid: 57eecbe01e94aea4e8bad34c318a5819, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 1186, y: -426}
+    invalid: 0
+  - assetGuid: 5ca9b50b0f04ad740833c81021360c2e
+    skill: {fileID: 11400000, guid: 5ca9b50b0f04ad740833c81021360c2e, type: 2}
+    recipe: {fileID: 11400000, guid: dfc6ef7cce1e56e45b8663484dfa69b0, type: 2}
+    position: {x: 386, y: -566}
+    invalid: 0
+  - assetGuid: 5f6f957175151184eac9ca1e2e5c05f1
+    skill: {fileID: 11400000, guid: 5f6f957175151184eac9ca1e2e5c05f1, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 546, y: -566}
     invalid: 0
   - assetGuid: 6ffd9be800543aa42a4303ed4eb459e5
     skill: {fileID: 11400000, guid: 6ffd9be800543aa42a4303ed4eb459e5, type: 2}
     recipe: {fileID: 0}
     position: {x: 626, y: -426}
     invalid: 0
+  - assetGuid: 7d057c1af833db542861bf269cdeb835
+    skill: {fileID: 11400000, guid: 7d057c1af833db542861bf269cdeb835, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 1026, y: -566}
+    invalid: 0
+  - assetGuid: 8474127e2a341b341ace8250574d6eee
+    skill: {fileID: 11400000, guid: 8474127e2a341b341ace8250574d6eee, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 1186, y: -566}
+    invalid: 0
   - assetGuid: a1f346b89381c5e45964713e42112ea2
     skill: {fileID: 11400000, guid: a1f346b89381c5e45964713e42112ea2, type: 2}
     recipe: {fileID: 11400000, guid: 55b34208956d22b439f9057a3fbd961c, type: 2}
     position: {x: 776, y: -656}
+    invalid: 0
+  - assetGuid: c32aa2fd6f4f2104d88ed5296b358e32
+    skill: {fileID: 11400000, guid: c32aa2fd6f4f2104d88ed5296b358e32, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 386, y: -706}
+    invalid: 0
+  - assetGuid: c38762b2974f1a04ba940f9a03e07e0d
+    skill: {fileID: 11400000, guid: c38762b2974f1a04ba940f9a03e07e0d, type: 2}
+    recipe: {fileID: 11400000, guid: 5251453e194f0014b9ac81eb846ea654, type: 2}
+    position: {x: 546, y: -706}
+    invalid: 0
+  - assetGuid: c8481b16dc5840945a94c46e60c3f4a2
+    skill: {fileID: 11400000, guid: c8481b16dc5840945a94c46e60c3f4a2, type: 2}
+    recipe: {fileID: 11400000, guid: 738be2a6a62d86345bdfc01c06c68580, type: 2}
+    position: {x: 1026, y: -706}
+    invalid: 0
+  - assetGuid: e6fe85d77e15b2c4ca65a8bc15daed4e
+    skill: {fileID: 11400000, guid: e6fe85d77e15b2c4ca65a8bc15daed4e, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 1186, y: -706}
+    invalid: 0
+  - assetGuid: eca92e27bb6322645bf8d628e4ebeadf
+    skill: {fileID: 11400000, guid: eca92e27bb6322645bf8d628e4ebeadf, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 386, y: -846}
+    invalid: 0
+  - assetGuid: ed2c4955445aa1e4898569dedea92ad2
+    skill: {fileID: 11400000, guid: ed2c4955445aa1e4898569dedea92ad2, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 546, y: -846}
+    invalid: 0
+  - assetGuid: f7f1bbb9fefdca24dbb22dcd97f18087
+    skill: {fileID: 11400000, guid: f7f1bbb9fefdca24dbb22dcd97f18087, type: 2}
+    recipe: {fileID: 11400000, guid: 6f368892afe4e5442a084a494ffd5679, type: 2}
+    position: {x: 706, y: -846}
+    invalid: 0
+  - assetGuid: fe17b148349eac745aadb919edf7e59a
+    skill: {fileID: 11400000, guid: fe17b148349eac745aadb919edf7e59a, type: 2}
+    recipe: {fileID: 0}
+    position: {x: 866, y: -846}
     invalid: 0
   validationErrors: 

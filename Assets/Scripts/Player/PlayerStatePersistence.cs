@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class PlayerStatePersistence : MonoBehaviour
 {
     private Health health;
-    private PlayerSkillManager skills;
     private WeaponShoot weapon;
     private PlayerSkinController skin;
     private int generation;
@@ -35,14 +34,12 @@ public class PlayerStatePersistence : MonoBehaviour
     private void Awake()
     {
         health = GetComponent<Health>();
-        skills = GetComponent<PlayerSkillManager>();
         weapon = GetComponentInChildren<WeaponShoot>(true);
         skin = GetComponent<PlayerSkinController>();
         generation = PlayerSessionState.Generation;
         var saved = PlayerSessionState.Player;
         if (saved != null)
         {
-            if (skills != null) skills.RestoreSessionState(saved.Skills, saved.Cooldowns, saved.ActiveSlot, saved.SourceSkills);
             if (weapon != null) weapon.EquipWeapon(saved.Weapon);
             if (skin != null && saved.Skin != null) skin.ApplySkin(saved.Skin);
 
@@ -69,24 +66,26 @@ public class PlayerStatePersistence : MonoBehaviour
         var saved = PlayerSessionState.Player ?? new PlayerSessionState.Snapshot();
         saved.CurrentHealth = health.CurrentHealth;
         saved.MaxHealth = health.MaxHealth;
-        if (skills != null)
-        {
-            if (saved.Skills == null || saved.Skills.Length != skills.Slots.Length)
-            {
-                saved.Skills = new SkillData[skills.Slots.Length];
-                saved.Cooldowns = new float[skills.Slots.Length];
-            }
-            for (int i = 0; i < skills.Slots.Length; i++)
-            {
-                saved.Skills[i] = skills.Slots[i];
-                saved.Cooldowns[i] = skills.GetCooldownRemaining(i);
-            }
-            saved.SourceSkills=new SkillData[skills.Slots.Length];
-            for(int i=0;i<saved.SourceSkills.Length;i++)saved.SourceSkills[i]=skills.GetReplacementSkill(i);
-            saved.ActiveSlot = skills.ActiveSlotIndex;
-        }
         saved.Weapon = weapon != null ? weapon.CurrentWeapon : null;
         saved.Skin = skin != null ? skin.CurrentSkin : null;
+        if (TryGetComponent<PlayerSkillManager>(out var skills) && skills.LoadoutInitialized)
+        {
+            int count = skills.Slots.Length;
+            if (saved.Skills == null || saved.Skills.Length != count)
+            {
+                saved.Skills = new SkillData[count];
+                saved.SourceSkills = new SkillData[count];
+                saved.Cooldowns = new float[count];
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                saved.Skills[i] = skills.Slots[i];
+                saved.SourceSkills[i] = skills.GetReplacementSkill(i);
+                saved.Cooldowns[i] = skills.GetCooldownRemaining(i);
+            }
+            saved.ActiveSlot = skills.ActiveSlotIndex;
+        }
         PlayerSessionState.Store(saved);
     }
 }

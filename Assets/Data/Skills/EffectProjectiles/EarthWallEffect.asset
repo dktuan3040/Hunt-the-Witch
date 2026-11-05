@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: EarthWallEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Earth Wall
+  projectileSprite: {fileID: -5635817015184267138, guid: c5c59f46b9c485e4791526a614b5b454, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup:
+    - {fileID: -5635817015184267138, guid: c5c59f46b9c485e4791526a614b5b454, type: 3}
+    - {fileID: -3421225087302161633, guid: c5c59f46b9c485e4791526a614b5b454, type: 3}
+    active:
+    - {fileID: 6870185690302104854, guid: c5c59f46b9c485e4791526a614b5b454, type: 3}
+    - {fileID: 7558812616628700243, guid: c5c59f46b9c485e4791526a614b5b454, type: 3}
+    - {fileID: -4472691253359981337, guid: c5c59f46b9c485e4791526a614b5b454, type: 3}
+    - {fileID: -1945943510178557821, guid: c5c59f46b9c485e4791526a614b5b454, type: 3}
+    - {fileID: -5968042936120304227, guid: c5c59f46b9c485e4791526a614b5b454, type: 3}
+    ending:
+    - {fileID: -1956292388323388769, guid: c5c59f46b9c485e4791526a614b5b454, type: 3}
+    - {fileID: 5946418683091196013, guid: c5c59f46b9c485e4791526a614b5b454, type: 3}
+    - {fileID: 1188747711641975539, guid: c5c59f46b9c485e4791526a614b5b454, type: 3}
+    - {fileID: -3257620910645864551, guid: c5c59f46b9c485e4791526a614b5b454, type: 3}
+    - {fileID: 1885213186467747000, guid: c5c59f46b9c485e4791526a614b5b454, type: 3}
+    - {fileID: -6431853965506009748, guid: c5c59f46b9c485e4791526a614b5b454, type: 3}
+    impact: []
+    framesPerSecond: 18
+    areaRadius: 1.1
+    castDistance: 3
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}

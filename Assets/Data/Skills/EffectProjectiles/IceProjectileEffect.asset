@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: IceProjectileEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Ice Projectile
+  projectileSprite: {fileID: 4138621075764119247, guid: e44eef5e6866cdc418f9ad502e8ed82c, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup:
+    - {fileID: 4138621075764119247, guid: e44eef5e6866cdc418f9ad502e8ed82c, type: 3}
+    - {fileID: 3801166914692647552, guid: e44eef5e6866cdc418f9ad502e8ed82c, type: 3}
+    - {fileID: -5618615179741389535, guid: e44eef5e6866cdc418f9ad502e8ed82c, type: 3}
+    active:
+    - {fileID: -2937912103407283272, guid: 1f3cad9c6a4c0254e982e347f032f008, type: 3}
+    - {fileID: -4969676193942958089, guid: 1f3cad9c6a4c0254e982e347f032f008, type: 3}
+    - {fileID: -2752706012691971032, guid: 1f3cad9c6a4c0254e982e347f032f008, type: 3}
+    - {fileID: 4426986535507562079, guid: 1f3cad9c6a4c0254e982e347f032f008, type: 3}
+    - {fileID: -7338746557343932665, guid: 1f3cad9c6a4c0254e982e347f032f008, type: 3}
+    - {fileID: 2121323489530304963, guid: 1f3cad9c6a4c0254e982e347f032f008, type: 3}
+    - {fileID: 959595360459687273, guid: 1f3cad9c6a4c0254e982e347f032f008, type: 3}
+    - {fileID: 9016592951320014200, guid: 1f3cad9c6a4c0254e982e347f032f008, type: 3}
+    - {fileID: -2634239317843360259, guid: 1f3cad9c6a4c0254e982e347f032f008, type: 3}
+    - {fileID: -7184832548953209133, guid: 1f3cad9c6a4c0254e982e347f032f008, type: 3}
+    ending: []
+    impact: []
+    framesPerSecond: 18
+    areaRadius: 0
+    castDistance: 0
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
