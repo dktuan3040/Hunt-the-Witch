@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: earth_projectile
   skillName: Earth Projectile
   description: Fire three earth bolts that stun on hit.
-  skillIcon: {fileID: 21300000, guid: cea3bed8e2ae45d458a9f4d2aacb68ef, type: 3}
+  skillIcon: {fileID: 21300000, guid: ea6a63d79cbd0304593ffed3a9a5f9c5, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Earth
   isSynergySkill: 0

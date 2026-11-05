@@ -49,14 +49,20 @@ public sealed class SkillEffectPlayer : MonoBehaviour
         player.StartCoroutine(player.PlayArea(data, direction, multiplier));
     }
 
-    internal static SkillEffectPlayer Create(SpriteRenderer source, Vector3 position, Quaternion rotation, Vector3 scale)
+    internal static SkillEffectPlayer Create(SpriteRenderer source, Vector3 position, Quaternion rotation, Vector3 scale, bool separateVisual = false)
     {
         var visual = new GameObject("Skill Effect");
         if (source != null && source.gameObject.scene.IsValid() && source.gameObject.scene.isLoaded)
             UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(visual, source.gameObject.scene);
         visual.transform.SetPositionAndRotation(position, rotation);
         visual.transform.localScale = scale;
-        var renderer = visual.AddComponent<SpriteRenderer>();
+        var spriteObject = visual;
+        if (separateVisual)
+        {
+            spriteObject = new GameObject("Sprite");
+            spriteObject.transform.SetParent(visual.transform, false);
+        }
+        var renderer = spriteObject.AddComponent<SpriteRenderer>();
         if (source != null)
         {
             renderer.sharedMaterial = source.sharedMaterial;

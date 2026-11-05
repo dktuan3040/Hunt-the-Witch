@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: fire_breath
   skillName: Fire Breath
   description: Channel flames that slow and burn enemies.
-  skillIcon: {fileID: 21300000, guid: 21db4eb74d2563e45a9134d0b5f2dadc, type: 3}
+  skillIcon: {fileID: 21300000, guid: 2baee9ae2eb7a2746b63350ba0ab2f9e, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Fire
   isSynergySkill: 0
@@ -46,6 +46,13 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 0
     followCaster: 1
+    mirrorWhenAimingLeft: 1
+    keepSpriteHorizontal: 0
+    visualOffset: {x: 2.1, y: 1.1}
+    hitboxFollowsVisual: 1
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
     knockbackDistance: 0
     knockbackDuration: 0.18
     pullSpeed: 0
@@ -53,9 +60,11 @@ MonoBehaviour:
     trailRadius: 0
     explosionRadius: 0
     explosionDamage: 0
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 5
     statusDuration: 3

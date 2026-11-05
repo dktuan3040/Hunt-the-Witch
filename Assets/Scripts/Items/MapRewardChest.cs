@@ -1,18 +1,21 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(RewardChest)),DisallowMultipleComponent]
 public sealed class MapRewardChest : MonoBehaviour
 {
-    [Serializable] public sealed class KillRequirement
+    [Tooltip("Turn off while a random enemy spawner is still generating this map.")]
+    [SerializeField] private bool enemySpawningComplete=true;
+    private bool started;
+    private float nextEnemyCheck;
+
+    // A wave/random spawner must hold this false until its last enemy has spawned.
+    public void SetEnemySpawningComplete(bool complete)
     {
-        public EnemyTypeData enemyType;
-        [Min(1)] public int amount=1;
+        enemySpawningComplete=complete;
+        nextEnemyCheck=0;
     }
-    public List<KillRequirement> requiredKills=new List<KillRequirement>();
     [Header("Drop and left/right landing")]
     [Min(.1f)] public float fallHeight=3;
     [Min(.05f)] public float fallDuration=.4f;
@@ -38,28 +41,41 @@ public sealed class MapRewardChest : MonoBehaviour
         for(int i=0;i<colliders.Length;i++)colliderEnabled[i]=colliders[i].enabled;
         initialized=true;chest.SetAvailable(false);SetVisuals(false);SetColliders(false);
     }
-    private void OnEnable(){MapKillProgress.Changed+=OnKillProgress;if(initialized)TryReveal();}
-    private void Start(){TryReveal();}
+    private IEnumerator Start()
+    {
+        // Let every scene object's Start (including initial random spawners) run first.
+        yield return null;
+        started=true;
+        TryReveal();
+    }
+    private void Update()
+    {
+        if(!started||HasSpawned||Time.time<nextEnemyCheck)return;
+        nextEnemyCheck=Time.time+.2f;
+        TryReveal();
+    }
     private void OnDisable()
     {
-        MapKillProgress.Changed-=OnKillProgress;
         if(initialized&&IsLanding){StopAllCoroutines();CompleteLanding();}
     }
-    private void OnKillProgress(UnityEngine.SceneManagement.Scene scene){if(scene==gameObject.scene)TryReveal();}
     public bool RequirementsMet
     {
         get
         {
-            if(requiredKills.Count==0)return false;
-            var totals=new Dictionary<EnemyTypeData,long>();
-            foreach(var r in requiredKills){if(r==null||r.enemyType==null)return false;if(!totals.ContainsKey(r.enemyType))totals[r.enemyType]=0;totals[r.enemyType]+=Mathf.Max(1,r.amount);}
-            foreach(var p in totals)if(MapKillProgress.GetCount(gameObject.scene,p.Key)<p.Value)return false;
+            if(!enemySpawningComplete)return false;
+            // Query the current population, not a snapshot or per-type kill quota.
+            // Inactive pooled enemies are not part of the current encounter.
+            foreach(var health in FindObjectsByType<Health>(FindObjectsSortMode.None))
+            {
+                if(health.gameObject.scene!=gameObject.scene||health.Team!=Team.Enemy||health.IsDead||health.IsBoss)continue;
+                return false;
+            }
             return true;
         }
     }
     public bool TryReveal()
     {
-        if(!initialized||HasSpawned||!isActiveAndEnabled||!RequirementsMet)return false;
+        if(!initialized||!started||HasSpawned||!isActiveAndEnabled||!RequirementsMet)return false;
         HasSpawned=true;IsLanding=true;SetVisuals(true);StartCoroutine(Land());return true;
     }
     private void SetVisuals(bool show){for(int i=0;i<visuals.Length;i++)if(visuals[i]!=null)visuals[i].enabled=show&&rendererEnabled[i];}

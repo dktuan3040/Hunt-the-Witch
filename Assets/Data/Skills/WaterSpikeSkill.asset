@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: water_spike
   skillName: Water Spike
   description: Raise a water spike under the nearest enemy, soaking nearby foes.
-  skillIcon: {fileID: 21300000, guid: dd3c0529059d4764080543d81616c936, type: 3}
+  skillIcon: {fileID: 21300000, guid: 574c7ecac88354949abd7ed07c3b68c9, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Water
   isSynergySkill: 0
@@ -46,6 +46,13 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 0
     followCaster: 0
+    mirrorWhenAimingLeft: 0
+    keepSpriteHorizontal: 0
+    visualOffset: {x: 0, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 1
+    targetFootOffsetY: 2
     knockbackDistance: 0
     knockbackDuration: 0.18
     pullSpeed: 0
@@ -53,9 +60,11 @@ MonoBehaviour:
     trailRadius: 0
     explosionRadius: 1.35
     explosionDamage: 0
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 2
     statusDuration: 2.5

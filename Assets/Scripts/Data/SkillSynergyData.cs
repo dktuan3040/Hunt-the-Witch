@@ -31,7 +31,8 @@ public class SkillSynergyData : ScriptableObject
     {
         matchedSlotIndices = new List<int>();
 
-        if (currentSlots == null || requiredSkills == null || requiredSkills.Count < 2 || resultingSynergySkill == null)
+        if (currentSlots == null || requiredSkills == null || requiredSkills.Count < 2 ||
+            resultingSynergySkill == null || !resultingSynergySkill.IsSynergySkill)
         {
             return false;
         }

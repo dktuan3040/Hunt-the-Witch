@@ -61,7 +61,8 @@ public static class SkillUnlockProgress
 
     public static void RegisterRecipe(SkillSynergyData recipe)
     {
-        if (recipe == null || recipe.ResultingSynergySkill == null || blocked.Contains(recipe.ResultingSynergySkill)) return;
+        if (recipe == null || recipe.ResultingSynergySkill == null ||
+            !recipe.ResultingSynergySkill.IsSynergySkill || blocked.Contains(recipe.ResultingSynergySkill)) return;
         Register(recipe.ResultingSynergySkill);
         recipes[recipe.ResultingSynergySkill.SkillId] = recipe;
         foreach (var prerequisite in recipe.RequiredSkills) Register(prerequisite);

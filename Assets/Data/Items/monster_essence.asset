@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: monster_essence
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: monster_essence
-  displayName: "Tinh ch\u1EA5t qu\xE1i v\u1EADt"
+  displayName: Monster Essence
   description: 
-  icon: {fileID: 21300000, guid: b843d7a3205f5314591c224585954fb1, type: 3}
+  icon: {fileID: 21300000, guid: a1ccd94daac14ce99188b7bd06cc8704, type: 3}
   rarity: 2

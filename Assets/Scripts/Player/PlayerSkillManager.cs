@@ -133,10 +133,6 @@ public class PlayerSkillManager : MonoBehaviour
         if (health == null || health.Team != Team.Player || health.IsDead) return;
 
         var scene = gameObject.scene;
-        foreach (var root in scene.GetRootGameObjects())
-            foreach (var panel in root.GetComponentsInChildren<SkillUnlockPanelUI>(true))
-                panel.Close();
-
         if (!PlayerSessionState.VisitMap(scene))
         {
             var saved = PlayerSessionState.Player;

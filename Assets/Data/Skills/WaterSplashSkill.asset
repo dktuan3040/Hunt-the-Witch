@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: water_splash
   skillName: Water Splash
   description: Send a moving splash that soaks and damages enemies.
-  skillIcon: {fileID: 21300000, guid: 770c5fcfd1eca5446a4a965f500e8aa5, type: 3}
+  skillIcon: {fileID: 21300000, guid: 2e5ba5cb6e3acb54cb2849d6b577b80f, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Water
   isSynergySkill: 1
@@ -46,6 +46,8 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 0
     followCaster: 0
+    mirrorWhenAimingLeft: 1
+    keepSpriteHorizontal: 1
     knockbackDistance: 0
     knockbackDuration: 0.18
     pullSpeed: 0

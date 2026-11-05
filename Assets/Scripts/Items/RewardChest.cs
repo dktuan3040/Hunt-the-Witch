@@ -18,7 +18,7 @@ public sealed class RewardChest : MonoBehaviour
     public void SetAvailable(bool available){IsAvailable=available;}
     public bool TryOpen(Health actor)
     {
-        if(!CanInteract||actor==null||actor.Team!=Team.Player||actor.IsDead||actor.gameObject.scene!=gameObject.scene||PauseMenuUI.CombatInputBlocked||Time.timeScale<=0||Vector2.Distance(actor.transform.position,transform.position)>interactionRange)return false;
+        if(!CanInteract||actor==null||actor.Team!=Team.Player||actor.IsDead||actor.gameObject.scene!=gameObject.scene||PauseMenuUI.InteractionInputBlocked||Time.timeScale<=0||Vector2.Distance(actor.transform.position,transform.position)>interactionRange)return false;
         IsOpened=true;LootSpawner.Spawn(lootTable,pickupPrefab,GetLootPosition(actor.transform.position),lootScatterRadius);
         var visual=GetComponentInChildren<SpriteRenderer>();if(visual!=null){if(openedSprite!=null)visual.sprite=openedSprite;else visual.color=Color.gray;}
         onOpened.Invoke();

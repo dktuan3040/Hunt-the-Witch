@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: thunder_splash
   skillName: Thunder Splash
   description: Fire three bolts that call lightning on enemies they pass.
-  skillIcon: {fileID: 21300000, guid: 2ca2ec56027bbe749a49ba5a928f995b, type: 3}
+  skillIcon: {fileID: 21300000, guid: 63ea81347b57ab8409a1811dabd40532, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Thunder
   isSynergySkill: 1
@@ -46,6 +46,13 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 0
     followCaster: 0
+    mirrorWhenAimingLeft: 1
+    keepSpriteHorizontal: 1
+    visualOffset: {x: 0, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
     knockbackDistance: 0
     knockbackDuration: 0.18
     pullSpeed: 0
@@ -53,9 +60,11 @@ MonoBehaviour:
     trailRadius: 0
     explosionRadius: 0
     explosionDamage: 0
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 0
     statusDuration: 2

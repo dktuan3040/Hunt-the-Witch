@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d122a5af1cf6e40adda29ae9060484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
+  isBoss: 1
   team: 1
   maxHealth: 5
   invincibleTime: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: thunder_projectile
   skillName: Thunder Projectile
   description: Fire three piercing thunderbolts.
-  skillIcon: {fileID: 21300000, guid: a06c22f9a35c33e45a1e691f05239edc, type: 3}
+  skillIcon: {fileID: 21300000, guid: d2b4289245bc2974886643f3b96e9143, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Thunder
   isSynergySkill: 0
