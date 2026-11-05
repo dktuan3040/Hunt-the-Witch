@@ -5,6 +5,7 @@ public sealed class KeyGate : MonoBehaviour
 {
     [SerializeField] private ItemData requiredKey;
     public ItemData RequiredKey => requiredKey;
+    public bool IsOpened { get; private set; }
 
     public bool TryOpen(Component actor)
     {
@@ -12,6 +13,7 @@ public sealed class KeyGate : MonoBehaviour
         var health = actor.GetComponentInParent<Health>();
         if (health == null || health.Team != Team.Player || health.IsDead) return false;
         if (PlayerSessionState.GetItemCount(requiredKey.ItemId) < 1) return false;
+        IsOpened = true;
         gameObject.SetActive(false);
         return true;
     }

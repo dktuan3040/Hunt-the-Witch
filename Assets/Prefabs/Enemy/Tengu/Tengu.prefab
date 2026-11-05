@@ -8,6 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+  - component: {fileID: 9180000000000000001}
   - component: {fileID: 2115839912028430412}
   - component: {fileID: 766612931723028080}
   - component: {fileID: 3025715585817680696}
@@ -206,6 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d122a5af1cf6e40adda29ae9060484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
+  isBoss: 1
   team: 1
   maxHealth: 5
   invincibleTime: 0
@@ -301,3 +303,18 @@ MonoBehaviour:
   isChasingParameter: isChasing
   isAttackParameter: isAttack
   drawGizmos: 1
+--- !u!114 &9180000000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056499537027696979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8e1fdcd92d1fc418840adfa5e53761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyLootDropper
+  lootTable: {fileID: 11400000, guid: f900799b1d0d24149a09d07d4b155989, type: 2}
+  pickupPrefab: {fileID: 6077851749908981305, guid: 83129ecc5781ff540a93989a26f0e33b, type: 3}
+  scatterRadius: 0.6

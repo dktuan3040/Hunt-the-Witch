@@ -6,6 +6,7 @@ public sealed class ItemPickup : MonoBehaviour
     [SerializeField] private ItemData item;
     [SerializeField,Min(1)] private int amount=1;
     [SerializeField] private SpriteRenderer visual;
+    [SerializeField,Min(.1f)] private float visualSize=.6f;
     private bool collected;
     public ItemData Item => item;
     public int Amount => amount;
@@ -19,7 +20,17 @@ public sealed class ItemPickup : MonoBehaviour
     {
         item=data;amount=Mathf.Max(1,count);collected=false;
         if(visual==null)visual=GetComponentInChildren<SpriteRenderer>();
-        if(visual!=null&&data!=null){visual.sprite=data.Icon;visual.color=Color.white;visual.sortingOrder=20;if(data.Icon!=null){float size=Mathf.Max(data.Icon.bounds.size.x,data.Icon.bounds.size.y);if(size>0)visual.transform.localScale=Vector3.one*(.35f/size);}}
+        // Scale a dedicated visual so the pickup collider is not resized with it.
+        if(visual!=null&&visual.transform==transform)
+        {
+            var source=visual;
+            var child=new GameObject("ItemVisual");child.transform.SetParent(transform,false);
+            visual=child.AddComponent<SpriteRenderer>();
+            visual.sharedMaterial=source.sharedMaterial;visual.sortingLayerID=source.sortingLayerID;
+            visual.flipX=source.flipX;visual.flipY=source.flipY;visual.maskInteraction=source.maskInteraction;
+            source.enabled=false;
+        }
+        if(visual!=null&&data!=null){visual.sprite=data.Icon;visual.color=Color.white;visual.sortingOrder=20;if(data.Icon!=null){float size=Mathf.Max(data.Icon.bounds.size.x,data.Icon.bounds.size.y);if(size>0)visual.transform.localScale=Vector3.one*(visualSize/size);}}
     }
     private void OnTriggerEnter2D(Collider2D other){TryCollect(other);}
     private void OnTriggerStay2D(Collider2D other){TryCollect(other);}

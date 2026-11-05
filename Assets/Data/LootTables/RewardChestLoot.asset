@@ -74,10 +74,10 @@ MonoBehaviour:
     maxAmount: 1
     quantityDecay: 0.5
   - item: {fileID: 11400000, guid: b2095a5985bd10d4a999421884647951, type: 2}
-    chanceMultiplier: 1
+    chanceMultiplier: 2
     minAmount: 1
     maxAmount: 1
-    quantityDecay: 0.5
+    quantityDecay: 0.99
   - item: {fileID: 11400000, guid: 0c0b50b7ee7f4ad39c4f01525d9c32c9, type: 2}
     chanceMultiplier: 0.2857143
     minAmount: 1

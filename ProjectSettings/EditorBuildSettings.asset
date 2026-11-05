@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Maps/Home.unity
+    guid: 80721d1a27ea7d9498263f84e9b4c890
+  - enabled: 1
+    path: "Assets/Scenes/Maps/Trong Nh\xE0.unity"
+    guid: 67d234d9c3410e547861233c49eb8544
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 7dceace61cea80a40801a811b5a16bca, type: 3}

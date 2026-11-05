@@ -48,6 +48,11 @@ public class Health : MonoBehaviour, IDamageable
     public event Action<int> OnDamaged;
     public event Action OnDied;
 
+    [Header("Enemy classification")]
+    [Tooltip("Boss enemies do not block the map reward chest.")]
+    [SerializeField] private bool isBoss;
+    public bool IsBoss => isBoss;
+
     public Team Team => team;
     public int MaxHealth => maxHealth;
     public int CurrentHealth { get; private set; }
