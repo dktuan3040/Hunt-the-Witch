@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1178562934177624507}
   - component: {fileID: 3701862888378223588}
   - component: {fileID: 5488266359571220922}
+  - component: {fileID: 2820663225751005257}
   m_Layer: 0
   m_Name: Normal_bullet
   m_TagString: Untagged
@@ -81,8 +82,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -862230991
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -8154568645955431572, guid: a2637e3a10967154e8b1b6451c9ce351, type: 3}
@@ -207,3 +208,16 @@ MonoBehaviour:
   stickToTarget: 0
   stickDuration: 0.5
   stickDepth: 0.15
+--- !u!210 &2820663225751005257
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8473560615706035657}
+  m_Enabled: 1
+  m_SortingLayerID: -862230991
+  m_SortingLayer: 6
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 123737570192927781}
   - component: {fileID: 3140066793107286175}
   - component: {fileID: 471106703065100467}
+  - component: {fileID: 6350129664259956801}
   m_Layer: 0
   m_Name: Tengu
   m_TagString: Untagged
@@ -110,7 +111,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 28261746d4a8e0140b445524afd55251, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -171,7 +172,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &5736326336573344761
 Animator:
@@ -316,3 +317,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyIdentity
   enemyType: {fileID: 11400000, guid: 2a2ca97253426844ab7b368ba1aeb3e4, type: 2}
+--- !u!114 &6350129664259956801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056499537027696979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504e8967023a0af4eb2bbb55bd42d581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyNavigation2D
+  cellSize: 0.5
+  repathInterval: 0.6
+  detourMargin: 10
+  maxSearchNodes: 4000

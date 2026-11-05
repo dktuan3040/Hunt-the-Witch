@@ -68,6 +68,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private string isChasingParameter = "isChasing";
     [SerializeField] private string isAttackParameter = "isAttack";
 
+    private EnemyNavigation2D navigation;
     private Rigidbody2D rb;
     private Health health;
     private HitFeedback hitFeedback;
@@ -92,6 +93,8 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        navigation = GetComponent<EnemyNavigation2D>();
+        if (navigation == null) navigation = gameObject.AddComponent<EnemyNavigation2D>();
         health = GetComponent<Health>();
         hitFeedback = GetComponent<HitFeedback>();
         animator = GetComponent<Animator>();
@@ -170,13 +173,13 @@ public class EnemyAI : MonoBehaviour
         // Tầm xa: player quá gần thì lùi ra
         if (attackType == EnemyAttackType.Ranged && retreatDistance > 0f && distance < retreatDistance)
         {
-            desiredVelocity = -direction * moveSpeed;
-            SetChasing(true);
+            desiredVelocity = navigation.GetRetreatDirection(-direction) * moveSpeed;
+            SetChasing(desiredVelocity.sqrMagnitude > .001f);
             return;
         }
 
         // Trong tầm đánh: dừng lại, đánh khi hết cooldown
-        if (distance <= attackRange)
+        if (distance <= attackRange && navigation.HasLineOfSight(target.position))
         {
             desiredVelocity = Vector2.zero;
             SetChasing(false);
@@ -189,8 +192,8 @@ public class EnemyAI : MonoBehaviour
         }
 
         // Ngoài tầm đánh: đuổi theo
-        desiredVelocity = direction * moveSpeed;
-        SetChasing(true);
+        desiredVelocity = navigation.GetChaseDirection(target.position) * moveSpeed;
+        SetChasing(desiredVelocity.sqrMagnitude > .001f);
     }
 
     private void FixedUpdate()
@@ -232,7 +235,7 @@ private IEnumerator AttackRoutine()
 
     private void PerformAttack()
     {
-        if (!HasValidTarget) return;
+        if (!HasValidTarget || !navigation.HasLineOfSight(target.position)) return;
 
         if (attackType == EnemyAttackType.Melee) MeleeHit();
         // else FireProjectile();
