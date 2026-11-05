@@ -39,7 +39,7 @@ public class PauseMenuUI : MonoBehaviour
     {
         get
         {
-            if (SkillScrollSelectionUI.BlocksGameplay || combatPaused || Time.timeScale <= 0f) return true;
+            if (SkillScrollSelectionUI.BlocksGameplay || GameplayPause.IsPaused || combatPaused || Time.timeScale <= 0f) return true;
             if (waitingForCombatRelease)
             {
                 bool mouseHeld = Mouse.current != null && Mouse.current.leftButton.isPressed;
@@ -53,6 +53,16 @@ public class PauseMenuUI : MonoBehaviour
             }
             return Time.frameCount <= combatReleaseFrame;
         }
+    }
+
+    // Space interactions do not use the mouse/Q/E release guard for combat.
+    public static bool InteractionInputBlocked => SkillScrollSelectionUI.BlocksGameplay
+        || GameplayPause.IsPaused || combatPaused || Time.timeScale<=0f;
+
+    internal static void BlockUntilGameplayInputReleased()
+    {
+        waitingForCombatRelease = true;
+        combatReleaseFrame = Time.frameCount;
     }
 
     public bool IsPaused => isPaused;
@@ -130,7 +140,7 @@ public class PauseMenuUI : MonoBehaviour
 
     private void Update()
     {
-        if (GameOverMenuUI.IsGameOver || SkillScrollSelectionUI.BlocksGameplay) return;
+        if (GameOverMenuUI.IsGameOver || SkillScrollSelectionUI.BlocksGameplay || GameplayPause.HasOtherOwner(this)) return;
 
         // Nhấn Escape để mở/đóng Pause Menu
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -141,7 +151,7 @@ public class PauseMenuUI : MonoBehaviour
 
     public void HandleEscapePress()
     {
-        if (GameOverMenuUI.IsGameOver || SkillScrollSelectionUI.BlocksGameplay) return;
+        if (GameOverMenuUI.IsGameOver || SkillScrollSelectionUI.BlocksGameplay || GameplayPause.HasOtherOwner(this)) return;
 
         // Nếu Settings Menu đang mở -> đóng Settings trước, quay lại Pause
         if (settingsMenu != null && settingsMenu.IsOpen)
@@ -166,7 +176,7 @@ public class PauseMenuUI : MonoBehaviour
         waitingForCombatRelease = true;
 
         isPaused = true;
-        Time.timeScale = 0f;
+        GameplayPause.Acquire(this);
 
         if (pausePanel != null && pausePanel != gameObject)
         {
@@ -191,7 +201,7 @@ public class PauseMenuUI : MonoBehaviour
         combatReleaseFrame = Time.frameCount;
 
         isPaused = false;
-        Time.timeScale = 1f;
+        GameplayPause.Release(this);
 
         if (pausePanel != null && pausePanel != gameObject)
         {
@@ -234,7 +244,7 @@ public class PauseMenuUI : MonoBehaviour
     public void RestartGame()
     {
         PlayerSessionState.StartNewGame();
-        Time.timeScale = 1f;
+        GameplayPause.Release(this);
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
     }
@@ -242,7 +252,7 @@ public class PauseMenuUI : MonoBehaviour
     public void ReturnToMainMenu()
     {
         PlayerSessionState.StartNewGame();
-        Time.timeScale = 1f;
+        GameplayPause.Release(this);
         if (!string.IsNullOrEmpty(mainMenuSceneName))
         {
             SceneManager.LoadScene(mainMenuSceneName);
@@ -275,9 +285,6 @@ public class PauseMenuUI : MonoBehaviour
         waitingForCombatRelease = false;
         combatReleaseFrame = -1;
 
-        if (isPaused)
-        {
-            Time.timeScale = 1f;
-        }
+        GameplayPause.Release(this);
     }
 }

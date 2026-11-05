@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: rock_throw
   skillName: Rock Throw
   description: Lob two rocks that deal area damage on landing.
-  skillIcon: {fileID: 21300000, guid: 2a61d29e6e281d5449efe8fc00b97e95, type: 3}
+  skillIcon: {fileID: 21300000, guid: 982c79ab6ba23f346846171f09576877, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Earth
   isSynergySkill: 0

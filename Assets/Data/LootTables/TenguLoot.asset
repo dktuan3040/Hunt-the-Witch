@@ -14,30 +14,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LootTableData
   entries:
   - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
+    chanceMultiplier: 0.692307692
+    minAmount: 1
+    maxAmount: 2
+    quantityDecay: 0.4
+  - item: {fileID: 11400000, guid: 60bafbb9917377e4c846efeb939ca142, type: 2}
     chanceMultiplier: 1
     minAmount: 1
-    maxAmount: 4
-    quantityDecay: 0.5
-  - item: {fileID: 11400000, guid: 60bafbb9917377e4c846efeb939ca142, type: 2}
-    chanceMultiplier: 1.5
-    minAmount: 1
-    maxAmount: 3
-    quantityDecay: 0.5
+    maxAmount: 2
+    quantityDecay: 0.4
   - item: {fileID: 11400000, guid: a395b72e9f8beeb4cb267a0160a4f1c2, type: 2}
-    chanceMultiplier: 1.5
+    chanceMultiplier: 1.33333333
     minAmount: 1
-    maxAmount: 3
-    quantityDecay: 0.5
+    maxAmount: 2
+    quantityDecay: 0.4
+  - item: {fileID: 11400000, guid: 659bba3d9a944554b1e5dfc864499d5d, type: 2}
+    chanceMultiplier: 3
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.4
+  - item: {fileID: 11400000, guid: 0f69203bf8bc4f1d92097ab23e642f17, type: 2}
+    chanceMultiplier: 1
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.4
   - item: {fileID: 11400000, guid: ed66dc35f6243564abdc4b8e1f6d709a, type: 2}
-    chanceMultiplier: 0.15384616
+    chanceMultiplier: 0.153846154
     minAmount: 1
     maxAmount: 1
-    quantityDecay: 0.5
+    quantityDecay: 0.4
   - item: {fileID: 11400000, guid: 5ea9867d21d111b4f8c7db62aa9f1eb8, type: 2}
-    chanceMultiplier: 0.057142857
+    chanceMultiplier: 0.0857142857
     minAmount: 1
     maxAmount: 1
-    quantityDecay: 0.5
+    quantityDecay: 0.4
   guaranteeAtLeastOne: 0
   scrollLoot: {fileID: 11400000, guid: f7d419fd06cf4bf44a32f52dd122a080, type: 2}
-  skillScrollChance: 0.001
+  skillScrollChance: 0.03

@@ -19,7 +19,6 @@ public sealed class SkillScrollSelectionUI : MonoBehaviour
     private PlayerSkillManager manager;
     private SkillScrollPickup incoming;
     private SkillData startingSkill;
-    private float previousScale;
     private bool ownsPause;
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ResetStatics(){instance=null;closedFrame=-100;}
@@ -61,12 +60,11 @@ public sealed class SkillScrollSelectionUI : MonoBehaviour
     private void Open(PlayerSkillManager player)
     {
         manager = player;
-        previousScale = Time.timeScale;
         ownsPause = true;
         SelectedSlot = 0;
         SetModeText();
         panelRoot.SetActive(true);
-        Time.timeScale = 0;
+        GameplayPause.Acquire(this);
         Refresh();
     }
 
@@ -133,6 +131,7 @@ public sealed class SkillScrollSelectionUI : MonoBehaviour
         ownsPause=false;
         if(release&&incoming!=null)incoming.Release(manager!=null?manager.GetComponent<Health>():null);
         manager=null;incoming=null;startingSkill=null;closedFrame=Time.frameCount;
-        if(panelRoot!=null)panelRoot.SetActive(false);Time.timeScale=previousScale;
+        if(panelRoot!=null)panelRoot.SetActive(false);
+        GameplayPause.Release(this);
     }
 }

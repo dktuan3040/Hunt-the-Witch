@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: firestorm
   skillName: Explosion Projectile
   description: Fire three bolts that detonate and burn nearby foes.
-  skillIcon: {fileID: 4006003791991473683, guid: c60e7b4c0c6ea3743a0daeb427d531d5, type: 3}
+  skillIcon: {fileID: 21300000, guid: 98b19706ade81b844bc391a748bd84e1, type: 3}
   themeColor: {r: 1, g: 0.2, b: 0.8, a: 1}
   elementTag: FireWind
   isSynergySkill: 1

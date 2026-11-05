@@ -13,31 +13,36 @@ MonoBehaviour:
   m_Name: ArcherSkeletonLoot
   m_EditorClassIdentifier: Assembly-CSharp::LootTableData
   entries:
+  - item: {fileID: 11400000, guid: 2676632bc05342c49df07e2167607fcc, type: 2}
+    chanceMultiplier: 0.615384615
+    minAmount: 1
+    maxAmount: 2
+    quantityDecay: 0.4
   - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    chanceMultiplier: 0.6
+    chanceMultiplier: 0.307692308
     minAmount: 1
-    maxAmount: 4
-    quantityDecay: 0.5
+    maxAmount: 2
+    quantityDecay: 0.4
   - item: {fileID: 11400000, guid: 60bafbb9917377e4c846efeb939ca142, type: 2}
-    chanceMultiplier: 1
+    chanceMultiplier: 0.514285714
     minAmount: 1
-    maxAmount: 3
-    quantityDecay: 0.5
+    maxAmount: 1
+    quantityDecay: 0.4
   - item: {fileID: 11400000, guid: a395b72e9f8beeb4cb267a0160a4f1c2, type: 2}
-    chanceMultiplier: 0.4
+    chanceMultiplier: 0.333333333
     minAmount: 1
-    maxAmount: 3
-    quantityDecay: 0.5
+    maxAmount: 1
+    quantityDecay: 0.4
   - item: {fileID: 11400000, guid: ed66dc35f6243564abdc4b8e1f6d709a, type: 2}
-    chanceMultiplier: 0.15384616
+    chanceMultiplier: 0.0923076923
     minAmount: 1
     maxAmount: 1
-    quantityDecay: 0.5
+    quantityDecay: 0.4
   - item: {fileID: 11400000, guid: 5ea9867d21d111b4f8c7db62aa9f1eb8, type: 2}
-    chanceMultiplier: 0.05714286
+    chanceMultiplier: 0.0142857143
     minAmount: 1
     maxAmount: 1
-    quantityDecay: 0.5
+    quantityDecay: 0.4
   guaranteeAtLeastOne: 0
   scrollLoot: {fileID: 11400000, guid: f7d419fd06cf4bf44a32f52dd122a080, type: 2}
-  skillScrollChance: 0.001
+  skillScrollChance: 0.01

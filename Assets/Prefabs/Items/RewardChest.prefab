@@ -172,11 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cf279bec76e1043a319d3e0de2d870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapRewardChest
-  requiredKills:
-  - enemyType: {fileID: 11400000, guid: 1d1f5967fc460594d97679f7d013bc93, type: 2}
-    amount: 1
-  - enemyType: {fileID: 11400000, guid: 472cea879ad89084d94481cdb10dfbeb, type: 2}
-    amount: 1
+  enemySpawningComplete: 1
   fallHeight: 3
   fallDuration: 0.5
   leftTilt: 18

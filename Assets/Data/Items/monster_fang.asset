@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: monster_fang
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: monster_fang
-  displayName: "Nanh qu\xE1i v\u1EADt"
+  displayName: Monster Fang
   description: 
-  icon: {fileID: 21300000, guid: a99ed67827f82404c993e784ec0e6ad8, type: 3}
+  icon: {fileID: 21300000, guid: f8afa26180ae47a987ca22597fad898e, type: 3}
   rarity: 1
