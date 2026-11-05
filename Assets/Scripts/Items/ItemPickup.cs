@@ -30,7 +30,8 @@ public sealed class ItemPickup : MonoBehaviour
             visual.flipX=source.flipX;visual.flipY=source.flipY;visual.maskInteraction=source.maskInteraction;
             source.enabled=false;
         }
-        if(visual!=null&&data!=null){visual.sprite=data.Icon;visual.color=Color.white;visual.sortingOrder=20;if(data.Icon!=null){float size=Mathf.Max(data.Icon.bounds.size.x,data.Icon.bounds.size.y);if(size>0)visual.transform.localScale=Vector3.one*(visualSize/size);}}
+        // Sorting layer takes precedence over sorting order: Default is behind the map's Ground.
+        if(visual!=null&&data!=null){visual.sprite=data.Icon;visual.color=Color.white;visual.sortingLayerName="Player";visual.sortingOrder=20;if(data.Icon!=null){float size=Mathf.Max(data.Icon.bounds.size.x,data.Icon.bounds.size.y);if(size>0)visual.transform.localScale=Vector3.one*(visualSize/size);}}
     }
     private void OnTriggerEnter2D(Collider2D other){TryCollect(other);}
     private void OnTriggerStay2D(Collider2D other){TryCollect(other);}

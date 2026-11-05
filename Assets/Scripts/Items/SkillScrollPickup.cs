@@ -29,7 +29,7 @@ public sealed class SkillScrollPickup : MonoBehaviour
         if(skillIcon!=null)skillIcon.enabled=false;
         if(scrollVisual==null)scrollVisual=GetComponentInChildren<SpriteRenderer>(true);
         if(scrollVisual==null||defaultScrollSprite==null)return;
-        scrollVisual.sprite=defaultScrollSprite;scrollVisual.color=Color.white;scrollVisual.enabled=true;scrollVisual.sortingOrder=20;
+        scrollVisual.sprite=defaultScrollSprite;scrollVisual.color=Color.white;scrollVisual.enabled=true;scrollVisual.sortingLayerName="Player";scrollVisual.sortingOrder=20;
         float size=Mathf.Max(defaultScrollSprite.bounds.size.x,defaultScrollSprite.bounds.size.y);
         if(size>0)scrollVisual.transform.localScale=Vector3.one*(visualSize/size);
     }
