@@ -14,30 +14,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: water_blast
   skillName: Water Blast
-  description: Launch three spiraling waterspouts.
+  description: "Create three orbiting streams. Each stream deals 16 damage on contact."
   skillIcon: {fileID: 21300000, guid: c7f75acbb808a7148a8d53c946098c1e, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Water
   isSynergySkill: 1
   unlockItems:
   - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+    itemId: monster_hide
+    displayName: Monster Hide
     icon: {fileID: 0}
-    amount: 3
+    amount: 18
+  - item: {fileID: 11400000, guid: 659bba3d9a944554b1e5dfc864499d5d, type: 2}
+    itemId: tengu_wing
+    displayName: Tengu Wing
+    icon: {fileID: 0}
+    amount: 2
+  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+    itemId: magic_essence
+    displayName: Magic Essence
+    icon: {fileID: 0}
+    amount: 6
+  - item: {fileID: 11400000, guid: a6d68b03ade541e29ce2e18f7d38f5e8, type: 2}
+    itemId: diamond
+    displayName: Diamond
+    icon: {fileID: 0}
+    amount: 1
   ultimateProjectile: {fileID: 11400000, guid: ef5c78f90ac8a43489c61b580f2d87ba, type: 2}
-  ultimateCooldown: 8
+  ultimateCooldown: 9
   ultimateProjectilesPerShot: 3
   ultimateSpreadAngle: 360
   ultimateMuzzleFlash: {fileID: 0}
   ultimateSound: {fileID: 0}
   combat:
     pattern: 8
-    duration: 3
+    duration: 2.6
     tickInterval: 0.4
-    damage: 15
+    damage: 16
     radius: 0.63
-    range: 4.5
+    range: 4.2
     speed: 1.3
     targetCount: 1
     repeatTargets: 0
@@ -46,16 +61,25 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 1
     followCaster: 0
+    mirrorWhenAimingLeft: 0
+    keepSpriteHorizontal: 0
+    visualOffset: {x: 0, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
     knockbackDistance: 0
     knockbackDuration: 0.18
-    pullSpeed: 0
+    pullSpeed: 1.5
     trailDamage: 0
     trailRadius: 0
     explosionRadius: 0
     explosionDamage: 0
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 118
     status: 0
     statusDuration: 2

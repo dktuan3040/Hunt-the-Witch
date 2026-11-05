@@ -14,19 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: ice_projectile
   skillName: Ice Projectile
-  description: Fire three ice bolts that slow enemies.
+  description: "Fire three ice bolts for 11 damage each. Slow enemies by 30% for 2 seconds."
   skillIcon: {fileID: 21300000, guid: 31e5dee7b66312b418fa7ab8dc3eb8e7, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Ice
   isSynergySkill: 0
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: 2676632bc05342c49df07e2167607fcc, type: 2}
+    itemId: bone
+    displayName: Bone
     icon: {fileID: 0}
-    amount: 3
+    amount: 15
+  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+    itemId: magic_essence
+    displayName: Magic Essence
+    icon: {fileID: 0}
+    amount: 6
   ultimateProjectile: {fileID: 11400000, guid: 0b654ba0663a93447a4dcbe581f08dbb, type: 2}
-  ultimateCooldown: 5
+  ultimateCooldown: 6
   ultimateProjectilesPerShot: 3
   ultimateSpreadAngle: 26
   ultimateMuzzleFlash: {fileID: 0}
@@ -35,9 +40,9 @@ MonoBehaviour:
     pattern: 3
     duration: 1.2
     tickInterval: 0.4
-    damage: 10
+    damage: 11
     radius: 0.38
-    range: 10
+    range: 9
     speed: 8.5
     targetCount: 1
     repeatTargets: 0
@@ -46,6 +51,13 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 0
     followCaster: 0
+    mirrorWhenAimingLeft: 0
+    keepSpriteHorizontal: 0
+    visualOffset: {x: 0, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
     knockbackDistance: 0
     knockbackDuration: 0.18
     pullSpeed: 0
@@ -53,13 +65,15 @@ MonoBehaviour:
     trailRadius: 0
     explosionRadius: 0
     explosionDamage: 0
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 1
-    statusDuration: 2.4
-    slowMultiplier: 0.48
+    statusDuration: 2
+    slowMultiplier: 0.7
     thawSlowDuration: 2
     burnDamage: 2
     burnInterval: 1

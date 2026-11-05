@@ -6724,7 +6724,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tinh ch\u1EA5t qu\xE1i v\u1EADt"
+  m_text: "Monster Essence"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
   m_sharedMaterial: {fileID: -209324361717385744, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
@@ -19650,7 +19650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tinh ch\u1EA5t qu\xE1i v\u1EADt"
+  m_text: "Monster Essence"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
   m_sharedMaterial: {fileID: -209324361717385744, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
@@ -27852,8 +27852,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SKILL UNLOCK
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d34d1c3c7be2f484298b76dcd5a3e285, type: 2}
-  m_sharedMaterial: {fileID: -7080511104343425451, guid: d34d1c3c7be2f484298b76dcd5a3e285, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
+  m_sharedMaterial: {fileID: -209324361717385744, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -29256,7 +29256,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tinh ch\u1EA5t qu\xE1i v\u1EADt"
+  m_text: "Monster Essence"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
   m_sharedMaterial: {fileID: -209324361717385744, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
@@ -30477,7 +30477,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Da qu\xE1i v\u1EADt"
+  m_text: "Monster Hide"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
   m_sharedMaterial: {fileID: -209324361717385744, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
@@ -30616,8 +30616,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: STAFF UNLOCK
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d34d1c3c7be2f484298b76dcd5a3e285, type: 2}
-  m_sharedMaterial: {fileID: -7080511104343425451, guid: d34d1c3c7be2f484298b76dcd5a3e285, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
+  m_sharedMaterial: {fileID: -209324361717385744, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -32956,8 +32956,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SKIN UNLOCK
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d34d1c3c7be2f484298b76dcd5a3e285, type: 2}
-  m_sharedMaterial: {fileID: -7080511104343425451, guid: d34d1c3c7be2f484298b76dcd5a3e285, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
+  m_sharedMaterial: {fileID: -209324361717385744, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -37559,7 +37559,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Da qu\xE1i v\u1EADt"
+  m_text: "Monster Hide"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
   m_sharedMaterial: {fileID: -209324361717385744, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
@@ -40496,7 +40496,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Da qu\xE1i v\u1EADt"
+  m_text: "Monster Hide"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}
   m_sharedMaterial: {fileID: -209324361717385744, guid: b1a7cb4bfc446f647adddb7c8b9cf90c, type: 2}

@@ -23,16 +23,16 @@ public static class ItemUnlockProgress
         return true;
     }
     public static bool IsUnlocked(ScriptableObject data,IReadOnlyList<ItemRequirement> costs)
-    {CheckSession();return data!=null&&(costs!=null&&costs.Count==0||unlocked.Contains(data));}
+    {CheckSession();return data!=null&&(costs!=null&&costs.Count==0||unlocked.Contains(data)||GameProfile.IsUnlocked(GameProfile.EquipmentId(data)));}
     public static bool CanUnlock(ScriptableObject data,IReadOnlyList<ItemRequirement> requirements)
-    {if(spending||data==null||IsUnlocked(data,requirements))return false;Dictionary<string,int> costs;if(!Costs(requirements,out costs))return false;foreach(var p in costs)if(PlayerSessionState.GetItemCount(p.Key)<p.Value)return false;return true;}
+    {if(ExpeditionFlow.IsExpeditionActive||spending||data==null||IsUnlocked(data,requirements))return false;Dictionary<string,int> costs;if(!Costs(requirements,out costs))return false;foreach(var p in costs)if(GameProfile.StoredCount(p.Key)<p.Value)return false;return true;}
     public static bool TryUnlock(ScriptableObject data,IReadOnlyList<ItemRequirement> requirements)
     {
         if(!CanUnlock(data,requirements))return false;Dictionary<string,int> costs;
         if(!Costs(requirements,out costs))return false;
         spending=true;
-        try {if(!PlayerSessionState.TrySpendItems(costs))return false;unlocked.Add(data);}
+        try {if(!GameProfile.TryUnlock(GameProfile.EquipmentId(data),costs))return false;unlocked.Add(data);}
         finally {spending=false;}
-        Changed?.Invoke();return true;
+        PlayerSessionState.NotifyInventoryChanged();Changed?.Invoke();return true;
     }
 }

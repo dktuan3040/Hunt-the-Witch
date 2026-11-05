@@ -38,6 +38,7 @@ public class GameOverMenuUI : MonoBehaviour
     private Health playerHealth;
     private Animator playerAnimator;
     private bool isTransitioning = false;
+    private bool deathPending;
 
     public static bool IsGameOver { get; private set; }
 
@@ -104,7 +105,9 @@ public class GameOverMenuUI : MonoBehaviour
         int count = btn.onClick.GetPersistentEventCount();
         for (int i = 0; i < count; i++)
         {
-            if (btn.onClick.GetPersistentMethodName(i) == methodName)
+            if (btn.onClick.GetPersistentMethodName(i) == methodName
+                && btn.onClick.GetPersistentTarget(i) == this
+                && btn.onClick.GetPersistentListenerState(i) != UnityEngine.Events.UnityEventCallState.Off)
                 return true;
         }
         return false;
@@ -170,6 +173,8 @@ public class GameOverMenuUI : MonoBehaviour
 
     private void HandlePlayerDied()
     {
+        if (deathPending || IsGameOver) return;
+        deathPending = true;
         // Vô hiệu hóa PauseMenu ngay khi player chết để tránh người chơi bấm Esc giữa chừng
         var pauseMenu = FindAnyObjectByType<PauseMenuUI>(FindObjectsInactive.Include);
         if (pauseMenu != null)
@@ -216,7 +221,7 @@ public class GameOverMenuUI : MonoBehaviour
             float elapsed = 0f;
             while (elapsed < animDuration + 0.1f)
             {
-                elapsed += Time.deltaTime;
+                elapsed += Time.unscaledDeltaTime;
                 AnimatorStateInfo current = playerAnimator.GetCurrentAnimatorStateInfo(0);
                 if (current.IsName(deadStateName) && current.normalizedTime >= 1.0f)
                 {
@@ -227,13 +232,13 @@ public class GameOverMenuUI : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(animDuration);
+            yield return new WaitForSecondsRealtime(animDuration);
         }
 
         // Khoảng nghỉ ngắn sau khi animation kết thúc để tạo cảm giác mượt mà
         if (postAnimationDelay > 0f)
         {
-            yield return new WaitForSeconds(postAnimationDelay);
+            yield return new WaitForSecondsRealtime(postAnimationDelay);
         }
 
         ShowGameOver();
@@ -307,8 +312,7 @@ public class GameOverMenuUI : MonoBehaviour
         PlayerSessionState.StartNewGame();
         GameplayPause.Release(this);
 
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex);
+        ExpeditionFlow.Travel(ExpeditionFlow.House, null, true);
     }
 
     public void ReturnToMainMenu()

@@ -13,41 +13,51 @@ MonoBehaviour:
   m_Name: EvilWitchLoot
   m_EditorClassIdentifier: Assembly-CSharp::LootTableData
   entries:
+  - item: {fileID: 11400000, guid: a395b72e9f8beeb4cb267a0160a4f1c2, type: 2}
+    chanceMultiplier: 6.6666665
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.35
   - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
-    chanceMultiplier: 6.66666667
+    chanceMultiplier: 5.333333
     minAmount: 1
     maxAmount: 2
-    quantityDecay: 0.4
+    quantityDecay: 0.35
   - item: {fileID: 11400000, guid: f5f619ffccd1415c87ccbfd40dae6d88, type: 2}
-    chanceMultiplier: 3.33333333
+    chanceMultiplier: 0.79999995
     minAmount: 1
-    maxAmount: 2
-    quantityDecay: 0.4
+    maxAmount: 1
+    quantityDecay: 0.35
   - item: {fileID: 11400000, guid: 69de98b27e814de78d344dc5da57e129, type: 2}
-    chanceMultiplier: 2
+    chanceMultiplier: 4.6666665
     minAmount: 1
     maxAmount: 2
-    quantityDecay: 0.4
-  - item: {fileID: 11400000, guid: 0c0b50b7ee7f4ad39c4f01525d9c32c9, type: 2}
-    chanceMultiplier: 0.714285714
-    minAmount: 1
-    maxAmount: 1
-    quantityDecay: 0.4
-  - item: {fileID: 11400000, guid: 7976e3fde26f471abbc0fd0de07c8f0e, type: 2}
-    chanceMultiplier: 0.571428571
-    minAmount: 1
-    maxAmount: 1
-    quantityDecay: 0.4
+    quantityDecay: 0.35
   - item: {fileID: 11400000, guid: 974fc5a0431349e8a83e2b17331d091e, type: 2}
-    chanceMultiplier: 1.6
+    chanceMultiplier: 11
     minAmount: 1
     maxAmount: 1
-    quantityDecay: 0.4
+    quantityDecay: 0.35
+  - item: {fileID: 11400000, guid: a990e9a2f07846d9b1e38c68257b7e92, type: 2}
+    chanceMultiplier: 45
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.35
+  - item: {fileID: 11400000, guid: 76ce36bf9a854f08ab73d6636d72a223, type: 2}
+    chanceMultiplier: 2.6666665
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.35
+  - item: {fileID: 11400000, guid: ed66dc35f6243564abdc4b8e1f6d709a, type: 2}
+    chanceMultiplier: 0.23076925
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.35
   - item: {fileID: 11400000, guid: 5ea9867d21d111b4f8c7db62aa9f1eb8, type: 2}
-    chanceMultiplier: 0.571428571
+    chanceMultiplier: 0.22857143
     minAmount: 1
     maxAmount: 1
-    quantityDecay: 0.4
-  guaranteeAtLeastOne: 1
+    quantityDecay: 0.35
+  guaranteeAtLeastOne: 0
   scrollLoot: {fileID: 11400000, guid: f7d419fd06cf4bf44a32f52dd122a080, type: 2}
-  skillScrollChance: 0.1
+  skillScrollChance: 0.12

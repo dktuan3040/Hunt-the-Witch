@@ -14,28 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: wind_breath
   skillName: Wind Breath
-  description: Channel a gust that damages and pushes enemies.
+  description: "Deal 9 damage every 0.4 seconds with a short-range gust that pushes enemies back."
   skillIcon: {fileID: 21300000, guid: 59673ed5487e0344ca57fd085da6702f, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Wind
   isSynergySkill: 0
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: 60bafbb9917377e4c846efeb939ca142, type: 2}
+    itemId: monster_claw
+    displayName: Monster Claw
     icon: {fileID: 0}
-    amount: 3
+    amount: 11
+  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
+    itemId: monster_hide
+    displayName: Monster Hide
+    icon: {fileID: 0}
+    amount: 11
   ultimateProjectile: {fileID: 11400000, guid: df63a9cabea045b4590ba64f784769f9, type: 2}
-  ultimateCooldown: 5.5
+  ultimateCooldown: 6.5
   ultimateProjectilesPerShot: 1
   ultimateSpreadAngle: 0
   ultimateMuzzleFlash: {fileID: 0}
   ultimateSound: {fileID: 0}
   combat:
     pattern: 2
-    duration: 1.65
+    duration: 1.6
     tickInterval: 0.4
-    damage: 6
+    damage: 9
     radius: 0.9
     range: 3.6
     speed: 8
@@ -47,18 +52,24 @@ MonoBehaviour:
     radial: 0
     followCaster: 1
     mirrorWhenAimingLeft: 1
+    keepSpriteHorizontal: 0
     visualOffset: {x: 0.72, y: 0}
     hitboxFollowsVisual: 1
-    knockbackDistance: 0.8
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
+    knockbackDistance: 0.6
     knockbackDuration: 0.18
     pullSpeed: 0
     trailDamage: 0
     trailRadius: 0
     explosionRadius: 0
     explosionDamage: 0
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 0
     statusDuration: 2

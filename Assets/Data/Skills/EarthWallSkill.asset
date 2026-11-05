@@ -14,19 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: earth_wall
   skillName: Earth Wall
-  description: Raise three staggered lines of stunning walls.
+  description: "Create stone walls that block movement. Each target takes at most 24 damage per cast."
   skillIcon: {fileID: 21300000, guid: f84063852b1c2d64cb93b9c516284dd8, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Earth
   isSynergySkill: 1
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: 2676632bc05342c49df07e2167607fcc, type: 2}
+    itemId: bone
+    displayName: Bone
     icon: {fileID: 0}
-    amount: 3
+    amount: 29
+  - item: {fileID: 11400000, guid: 69de98b27e814de78d344dc5da57e129, type: 2}
+    itemId: dark_essence
+    displayName: Dark Essence
+    icon: {fileID: 0}
+    amount: 5
+  - item: {fileID: 11400000, guid: a395b72e9f8beeb4cb267a0160a4f1c2, type: 2}
+    itemId: monster_essence
+    displayName: Monster Essence
+    icon: {fileID: 0}
+    amount: 8
+  - item: {fileID: 11400000, guid: 0f69203bf8bc4f1d92097ab23e642f17, type: 2}
+    itemId: tengu_mask
+    displayName: Tengu Mask
+    icon: {fileID: 0}
+    amount: 1
   ultimateProjectile: {fileID: 11400000, guid: d48cecd71fdc8654d8f9243a9f2407c2, type: 2}
-  ultimateCooldown: 7
+  ultimateCooldown: 9
   ultimateProjectilesPerShot: 3
   ultimateSpreadAngle: 40
   ultimateMuzzleFlash: {fileID: 0}
@@ -35,9 +50,9 @@ MonoBehaviour:
     pattern: 6
     duration: 1.15
     tickInterval: 0.4
-    damage: 13
+    damage: 24
     radius: 0.65
-    range: 6
+    range: 5
     speed: 8
     targetCount: 1
     repeatTargets: 0
@@ -46,6 +61,13 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 0
     followCaster: 0
+    mirrorWhenAimingLeft: 0
+    keepSpriteHorizontal: 0
+    visualOffset: {x: 0, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
     knockbackDistance: 0
     knockbackDuration: 0.18
     pullSpeed: 0
@@ -53,12 +75,14 @@ MonoBehaviour:
     trailRadius: 0
     explosionRadius: 0
     explosionDamage: 0
-    wallSpacing: 1
+    explodeOnExpiry: 0
+    wallSpacing: 1.25
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 8
-    statusDuration: 1.6
+    statusDuration: 0.9
     slowMultiplier: 0.55
     thawSlowDuration: 2
     burnDamage: 2

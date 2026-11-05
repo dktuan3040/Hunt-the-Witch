@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   team: 1
-  maxHealth: 5
+  maxHealth: 32
   invincibleTime: 0
   animator: {fileID: 8686714721905134741}
   isDeadParameter: isDead
@@ -383,6 +383,7 @@ MonoBehaviour:
   onDied:
     m_PersistentCalls:
       m_Calls: []
+  isBoss: 0
 --- !u!114 &8543452315644154568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,17 +396,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea23bc8dc2ffbc04eb8dc220499a9e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  detectionRadius: 6
-  loseTargetRadius: 8
-  moveSpeed: 2.5
+  detectionRadius: 12
+  loseTargetRadius: 24
+  moveSpeed: 2.2
   spriteFacesRight: 1
   attackType: 1
-  attackRange: 5
-  damage: 1
-  attackCooldown: 1
-  attackDuration: 0.85
-  attackHitTime: 0.4
-  damageByAnimationEvent: 0
+  attackRange: 6.3
+  damage: 10
+  attackCooldown: 0.85
+  attackDuration: 0.5
+  attackHitTime: 0.34
+  attackAnimationSpeed: 1.5
+  damageByAnimationEvent: 1
   meleeReach: 0.6
   meleeHitRadius: 0.6
   targetLayers:
@@ -413,11 +415,12 @@ MonoBehaviour:
     m_Bits: 0
   projectilePrefab: {fileID: 3361382778825472453, guid: bdf811ae33184c34ebea65c99dabd32a, type: 3}
   firePoint: {fileID: 2525732061591983862}
-  projectileSpeed: 6
-  projectileLifeTime: 3
-  retreatDistance: 2
+  projectileSpeed: 8
+  projectileLifeTime: 1.4
+  retreatDistance: 2.5
   isChasingParameter: isChasing
   isAttackParameter: isAttack
+  mirrorWholeHierarchy: 0
 --- !u!114 &8393911598613751637
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public sealed class CraftingWorkbench : MonoBehaviour
     private UnlockMenuTabs menu;
     public bool CanInteract(Health actor)
     {
-        return isActiveAndEnabled&&actor!=null&&actor.Team==Team.Player&&!actor.IsDead
+        return !ExpeditionFlow.IsExpeditionActive&&isActiveAndEnabled&&actor!=null&&actor.Team==Team.Player&&!actor.IsDead
             &&actor.gameObject.scene==gameObject.scene&&!PauseMenuUI.InteractionInputBlocked
             &&!SkillScrollSelectionUI.BlocksGameplay&&Time.timeScale>0
             &&Vector2.Distance(actor.transform.position,transform.position)<=interactionRange

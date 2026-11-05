@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Runtime session only: scene changes preserve it; quitting the game does not.
+// Expedition state only. The bank and unlocks live in GameProfile.
 public static class PlayerSessionState
 {
     public sealed class Snapshot
@@ -26,14 +26,18 @@ public static class PlayerSessionState
 
     public static Snapshot Player { get; private set; }
     public static int Generation { get; private set; }
+    public static bool StartingSkillOffered {get;set;}
     private static readonly Dictionary<string, int> inventory = new Dictionary<string, int>();
     public static IReadOnlyDictionary<string, int> Inventory => inventory;
+    public static int GetStoredItemCount(string id)=>GameProfile.StoredCount(id);
+    public static void NotifyInventoryChanged(){InventoryChanged?.Invoke();}
     public static event Action InventoryChanged;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void InitializeSession()
     {
         Player = null;
+        StartingSkillOffered=false;
         Generation = 0;
         visitedMaps.Clear();
         inventory.Clear();
@@ -48,6 +52,7 @@ public static class PlayerSessionState
         Generation++;
         visitedMaps.Clear();
         Player = null;
+        StartingSkillOffered=false;
         inventory.Clear();
         InventoryChanged?.Invoke();
     }

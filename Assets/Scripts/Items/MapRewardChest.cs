@@ -40,6 +40,7 @@ public sealed class MapRewardChest : MonoBehaviour
         for(int i=0;i<visuals.Length;i++){rendererEnabled[i]=visuals[i].enabled;var sr=visuals[i] as SpriteRenderer;if(sr!=null&&sr.sprite!=null){halfWidth=Mathf.Max(.01f,sr.sprite.bounds.extents.x*Mathf.Abs(sr.transform.lossyScale.x));halfHeight=Mathf.Max(.01f,sr.sprite.bounds.extents.y*Mathf.Abs(sr.transform.lossyScale.y));}}
         for(int i=0;i<colliders.Length;i++)colliderEnabled[i]=colliders[i].enabled;
         initialized=true;chest.SetAvailable(false);SetVisuals(false);SetColliders(false);
+        if(GetComponent<ChestDirectionUI>()==null)gameObject.AddComponent<ChestDirectionUI>();
     }
     private IEnumerator Start()
     {
@@ -65,7 +66,7 @@ public sealed class MapRewardChest : MonoBehaviour
             if(!enemySpawningComplete)return false;
             // Query the current population, not a snapshot or per-type kill quota.
             // Inactive pooled enemies are not part of the current encounter.
-            foreach(var health in FindObjectsByType<Health>())
+            foreach(var health in FindObjectsByType<Health>(FindObjectsSortMode.None))
             {
                 if(health.gameObject.scene!=gameObject.scene||health.Team!=Team.Enemy||health.IsDead||health.IsBoss)continue;
                 return false;

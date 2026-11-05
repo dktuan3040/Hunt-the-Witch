@@ -13,6 +13,8 @@ public sealed class ItemData : ScriptableObject
     [Header("Pickup effect")]
     [SerializeField] private ItemPickupEffect pickupEffect;
     [SerializeField,Range(0,1)] private float healFraction=.3f;
+    [SerializeField] private bool isKey;
+    public bool IsKey => isKey;
     public ItemPickupEffect PickupEffect => pickupEffect;
     public float HealFraction => Mathf.Clamp01(healFraction);
     public string ItemId => string.IsNullOrWhiteSpace(itemId)?name:itemId;

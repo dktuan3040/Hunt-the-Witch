@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: small_heal_potion
   displayName: Small Healing Potion
-  description: Heal 30% HP
+  description: "Restores 18% of maximum health on pickup."
   icon: {fileID: -1955204434856081740, guid: 34655b258e14a4b48b7f9b061e7e575f, type: 3}
   rarity: 0
   pickupEffect: 1
-  healFraction: 0.3
+  healFraction: 0.18
+  isKey: 0

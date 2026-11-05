@@ -12,27 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 862c77c0a6a3b81448f0db70093ca38c, type: 3}
   m_Name: HeavyStaff
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponName: "Heavy Arcane Staff (G\u1EADy H\u1EA1ng N\u1EB7ng)"
-  description: "B\u1EAFn ch\xF9m 3 tia \u0111\u1EA1n uy l\u1EF1c c\u1EF1c m\u1EA1nh,
-    nh\u01B0ng t\u1EA7m b\u1EAFn ng\u1EAFn v\xE0 t\u1ED1c \u0111\u1ED9 bay ch\u1EADm
-    h\u01A1n."
+  persistentId: f17de6fbd073a6d4bb7f18b83c081601
+  weaponName: "Heavy Arcane Staff"
+  description: "4 damage per projectile. Fires 3 projectile(s) every 0.65s. Range: 6.5. Does not increase skill damage."
   weaponSprite: {fileID: 8288426215254106694, guid: 9002ef4f80ebe06479f97999ff68d6a8, type: 3}
   weaponIcon: {fileID: 8288426215254106694, guid: 9002ef4f80ebe06479f97999ff68d6a8, type: 3}
   projectilePrefab: {fileID: 5488266359571220922, guid: 8d3f73b18e0c6184ab4a6b657118bba9, type: 3}
   primaryBulletSprite: {fileID: 0}
-  damage: 15
-  projectileSpeed: 9
-  range: 7.5
-  fireRate: 0.35
+  damage: 4
+  projectileSpeed: 11.5
+  range: 6.5
+  fireRate: 0.65
   projectilesPerShot: 3
-  spreadAngle: 25
-  damageMultiplier: 1.25
+  spreadAngle: 30
+  damageMultiplier: 1
   muzzleFlashPrefab: {fileID: 0}
   shootSound: {fileID: 0}
   unlockItems:
   - item: {fileID: 11400000, guid: 0c0b50b7ee7f4ad39c4f01525d9c32c9, type: 2}
-    amount: 3
-  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+    amount: 9
+  - item: {fileID: 11400000, guid: 92301f71842e8ad42b9a94ebbf2cf22b, type: 2}
+    amount: 15
+  - item: {fileID: 11400000, guid: 0f69203bf8bc4f1d92097ab23e642f17, type: 2}
     amount: 2
-  - item: {fileID: 11400000, guid: f5f619ffccd1415c87ccbfd40dae6d88, type: 2}
-    amount: 1

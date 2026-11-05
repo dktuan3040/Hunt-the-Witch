@@ -14,19 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: thunder_bird
   skillName: Thunder Bird
-  description: Send a thunder bird that shocks enemies along its path.
+  description: "A piercing thunderbird deals 24 damage and triggers a targeted lightning strike."
   skillIcon: {fileID: 21300000, guid: bcc398e4505c8a04f9429c4fc6f75ae0, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Thunder
   isSynergySkill: 1
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: 60bafbb9917377e4c846efeb939ca142, type: 2}
+    itemId: monster_claw
+    displayName: Monster Claw
     icon: {fileID: 0}
-    amount: 3
+    amount: 15
+  - item: {fileID: 11400000, guid: 659bba3d9a944554b1e5dfc864499d5d, type: 2}
+    itemId: tengu_wing
+    displayName: Tengu Wing
+    icon: {fileID: 0}
+    amount: 2
+  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+    itemId: magic_essence
+    displayName: Magic Essence
+    icon: {fileID: 0}
+    amount: 6
+  - item: {fileID: 11400000, guid: a990e9a2f07846d9b1e38c68257b7e92, type: 2}
+    itemId: light_essence
+    displayName: Light Essence
+    icon: {fileID: 0}
+    amount: 1
   ultimateProjectile: {fileID: 11400000, guid: 4518dd770ea57d949ac286ed9cb0a545, type: 2}
-  ultimateCooldown: 7
+  ultimateCooldown: 9.5
   ultimateProjectilesPerShot: 1
   ultimateSpreadAngle: 0
   ultimateMuzzleFlash: {fileID: 0}
@@ -35,9 +50,9 @@ MonoBehaviour:
     pattern: 3
     duration: 1.65
     tickInterval: 0.4
-    damage: 13
+    damage: 24
     radius: 1.3
-    range: 13
+    range: 9
     speed: 8
     targetCount: 1
     repeatTargets: 0

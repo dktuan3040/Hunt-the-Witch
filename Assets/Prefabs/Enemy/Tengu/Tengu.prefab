@@ -19,6 +19,9 @@ GameObject:
   - component: {fileID: 3140066793107286175}
   - component: {fileID: 471106703065100467}
   - component: {fileID: 6350129664259956801}
+  - component: {fileID: -632223313438869125}
+  - component: {fileID: 2151646153375524530}
+  - component: {fileID: 6896100533642324100}
   m_Layer: 0
   m_Name: Tengu
   m_TagString: Untagged
@@ -208,9 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d122a5af1cf6e40adda29ae9060484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  isBoss: 1
   team: 1
-  maxHealth: 5
+  maxHealth: 850
   invincibleTime: 0
   animator: {fileID: 0}
   isDeadParameter: isDead
@@ -223,6 +225,7 @@ MonoBehaviour:
   onDied:
     m_PersistentCalls:
       m_Calls: []
+  isBoss: 1
 --- !u!114 &8865330189414350708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,22 +235,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 8056499537027696979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea23bc8dc2ffbc04eb8dc220499a9e29, type: 3}
+  m_Script: {fileID: 11500000, guid: d235b96d3225dde42b3218b4530041a0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  detectionRadius: 6
-  loseTargetRadius: 8
-  moveSpeed: 2.5
+  m_EditorClassIdentifier: Assembly-CSharp::TenguAttack
+  detectionRadius: 14
+  loseTargetRadius: 26
+  moveSpeed: 2.3
   spriteFacesRight: 1
   attackType: 0
-  attackRange: 2.5
-  damage: 1
-  attackCooldown: 1
-  attackDuration: 1.08
-  attackHitTime: 1
-  damageByAnimationEvent: 1
+  attackRange: 1.8
+  damage: 18
+  attackCooldown: 1.1
+  spellRange: 6.5
+  attackTimeout: 2.5
   meleeReach: 0.8
-  meleeHitRadius: 1.7
+  meleeHitRadius: 1.1
   targetLayers:
     serializedVersion: 2
     m_Bits: 8
@@ -258,6 +260,7 @@ MonoBehaviour:
   retreatDistance: 0
   isChasingParameter: isChasing
   isAttackParameter: isAttack
+  drawGizmos: 1
 --- !u!114 &123737570192927781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,21 +275,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TenguFireBall
   playerTransform: {fileID: 0}
   playerRb: {fileID: 0}
-  fireBallZonePrefab: {fileID: 0}
-  fallingFireballPrefab: {fileID: 8473560615706035657, guid: f1b01b760f256e841afe1eb35b92a754, type: 3}
+  fireBallZonePrefab: {fileID: 7809681300293456356, guid: 19d99689ab0fb594ab6716f068f432de, type: 3}
+  fallingFireballPrefab: {fileID: 8473560615706035657, guid: 893213384b8b9dd43b7bce273c9282f7, type: 3}
   fallHeight: 6
   fallOffsetX: 6
   spriteAngleOffset: 0
-  skillCoolDown: 5
-  autoCast: 1
+  skillCoolDown: 7.5
+  autoCast: 0
   castRange: 8
-  predictionTime: 1
+  predictionTime: 0.35
   fireCount: 3
-  timeBetweenFires: 0.4
-  randomSpread: 0.5
-  zoneRadius: 1.2
+  timeBetweenFires: 0.55
+  randomSpread: 0.25
+  zoneRadius: 1
   warningTime: 1
-  damage: 1
+  damage: 16
   targetLayers:
     serializedVersion: 2
     m_Bits: 8
@@ -334,3 +337,51 @@ MonoBehaviour:
   repathInterval: 0.6
   detourMargin: 10
   maxSearchNodes: 4000
+--- !u!210 &-632223313438869125
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056499537027696979}
+  m_Enabled: 1
+  m_SortingLayerID: -862230991
+  m_SortingLayer: 6
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
+--- !u!114 &2151646153375524530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056499537027696979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab50c3097a783342a50f69093c2e02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpreadFireball
+  fireBallPrefab: {fileID: 8473560615706035657, guid: 893213384b8b9dd43b7bce273c9282f7, type: 3}
+  numberOfFireBall: 8
+  fireBallspeed: 4.5
+  damage: 10
+  projectileLifeTime: 2.6
+--- !u!114 &6896100533642324100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056499537027696979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f4be8d21b16284ab457505d76492b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitFeedback
+  flashColor: {r: 1, g: 0.2, b: 0.2, a: 1}
+  flashHoldTime: 0.06
+  flashFadeTime: 0.14
+  knockbackDistance: 0
+  knockbackDuration: 0.15
+  knockbackResistance: 1

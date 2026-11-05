@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c14e380f9b9ae46b9117f13564b22e, type: 3}
   m_Name: PurpleWizard
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSkinData
+  persistentId: 958fa16fe0a86834ba00153f0f098b12
   skinName: Purple Wizard
-  description: The young wizard's purple hat, scarf, and cloak.
+  description: "Wizard robes. Grants +0.2 movement speed (4%)."
   skinIcon: {fileID: 7316008476745969496, guid: 7b263a7e3b4c4a9aa014f1707fe26346, type: 3}
   animatorController: {fileID: 22100000, guid: fe1331ea8be44bf43924c291745430e8, type: 2}
   defaultSprite: {fileID: 7316008476745969496, guid: 7b263a7e3b4c4a9aa014f1707fe26346, type: 3}
-  moveSpeedBonus: 0
+  moveSpeedBonus: 0.2
   unlockItems:
   - item: {fileID: 11400000, guid: 7976e3fde26f471abbc0fd0de07c8f0e, type: 2}
-    amount: 3
+    amount: 9
+  - item: {fileID: 11400000, guid: 69de98b27e814de78d344dc5da57e129, type: 2}
+    amount: 6
+  - item: {fileID: 11400000, guid: 974fc5a0431349e8a83e2b17331d091e, type: 2}
+    amount: 2

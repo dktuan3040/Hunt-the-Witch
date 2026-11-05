@@ -14,19 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: rock_throw
   skillName: Rock Throw
-  description: Lob two rocks that deal area damage on landing.
+  description: "Throw two rocks that explode on landing for 22 damage each."
   skillIcon: {fileID: 21300000, guid: 982c79ab6ba23f346846171f09576877, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Earth
   isSynergySkill: 0
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: 2676632bc05342c49df07e2167607fcc, type: 2}
+    itemId: bone
+    displayName: Bone
     icon: {fileID: 0}
-    amount: 3
+    amount: 22
+  - item: {fileID: 11400000, guid: a395b72e9f8beeb4cb267a0160a4f1c2, type: 2}
+    itemId: monster_essence
+    displayName: Monster Essence
+    icon: {fileID: 0}
+    amount: 6
   ultimateProjectile: {fileID: 11400000, guid: a03549b45dffe7a4d93030a81073bb33, type: 2}
-  ultimateCooldown: 6
+  ultimateCooldown: 7
   ultimateProjectilesPerShot: 2
   ultimateSpreadAngle: 18
   ultimateMuzzleFlash: {fileID: 0}
@@ -46,16 +51,25 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 0
     followCaster: 0
+    mirrorWhenAimingLeft: 0
+    keepSpriteHorizontal: 0
+    visualOffset: {x: 0, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
     knockbackDistance: 0
     knockbackDuration: 0.18
     pullSpeed: 0
     trailDamage: 0
     trailRadius: 0
     explosionRadius: 1.35
-    explosionDamage: 26
+    explosionDamage: 22
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.75
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 0
     statusDuration: 2

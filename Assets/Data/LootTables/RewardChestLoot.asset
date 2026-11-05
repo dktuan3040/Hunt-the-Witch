@@ -13,76 +13,71 @@ MonoBehaviour:
   m_Name: RewardChestLoot
   m_EditorClassIdentifier: Assembly-CSharp::LootTableData
   entries:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    chanceMultiplier: 2
-    minAmount: 1
-    maxAmount: 4
-    quantityDecay: 0.5
-  - item: {fileID: 11400000, guid: 92301f71842e8ad42b9a94ebbf2cf22b, type: 2}
-    chanceMultiplier: 2
-    minAmount: 1
-    maxAmount: 3
-    quantityDecay: 0.5
-  - item: {fileID: 11400000, guid: 60bafbb9917377e4c846efeb939ca142, type: 2}
-    chanceMultiplier: 2
-    minAmount: 1
-    maxAmount: 3
-    quantityDecay: 0.5
-  - item: {fileID: 11400000, guid: a395b72e9f8beeb4cb267a0160a4f1c2, type: 2}
-    chanceMultiplier: 2
-    minAmount: 1
-    maxAmount: 3
-    quantityDecay: 0.5
-  - item: {fileID: 11400000, guid: ed66dc35f6243564abdc4b8e1f6d709a, type: 2}
-    chanceMultiplier: 0.53846157
-    minAmount: 1
-    maxAmount: 1
-    quantityDecay: 0.5
-  - item: {fileID: 11400000, guid: 5ea9867d21d111b4f8c7db62aa9f1eb8, type: 2}
-    chanceMultiplier: 0.2857143
-    minAmount: 1
-    maxAmount: 1
-    quantityDecay: 0.5
-  - item: {fileID: 11400000, guid: 6df4daf4bd6b4464b1401ce52aa9db35, type: 2}
-    chanceMultiplier: 0.2857143
-    minAmount: 1
-    maxAmount: 1
-    quantityDecay: 0.5
-  - item: {fileID: 11400000, guid: 2fcbaa2e04d24beea270d93c3bfb436d, type: 2}
-    chanceMultiplier: 0.2857143
-    minAmount: 1
-    maxAmount: 1
-    quantityDecay: 0.5
-  - item: {fileID: 11400000, guid: 92225360ccc14c848320ddb6f2c0fe15, type: 2}
-    chanceMultiplier: 0.2857143
-    minAmount: 1
-    maxAmount: 1
-    quantityDecay: 0.5
-  - item: {fileID: 11400000, guid: a6d68b03ade541e29ce2e18f7d38f5e8, type: 2}
-    chanceMultiplier: 0.2857143
-    minAmount: 1
-    maxAmount: 1
-    quantityDecay: 0.5
-  - item: {fileID: 11400000, guid: 7976e3fde26f471abbc0fd0de07c8f0e, type: 2}
-    chanceMultiplier: 0.2857143
-    minAmount: 1
-    maxAmount: 1
-    quantityDecay: 0.5
-  - item: {fileID: 11400000, guid: f5f619ffccd1415c87ccbfd40dae6d88, type: 2}
-    chanceMultiplier: 0.2857143
-    minAmount: 1
-    maxAmount: 1
-    quantityDecay: 0.5
   - item: {fileID: 11400000, guid: b2095a5985bd10d4a999421884647951, type: 2}
-    chanceMultiplier: 2
+    chanceMultiplier: 1.5384616
     minAmount: 1
     maxAmount: 1
-    quantityDecay: 0.99
+    quantityDecay: 0.35
+  - item: {fileID: 11400000, guid: ed66dc35f6243564abdc4b8e1f6d709a, type: 2}
+    chanceMultiplier: 0.15384616
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.35
+  - item: {fileID: 11400000, guid: 5ea9867d21d111b4f8c7db62aa9f1eb8, type: 2}
+    chanceMultiplier: 0.08571429
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.35
   - item: {fileID: 11400000, guid: 0c0b50b7ee7f4ad39c4f01525d9c32c9, type: 2}
-    chanceMultiplier: 0.2857143
+    chanceMultiplier: 2.2857144
+    minAmount: 1
+    maxAmount: 2
+    quantityDecay: 0.35
+  - item: {fileID: 11400000, guid: 7976e3fde26f471abbc0fd0de07c8f0e, type: 2}
+    chanceMultiplier: 1.8571428
+    minAmount: 1
+    maxAmount: 2
+    quantityDecay: 0.35
+  - item: {fileID: 11400000, guid: a395b72e9f8beeb4cb267a0160a4f1c2, type: 2}
+    chanceMultiplier: 6.6666665
+    minAmount: 2
+    maxAmount: 2
+    quantityDecay: 0.35
+  - item: {fileID: 11400000, guid: f5f619ffccd1415c87ccbfd40dae6d88, type: 2}
+    chanceMultiplier: 0.39999998
     minAmount: 1
     maxAmount: 1
-    quantityDecay: 0.5
-  guaranteeAtLeastOne: 1
+    quantityDecay: 0.35
+  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+    chanceMultiplier: 3.3333333
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.35
+  - item: {fileID: 11400000, guid: 6df4daf4bd6b4464b1401ce52aa9db35, type: 2}
+    chanceMultiplier: 2.3333333
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.35
+  - item: {fileID: 11400000, guid: 2fcbaa2e04d24beea270d93c3bfb436d, type: 2}
+    chanceMultiplier: 2.3333333
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.35
+  - item: {fileID: 11400000, guid: 92225360ccc14c848320ddb6f2c0fe15, type: 2}
+    chanceMultiplier: 2.3333333
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.35
+  - item: {fileID: 11400000, guid: a6d68b03ade541e29ce2e18f7d38f5e8, type: 2}
+    chanceMultiplier: 4
+    minAmount: 1
+    maxAmount: 1
+    quantityDecay: 0.35
+  - item: {fileID: 11400000, guid: 8de6da20dbf84f7e9ea8893b63246997, type: 2}
+    chanceMultiplier: 0.6923077
+    minAmount: 1
+    maxAmount: 2
+    quantityDecay: 0.35
+  guaranteeAtLeastOne: 0
   scrollLoot: {fileID: 11400000, guid: f7d419fd06cf4bf44a32f52dd122a080, type: 2}
-  skillScrollChance: 0.25
+  skillScrollChance: 0.08

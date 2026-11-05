@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 862c77c0a6a3b81448f0db70093ca38c, type: 3}
   m_Name: CelestialStarStaff
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  persistentId: d6577bf2985dbeb4e925660ce400bf9c
   weaponName: Celestial Star Staff
-  description: A staff for channeling magic.
+  description: "7 damage per projectile. Fires 1 projectile(s) every 0.34s. Range: 10. Does not increase skill damage."
   weaponSprite: {fileID: 7157561037332017152, guid: 8fb16185f0bdff445adab1659f3335bf, type: 3}
   weaponIcon: {fileID: 7157561037332017152, guid: 8fb16185f0bdff445adab1659f3335bf, type: 3}
   projectilePrefab: {fileID: 5488266359571220922, guid: 8d3f73b18e0c6184ab4a6b657118bba9, type: 3}
   primaryBulletSprite: {fileID: 0}
-  damage: 10
-  projectileSpeed: 12
+  damage: 7
+  projectileSpeed: 16
   range: 10
-  fireRate: 0.2
+  fireRate: 0.34
   projectilesPerShot: 1
   spreadAngle: 0
   damageMultiplier: 1
@@ -29,8 +30,8 @@ MonoBehaviour:
   shootSound: {fileID: 0}
   unlockItems:
   - item: {fileID: 11400000, guid: 0c0b50b7ee7f4ad39c4f01525d9c32c9, type: 2}
+    amount: 11
+  - item: {fileID: 11400000, guid: a990e9a2f07846d9b1e38c68257b7e92, type: 2}
     amount: 3
-  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+  - item: {fileID: 11400000, guid: 2fcbaa2e04d24beea270d93c3bfb436d, type: 2}
     amount: 3
-  - item: {fileID: 11400000, guid: f5f619ffccd1415c87ccbfd40dae6d88, type: 2}
-    amount: 2

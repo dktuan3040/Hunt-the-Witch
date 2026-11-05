@@ -173,7 +173,7 @@ public sealed class SkillUnlockPanelUI : MonoBehaviour
             if(!totals.ContainsKey(item.ItemId))totals[item.ItemId]=0;
             totals[item.ItemId]+=Mathf.Max(1,item.amount);
         }
-        foreach(var cost in totals)if(PlayerSessionState.GetItemCount(cost.Key)<cost.Value)return false;
+        foreach(var cost in totals)if(PlayerSessionState.GetStoredItemCount(cost.Key)<cost.Value)return false;
         return true;
     }
 
@@ -236,7 +236,7 @@ public sealed class SkillUnlockPanelUI : MonoBehaviour
             }
             foreach(var pair in itemDefinitions)
             {
-                var item=pair.Value;int count=PlayerSessionState.GetItemCount(pair.Key);long need=itemTotals[pair.Key];
+                var item=pair.Value;int count=PlayerSessionState.GetStoredItemCount(pair.Key);long need=itemTotals[pair.Key];
                 bool met=selectedState==SkillKnowledge.Unlocked||count>=need;
                 rows.Add(new RequirementLine(string.IsNullOrWhiteSpace(item.DisplayName)?(string.IsNullOrWhiteSpace(pair.Key)?"?":pair.Key):item.DisplayName,selectedState==SkillKnowledge.Unlocked?"Completed":count+" / "+need,met,item.Icon!=null?item.Icon:pointIcon));
             }
@@ -268,7 +268,7 @@ public sealed class SkillUnlockPanelUI : MonoBehaviour
         var rows=new List<RequirementLine>();
         foreach(var pair in totals)
         {
-            int owned=PlayerSessionState.GetItemCount(pair.Key.ItemId);
+            int owned=PlayerSessionState.GetStoredItemCount(pair.Key.ItemId);
             rows.Add(new RequirementLine(pair.Key.DisplayName,learned?"Completed":owned+" / "+pair.Value,learned||owned>=pair.Value,pair.Key.Icon));
         }
         if(invalid)rows.Add(new RequirementLine("Missing item data","Unavailable",false,questionIcon));

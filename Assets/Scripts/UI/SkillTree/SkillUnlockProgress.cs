@@ -71,7 +71,9 @@ public static class SkillUnlockProgress
     public static SkillKnowledge GetState(SkillData skill)
     {
         SkillKnowledge value;
-        return skill != null && knowledge.TryGetValue(skill.SkillId, out value) ? value : SkillKnowledge.Unknown;
+        if(skill==null)return SkillKnowledge.Unknown;
+        if(GameProfile.IsUnlocked("skill:"+skill.SkillId))return SkillKnowledge.Unlocked;
+        return knowledge.TryGetValue(skill.SkillId,out value)?value:SkillKnowledge.Unknown;
     }
 
     public static SkillData PickLearnedSkill()
@@ -97,8 +99,11 @@ public static class SkillUnlockProgress
 
     public static void MarkUnlocked(SkillData skill)
     {
-        Register(skill);
-        if (Promote(skill, SkillKnowledge.Unlocked)) Notify();
+        if(skill==null)return;
+        Register(skill);var before=GetState(skill);
+        if(!GameProfile.GrantUnlock("skill:"+skill.SkillId))return;
+        knowledge[skill.SkillId]=SkillKnowledge.Unlocked;
+        if(before!=SkillKnowledge.Unlocked)Notify();
     }
 
     private static bool Promote(SkillData skill, SkillKnowledge state)
@@ -111,16 +116,16 @@ public static class SkillUnlockProgress
     private static bool DiscoverSynergies()
     {
         bool changed = false;
-        // A known recipe cannot reveal a still-unknown component's identity.
+        // One learned prerequisite reveals the synergy; unlocking still needs all prerequisites.
         for (int pass=0;pass<recipes.Count;pass++)
         {
             bool advanced = false;
             foreach (var recipe in recipes.Values)
             {
                 if (recipe == null || recipe.ResultingSynergySkill == null || blocked.Contains(recipe.ResultingSynergySkill)) continue;
-                bool known = recipe.RequiredSkills.Count > 0;
-                foreach (var required in recipe.RequiredSkills)
-                    known &= required != null && GetState(required) >= SkillKnowledge.Discovered;
+                bool known=false;
+                foreach(var required in recipe.RequiredSkills)
+                    known|=required!=null&&GetState(required)==SkillKnowledge.Unlocked;
                 if (known) advanced |= Promote(recipe.ResultingSynergySkill, SkillKnowledge.Discovered);
             }
             changed |= advanced;
@@ -147,7 +152,7 @@ public static class SkillUnlockProgress
         {
             if (skill == null) continue;
             foreach (var item in skill.UnlockItems)
-                if (item != null && !string.IsNullOrWhiteSpace(item.ItemId) && PlayerSessionState.GetItemCount(item.ItemId) > 0)
+                if (item != null && !string.IsNullOrWhiteSpace(item.ItemId) && (PlayerSessionState.GetItemCount(item.ItemId)>0||GameProfile.StoredCount(item.ItemId)>0))
                     changed |= Promote(skill, SkillKnowledge.Discovered);
         }
         changed |= DiscoverSynergies();
@@ -171,6 +176,7 @@ public static class SkillUnlockProgress
 
     public static bool CanUnlock(SkillData skill)
     {
+        if(ExpeditionFlow.IsExpeditionActive)return false;
         if (skill == null || blocked.Contains(skill) || GetState(skill) != SkillKnowledge.Discovered) return false;
         SkillSynergyData recipe;
         if (recipes.TryGetValue(skill.SkillId,out recipe))
@@ -179,7 +185,7 @@ public static class SkillUnlockProgress
         Dictionary<string,int> costs;
         if (!GetCosts(skill,out costs)) return false;
         foreach (var pair in costs)
-            if (PlayerSessionState.GetItemCount(pair.Key) < pair.Value) return false;
+            if (GameProfile.StoredCount(pair.Key) < pair.Value) return false;
         return true;
     }
 
@@ -187,8 +193,9 @@ public static class SkillUnlockProgress
     {
         if (!CanUnlock(skill)) return false;
         Dictionary<string,int> costs;
-        if (!GetCosts(skill,out costs) || !PlayerSessionState.TrySpendItems(costs)) return false;
-        MarkUnlocked(skill);
+        if (!GetCosts(skill,out costs) || !GameProfile.TryUnlock("skill:"+skill.SkillId,costs)) return false;
+        knowledge[skill.SkillId]=SkillKnowledge.Unlocked;Notify();
+        PlayerSessionState.NotifyInventoryChanged();
         return true;
     }
 }

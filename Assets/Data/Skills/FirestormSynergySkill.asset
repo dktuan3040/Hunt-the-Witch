@@ -14,24 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: firestorm
   skillName: Explosion Projectile
-  description: Fire three bolts that detonate and burn nearby foes.
+  description: "Fire three explosive bolts for 22 damage per explosion and burn enemies."
   skillIcon: {fileID: 21300000, guid: 98b19706ade81b844bc391a748bd84e1, type: 3}
   themeColor: {r: 1, g: 0.2, b: 0.8, a: 1}
   elementTag: FireWind
   isSynergySkill: 1
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: monster_hide
-    displayName: "Da qu\xE1i v\u1EADt"
+  - item: {fileID: 11400000, guid: 92301f71842e8ad42b9a94ebbf2cf22b, type: 2}
+    itemId: monster_fang
+    displayName: Monster Fang
     icon: {fileID: 0}
-    amount: 10
-  - item: {fileID: 11400000, guid: a395b72e9f8beeb4cb267a0160a4f1c2, type: 2}
-    itemId: monster_essence
-    displayName: "Tinh ch\u1EA5t qu\xE1i v\u1EADt"
+    amount: 15
+  - item: {fileID: 11400000, guid: 6df4daf4bd6b4464b1401ce52aa9db35, type: 2}
+    itemId: ruby
+    displayName: Ruby
     icon: {fileID: 0}
-    amount: 3
+    amount: 2
+  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+    itemId: magic_essence
+    displayName: Magic Essence
+    icon: {fileID: 0}
+    amount: 6
+  - item: {fileID: 11400000, guid: f5f619ffccd1415c87ccbfd40dae6d88, type: 2}
+    itemId: magic_powder
+    displayName: Magic Powder
+    icon: {fileID: 0}
+    amount: 1
   ultimateProjectile: {fileID: 11400000, guid: 2fadf48adf94e684ca26d1ee39e8cf9e, type: 2}
-  ultimateCooldown: 7
+  ultimateCooldown: 9.5
   ultimateProjectilesPerShot: 3
   ultimateSpreadAngle: 26
   ultimateMuzzleFlash: {fileID: 0}
@@ -42,7 +52,7 @@ MonoBehaviour:
     tickInterval: 0.4
     damage: 0
     radius: 0.38
-    range: 9
+    range: 8.5
     speed: 8
     targetCount: 1
     repeatTargets: 0
@@ -51,19 +61,28 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 0
     followCaster: 0
+    mirrorWhenAimingLeft: 0
+    keepSpriteHorizontal: 0
+    visualOffset: {x: 0, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
     knockbackDistance: 0
     knockbackDuration: 0.18
     pullSpeed: 0
     trailDamage: 0
     trailRadius: 0
     explosionRadius: 1.45
-    explosionDamage: 25
+    explosionDamage: 22
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 4
-    statusDuration: 3
+    statusDuration: 2
     slowMultiplier: 0.55
     thawSlowDuration: 2
     burnDamage: 3

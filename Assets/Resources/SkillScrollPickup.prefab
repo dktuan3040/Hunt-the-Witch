@@ -169,8 +169,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -862230991
+  m_SortingLayer: 6
   m_SortingOrder: 20
   m_MaskInteraction: 0
   m_Sprite: {fileID: 897710771807637462, guid: e9e829a2a21f2e343b7386405c225aa1, type: 3}
@@ -299,4 +299,5 @@ MonoBehaviour:
   skillIcon: {fileID: 4031056493894197869}
   scrollVisual: {fileID: 8374522469710638302}
   defaultScrollSprite: {fileID: 897710771807637462, guid: e9e829a2a21f2e343b7386405c225aa1, type: 3}
+  visualSize: 0.7
   interactionRange: 1.2

@@ -14,19 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: air_burst_ring
   skillName: Air Burst Ring
-  description: Unleash stronger air bursts in every direction.
+  description: "Release wind in eight directions. Each enemy takes 30 damage once per cast."
   skillIcon: {fileID: 21300000, guid: e3b5c0acc7a6e5444a23dd6100abe1d0, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Wind
   isSynergySkill: 1
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: 60bafbb9917377e4c846efeb939ca142, type: 2}
+    itemId: monster_claw
+    displayName: Monster Claw
     icon: {fileID: 0}
-    amount: 3
+    amount: 15
+  - item: {fileID: 11400000, guid: 659bba3d9a944554b1e5dfc864499d5d, type: 2}
+    itemId: tengu_wing
+    displayName: Tengu Wing
+    icon: {fileID: 0}
+    amount: 2
+  - item: {fileID: 11400000, guid: a395b72e9f8beeb4cb267a0160a4f1c2, type: 2}
+    itemId: monster_essence
+    displayName: Monster Essence
+    icon: {fileID: 0}
+    amount: 8
   ultimateProjectile: {fileID: 11400000, guid: 024934dd1ae328547a544336364ae7b7, type: 2}
-  ultimateCooldown: 2.75
+  ultimateCooldown: 7
   ultimateProjectilesPerShot: 8
   ultimateSpreadAngle: 360
   ultimateMuzzleFlash: {fileID: 0}
@@ -35,9 +45,9 @@ MonoBehaviour:
     pattern: 1
     duration: 0.36
     tickInterval: 0.4
-    damage: 21
+    damage: 30
     radius: 0.85
-    range: 3.6
+    range: 3.8
     speed: 18
     targetCount: 1
     repeatTargets: 0
@@ -47,17 +57,24 @@ MonoBehaviour:
     radial: 1
     followCaster: 1
     mirrorWhenAimingLeft: 1
+    keepSpriteHorizontal: 0
     visualOffset: {x: 0.72, y: 0}
-    knockbackDistance: 2.25
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
+    knockbackDistance: 1.8
     knockbackDuration: 0.18
     pullSpeed: 0
     trailDamage: 0
     trailRadius: 0
     explosionRadius: 0
     explosionDamage: 0
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 0
     statusDuration: 2

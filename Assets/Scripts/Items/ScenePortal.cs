@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [DisallowMultipleComponent, RequireComponent(typeof(BoxCollider2D))]
 public sealed class ScenePortal : MonoBehaviour
 {
     [SerializeField] private string destinationScene = "M_F1";
-    private bool loading;
+    private ExpeditionPortal portal;
+    private bool ownsPortal;
 
     private void Reset()
     {
@@ -14,26 +14,34 @@ public sealed class ScenePortal : MonoBehaviour
         trigger.size = new Vector2(1.1f, 2.3f);
     }
 
-    private void Awake() => GetComponent<BoxCollider2D>().isTrigger = true;
-    private void OnTriggerEnter2D(Collider2D other) => TryTravel(other);
-    private void OnTriggerStay2D(Collider2D other) => TryTravel(other);
+    private void Awake() => portal = ResolvePortal();
+
+    private ExpeditionPortal ResolvePortal()
+    {
+        // Older scenes may put this component on the visual of an existing portal.
+        // Keep the parent's destination and boss gate instead of creating a second exit.
+        var existing = GetComponentInParent<ExpeditionPortal>();
+        if (existing != null)
+        {
+            if (existing.gameObject != gameObject) GetComponent<BoxCollider2D>().enabled = false;
+            return existing;
+        }
+        var created = gameObject.AddComponent<ExpeditionPortal>();
+        ownsPortal = true;
+        created.destination = destinationScene;
+        created.bossGate = GetComponentInParent<BossPortalReveal>();
+        created.requireBossDefeated = created.bossGate != null;
+        created.RefreshTrigger();
+        return created;
+    }
+
+    private void OnEnable() { if (ownsPortal && portal != null) portal.enabled = true; }
+    private void OnDisable() { if (ownsPortal && portal != null) portal.enabled = false; }
 
     public bool TryTravel(Component actor)
     {
-        if (!isActiveAndEnabled || loading || actor == null || PauseMenuUI.InteractionInputBlocked) return false;
-        var health = actor.GetComponentInParent<Health>();
-        if (health == null || health.Team != Team.Player || health.IsDead
-            || health.gameObject.scene != gameObject.scene) return false;
-        if (string.IsNullOrWhiteSpace(destinationScene) || !Application.CanStreamedLevelBeLoaded(destinationScene))
-        {
-            Debug.LogError("Portal destination must be enabled in the build scene list: " + destinationScene, this);
-            return false;
-        }
-
-        loading = true;
-        var persistence = health.GetComponent<PlayerStatePersistence>();
-        if (persistence != null) persistence.Capture();
-        SceneManager.LoadScene(destinationScene, LoadSceneMode.Single);
-        return true;
+        if (!isActiveAndEnabled || actor == null) return false;
+        if (portal == null) portal = ResolvePortal();
+        return portal.TryEnter(actor);
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[DefaultExecutionOrder(-250)]
 [RequireComponent(typeof(BoxCollider2D)),DisallowMultipleComponent]
 public sealed class BossEncounterWaypoint : MonoBehaviour
 {
@@ -15,13 +16,25 @@ public sealed class BossEncounterWaypoint : MonoBehaviour
     public bool HasStarted {get;private set;}
     public Health Boss {get;private set;}
     public BossHealthBarUI HealthBar {get;private set;}
+    private readonly System.Collections.Generic.List<Health> dormantBosses=new System.Collections.Generic.List<Health>();
+    private void Awake()
+    {
+        // Park scene-authored bosses before their AI starts. Their Health references
+        // remain valid for the portal reveal controllers while they are dormant.
+        foreach(var health in FindObjectsByType<Health>(FindObjectsInactive.Include,FindObjectsSortMode.None))
+        {
+            if(health.gameObject.scene!=gameObject.scene||health.Team!=Team.Enemy||!health.IsBoss)continue;
+            dormantBosses.Add(health);health.gameObject.SetActive(false);
+        }
+    }
     private Health player;
     private float nextBossCheck;
 
     public bool CanBegin(Health actor)
     {
-        if(HasStarted||!isActiveAndEnabled||actor==null||actor.Team!=Team.Player||actor.IsDead||actor.gameObject.scene!=gameObject.scene)return false;
-        if(gate==null||!gate.IsOpened||gate.RequiredKey==null||PlayerSessionState.GetItemCount(gate.RequiredKey.ItemId)<1)return false;
+        if(PauseMenuUI.InteractionInputBlocked||Time.timeScale<=0||HasStarted||!isActiveAndEnabled||actor==null||actor.Team!=Team.Player||actor.IsDead||actor.gameObject.scene!=gameObject.scene)return false;
+        // Opening the gate already consumed the key; the open gate authorizes this encounter.
+        if(gate==null||!gate.IsOpened)return false;
         var center=GetComponent<BoxCollider2D>().bounds.center;
         return Vector2.Dot((Vector2)actor.transform.position-(Vector2)center,entryDirection.normalized)>0;
     }
@@ -30,6 +43,7 @@ public sealed class BossEncounterWaypoint : MonoBehaviour
         if(!CanBegin(actor)||healthBarPrefab==null)return false;
         HasStarted=true;
         player=actor;
+        foreach(var boss in dormantBosses)if(boss!=null)boss.gameObject.SetActive(true);
         // Prefer scene bosses, including inactive ones waiting for a later phase.
         // A placed boss must never cause the fallback prefab to be spawned as well.
         if(!HasSceneBoss()&&bossPrefab!=null&&spawnPoint!=null)

@@ -19,6 +19,10 @@ public class TenguAttack : MonoBehaviour
     [SerializeField] private int damage = 1;
     [Tooltip("Thời gian nghỉ sau khi đòn đánh KẾT THÚC (giây)")]
     [SerializeField] private float attackCooldown = 1f;
+    [Tooltip("Start the attack animation at spell range; melee damage still uses its own smaller hit radius.")]
+    [SerializeField,Min(.1f)] private float spellRange=6f;
+    [Tooltip("Recover if the animation finish event is interrupted or never arrives.")]
+    [SerializeField,Min(.5f)] private float attackTimeout=2.5f;
 
     [Header("Cận chiến")]
     [SerializeField] private float meleeReach = 0.6f;
@@ -39,6 +43,7 @@ public class TenguAttack : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool drawGizmos = true;
 
+    private EnemyNavigation2D navigation;
     private Rigidbody2D rb;
     private Health health;
     private HitFeedback hitFeedback;
@@ -52,6 +57,7 @@ public class TenguAttack : MonoBehaviour
     private bool hasAggro;
     private bool isAttacking;
     private float nextAttackTime;
+    private float attackDeadline;
     private Vector2 desiredVelocity;
 
     private int isChasingHash;
@@ -61,6 +67,7 @@ public class TenguAttack : MonoBehaviour
 
     private void Awake()
     {
+        navigation=GetComponent<EnemyNavigation2D>();
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<Health>();
         hitFeedback = GetComponent<HitFeedback>();
@@ -84,7 +91,7 @@ public class TenguAttack : MonoBehaviour
     private void OnValidate()
     {
         // Đứng trong attackRange là phải được phép aggro + đánh trúng
-        detectionRadius = Mathf.Max(detectionRadius, attackRange);
+        detectionRadius = Mathf.Max(detectionRadius, Mathf.Max(attackRange,spellRange));
         loseTargetRadius = Mathf.Max(loseTargetRadius, detectionRadius);
 
         // Vòng gây damage phải phủ tới rìa attackRange (meleeReach + meleeHitRadius >= attackRange)
@@ -141,6 +148,13 @@ public class TenguAttack : MonoBehaviour
     {
         if (health.IsDead) return;
 
+        if (TryGetComponent<EnemySkillStatus>(out var status) && status.Immobilized)
+        {
+            if (isAttacking) FinishAttack();
+            desiredVelocity = Vector2.zero;
+            SetChasing(false);
+            return;
+        }
         FindTargetIfNeeded();
 
         if (!HasValidTarget)
@@ -158,6 +172,8 @@ public class TenguAttack : MonoBehaviour
         if (isAttacking)
         {
             desiredVelocity = Vector2.zero;
+            if(Time.time>=attackDeadline)FinishAttack();
+            else SetAttack(true);
             return;
         }
 
@@ -169,9 +185,9 @@ public class TenguAttack : MonoBehaviour
 
         if (!hasAggro)
         {
-            if (distance <= detectionRadius) hasAggro = true;
+            if (EnemyAwareness.CanDetect(transform, spriteRenderer, target, detectionRadius)) hasAggro = true;
         }
-        else if (distance > loseTargetRadius)
+        else if (distance > loseTargetRadius && !EnemyAwareness.CanDetect(transform, spriteRenderer, target, detectionRadius))
         {
             hasAggro = false;
         }
@@ -186,13 +202,13 @@ public class TenguAttack : MonoBehaviour
         // Rút lui nếu player quá gần (dành cho Ranged)
         if (attackType == EnemyAttackType.Ranged && retreatDistance > 0f && distance < retreatDistance)
         {
-            desiredVelocity = -direction * moveSpeed;
+            desiredVelocity = (navigation!=null?navigation.GetRetreatDirection(-direction):-direction) * moveSpeed;
             SetChasing(true);
             return;
         }
 
         // Vào tầm đánh
-        if (distance <= attackRange)
+        if (distance <= Mathf.Max(attackRange,spellRange) && (navigation==null||navigation.HasLineOfSight(target.position)))
         {
             desiredVelocity = Vector2.zero;
             SetChasing(false);
@@ -206,7 +222,7 @@ public class TenguAttack : MonoBehaviour
         }
 
         // Ngoài tầm đánh -> tiếp tục đuổi
-        desiredVelocity = direction * moveSpeed;
+        desiredVelocity = (navigation!=null?navigation.GetChaseDirection(target.position):direction) * moveSpeed;
         SetChasing(true);
     }
 
@@ -215,12 +231,17 @@ public class TenguAttack : MonoBehaviour
         if (health.IsDead) return;
         if (hitFeedback != null && hitFeedback.IsKnockedBack) return;
 
-        rb.linearVelocity = desiredVelocity;
+        float speedFactor = TryGetComponent<EnemySkillStatus>(out var status) ? status.MovementMultiplier : 1;
+        rb.linearVelocity = desiredVelocity * speedFactor;
     }
 
     private void StartAttack()
     {
         isAttacking = true;
+        attackDeadline=Time.time+attackTimeout;
+        if(animator!=null&&animator.runtimeAnimatorController!=null)
+            foreach(var clip in animator.runtimeAnimatorController.animationClips)
+                if(clip.name=="TenguAttack")attackDeadline=Mathf.Max(attackDeadline,Time.time+clip.length/Mathf.Max(.01f,Mathf.Abs(animator.speed))+.5f);
         desiredVelocity = Vector2.zero;
         SetChasing(false);
         SetAttack(true); // Kích hoạt animation Attack
@@ -241,10 +262,14 @@ public class TenguAttack : MonoBehaviour
         // 1. Gây sát thương / Bắn đạn
         PerformAttack();
 
-        // 2. Kết thúc trạng thái đánh và bắt đầu đếm thời gian hồi chiêu
-        isAttacking = false;
+        // 2. End once; missed animation events use the same recovery path without phantom damage.
+        FinishAttack();
+    }
+    private void FinishAttack()
+    {
+        isAttacking=false;
         SetAttack(false);
-        nextAttackTime = Time.time + attackCooldown;
+        nextAttackTime=Time.time+Mathf.Max(.05f,attackCooldown);
     }
 
     // =====================================================================
@@ -318,15 +343,15 @@ public class TenguAttack : MonoBehaviour
 
     private void SetChasing(bool value)
     {
-        if (animator == null || animChasing == value) return;
-        animChasing = value;
-        animator.SetBool(isChasingHash, value);
+        if(animator==null)return;
+        animChasing=value;
+        if(animator.GetBool(isChasingHash)!=value)animator.SetBool(isChasingHash,value);
     }
 
     private void SetAttack(bool value)
     {
-        if (animator == null || animAttack == value) return;
-        animAttack = value;
-        animator.SetBool(isAttackHash, value);
+        if(animator==null)return;
+        animAttack=value;
+        if(animator.GetBool(isAttackHash)!=value)animator.SetBool(isAttackHash,value);
     }
 }

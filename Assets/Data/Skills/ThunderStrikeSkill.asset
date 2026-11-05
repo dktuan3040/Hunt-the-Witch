@@ -14,29 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: thunder_strike
   skillName: Thunder Strike
-  description: Strike nearby enemies repeatedly with lightning.
+  description: "Strike enemies within a 4.2-unit radius for 8 damage every 0.45 seconds."
   skillIcon: {fileID: 21300000, guid: 269afe17f75a35f4b948d8f26f71d944, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Thunder
   isSynergySkill: 0
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: a395b72e9f8beeb4cb267a0160a4f1c2, type: 2}
+    itemId: monster_essence
+    displayName: Monster Essence
     icon: {fileID: 0}
-    amount: 3
+    amount: 8
+  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+    itemId: magic_essence
+    displayName: Magic Essence
+    icon: {fileID: 0}
+    amount: 9
   ultimateProjectile: {fileID: 11400000, guid: 03c438a052ae53349918f6264aeb9001, type: 2}
-  ultimateCooldown: 6
+  ultimateCooldown: 9
   ultimateProjectilesPerShot: 1
   ultimateSpreadAngle: 0
   ultimateMuzzleFlash: {fileID: 0}
   ultimateSound: {fileID: 0}
   combat:
     pattern: 9
-    duration: 1.35
-    tickInterval: 0.36
-    damage: 10
-    radius: 10
+    duration: 1.2
+    tickInterval: 0.45
+    damage: 8
+    radius: 4.2
     range: 5
     speed: 8
     targetCount: 1

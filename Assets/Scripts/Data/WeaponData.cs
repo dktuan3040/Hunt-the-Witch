@@ -4,6 +4,9 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "NewWeaponData", menuName = "Hunt the Witch/Combat/Weapon Data")]
 public class WeaponData : ScriptableObject
 {
+    [SerializeField,HideInInspector] private string persistentId;
+    public string PersistentId => string.IsNullOrEmpty(persistentId)?name:persistentId;
+
     [Header("Visual & Identity")]
     [SerializeField] private string weaponName = "Emerald Staff";
     [TextArea(2, 4)]

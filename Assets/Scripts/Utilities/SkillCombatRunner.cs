@@ -59,6 +59,7 @@ public sealed class SkillCombatRunner : MonoBehaviour
                 }
                 break;
             case SkillCastPattern.WallLines:
+                var wallHits = new HashSet<Health>();
                 float spacing = Mathf.Max(.05f, config.wallSpacing);
                 int segments = Mathf.Clamp(Mathf.FloorToInt(config.range / spacing), 1, 64);
                 for (int i = 0; i < count; i++)
@@ -67,7 +68,7 @@ public sealed class SkillCombatRunner : MonoBehaviour
                     float clear = WallDistance(caster.gameObject.scene.GetPhysicsScene2D(), atMuzzle, dir, config.range);
                     for (int j = 1; j <= segments && j * spacing <= clear; j++)
                         StartVisual(skill, source, caster, atMuzzle + dir * (j * spacing), dir,
-                            multiplier, delay: (j-1) * config.wallDelay);
+                            multiplier, delay: (j-1) * config.wallDelay, sharedHits: wallHits);
                 }
                 break;
             case SkillCastPattern.Projectile:

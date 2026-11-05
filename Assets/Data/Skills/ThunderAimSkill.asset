@@ -14,32 +14,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: thunder_aim
   skillName: Thunder Aim
-  description: Electrocute up to five nearby enemies.
+  description: "Automatically strike up to three different targets for 20 damage each."
   skillIcon: {fileID: 21300000, guid: a362913034d094542a93269ca474732e, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Thunder
   isSynergySkill: 0
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: 60bafbb9917377e4c846efeb939ca142, type: 2}
+    itemId: monster_claw
+    displayName: Monster Claw
     icon: {fileID: 0}
-    amount: 3
+    amount: 11
+  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+    itemId: magic_essence
+    displayName: Magic Essence
+    icon: {fileID: 0}
+    amount: 5
   ultimateProjectile: {fileID: 11400000, guid: 0c879964154a14140a37dee71a5c99f1, type: 2}
-  ultimateCooldown: 6
+  ultimateCooldown: 7
   ultimateProjectilesPerShot: 1
   ultimateSpreadAngle: 0
   ultimateMuzzleFlash: {fileID: 0}
   ultimateSound: {fileID: 0}
   combat:
     pattern: 5
-    duration: 1.05
-    tickInterval: 0.38
-    damage: 7
+    duration: 0.65
+    tickInterval: 1
+    damage: 20
     radius: 1
-    range: 9
+    range: 8
     speed: 8
-    targetCount: 5
+    targetCount: 3
     repeatTargets: 0
     pierce: 0
     hitDuringEnding: 0

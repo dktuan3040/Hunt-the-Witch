@@ -61,6 +61,7 @@ public class PlayerSkinController : MonoBehaviour
         if (newSkin == null) return;
 
         currentSkin = newSkin;
+        if(Application.isPlaying)GameProfile.SelectSkin(newSkin);
 
         if (animator != null)
         {

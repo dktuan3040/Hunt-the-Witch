@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   team: 1
-  maxHealth: 5
+  maxHealth: 40
   invincibleTime: 0
   animator: {fileID: 112542241860434391}
   isDeadParameter: isDead
@@ -456,6 +456,7 @@ MonoBehaviour:
   onDied:
     m_PersistentCalls:
       m_Calls: []
+  isBoss: 0
 --- !u!114 &2283439254342222315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,19 +524,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea23bc8dc2ffbc04eb8dc220499a9e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  detectionRadius: 6
-  loseTargetRadius: 8
-  moveSpeed: 2.5
+  detectionRadius: 12
+  loseTargetRadius: 24
+  moveSpeed: 2.4
   spriteFacesRight: 1
   attackType: 0
-  attackRange: 1
-  damage: 1
-  attackCooldown: 1
-  attackDuration: 0.85
-  attackHitTime: 0.4
+  attackRange: 1.05
+  damage: 9
+  attackCooldown: 0.55
+  attackDuration: 0.68
+  attackHitTime: 0.28
+  attackAnimationSpeed: 1.25
   damageByAnimationEvent: 0
   meleeReach: 0.6
-  meleeHitRadius: 0.6
+  meleeHitRadius: 0.55
   targetLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -546,6 +548,7 @@ MonoBehaviour:
   retreatDistance: 0
   isChasingParameter: isChasing
   isAttackParameter: isAttack
+  mirrorWholeHierarchy: 1
 --- !u!114 &5698242427510123829
 MonoBehaviour:
   m_ObjectHideFlags: 0

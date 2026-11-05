@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c14e380f9b9ae46b9117f13564b22e, type: 3}
   m_Name: BlueWizard
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSkinData
+  persistentId: b13a67fa220e3044f99f1858c7c46314
   skinName: Blue Wizard
-  description: The young wizard's ocean-blue robes and pointed hat.
+  description: "Starting robes. Standard movement speed."
   skinIcon: {fileID: 7316008476745969496, guid: b0231bc32401d6542a0332daeacfcf0c, type: 3}
   animatorController: {fileID: 9100000, guid: 129a8b234be33e34d84db60f179c94ad, type: 2}
   defaultSprite: {fileID: 7316008476745969496, guid: b0231bc32401d6542a0332daeacfcf0c, type: 3}

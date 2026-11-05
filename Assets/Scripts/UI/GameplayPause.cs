@@ -14,6 +14,8 @@ internal static class GameplayPause
         previousTimeScale = 1f;
     }
 
+    public static void ResetForSceneChange(){owners.Clear();Time.timeScale=1f;}
+
     public static bool IsPaused => owners.Count > 0;
     public static bool HasOtherOwner(object owner) =>
         owners.Count > (owners.Contains(owner) ? 1 : 0);
