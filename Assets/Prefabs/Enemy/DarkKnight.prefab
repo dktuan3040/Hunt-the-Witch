@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 4684092070782844161}
   - component: {fileID: 6685362575463302290}
   - component: {fileID: 5107030592261508012}
+  - component: {fileID: -6207151787374218891}
+  - component: {fileID: 4922169985999636270}
   m_Layer: 6
   m_Name: DarkKnight
   m_TagString: Enemy
@@ -65,7 +67,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &9096928880843196574
 SpriteRenderer:
@@ -112,8 +114,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -862230991
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6544911358993960388, guid: 179591b931af4294c8231a919a7a5d2c, type: 3}
@@ -177,7 +179,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 28261746d4a8e0140b445524afd55251, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -293,3 +295,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyIdentity
   enemyType: {fileID: 11400000, guid: 931694b43a59a874ba94ebc01321e72c, type: 2}
+--- !u!210 &-6207151787374218891
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7245188701215692496}
+  m_Enabled: 1
+  m_SortingLayerID: -862230991
+  m_SortingLayer: 6
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
+--- !u!114 &4922169985999636270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7245188701215692496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504e8967023a0af4eb2bbb55bd42d581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyNavigation2D
+  cellSize: 0.5
+  repathInterval: 0.6
+  detourMargin: 10
+  maxSearchNodes: 4000

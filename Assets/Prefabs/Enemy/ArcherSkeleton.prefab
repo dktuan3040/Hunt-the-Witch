@@ -234,6 +234,8 @@ GameObject:
   - component: {fileID: 8393911598613751637}
   - component: {fileID: 3266150828980022484}
   - component: {fileID: -5336235644611192365}
+  - component: {fileID: -6325569170353995684}
+  - component: {fileID: 4794546078183861795}
   m_Layer: 0
   m_Name: ArcherSkeleton
   m_TagString: Untagged
@@ -307,7 +309,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &22506374058130069
 BoxCollider2D:
@@ -319,7 +321,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 28261746d4a8e0140b445524afd55251, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -346,10 +348,10 @@ BoxCollider2D:
   m_Offset: {x: 0.392488, y: -0.31183988}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.625, y: 0.53333336}
+    oldSize: {x: 0.5, y: 0.9375}
+    newSize: {x: 0.5, y: 0.9375}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -462,6 +464,35 @@ MonoBehaviour:
   knockbackDistance: 0.6
   knockbackDuration: 0.15
   knockbackResistance: 0
+--- !u!210 &-6325569170353995684
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286637927231244535}
+  m_Enabled: 1
+  m_SortingLayerID: -862230991
+  m_SortingLayer: 6
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
+--- !u!114 &4794546078183861795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286637927231244535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504e8967023a0af4eb2bbb55bd42d581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyNavigation2D
+  cellSize: 0.5
+  repathInterval: 0.6
+  detourMargin: 10
+  maxSearchNodes: 4000
 --- !u!1 &5494371469849389676
 GameObject:
   m_ObjectHideFlags: 0
