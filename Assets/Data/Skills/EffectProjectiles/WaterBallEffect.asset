@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: WaterBallEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Water Ball
+  projectileSprite: {fileID: -2180701618497998299, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup:
+    - {fileID: -2180701618497998299, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: 6230035366642985712, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: 5156523693323527932, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: -6350998332577906387, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    active:
+    - {fileID: 3221192661986484609, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: 1632308259352438899, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: -8903829981193921354, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: 6131897860424035113, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: -3394790252758948417, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: -2189833262888218146, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: -1595715284158928800, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: -3227892686626669520, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: -331535928391945677, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: -4600279972381446985, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: -2054580770317789925, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: -1492328847399139000, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: 8588531006329571489, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: -5830969033813431313, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: -804681441964924729, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: 3845870043212753827, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    - {fileID: -7149599630601110925, guid: e8dc04a0804f08d4ca04faf1d4aae561, type: 3}
+    ending: []
+    impact: []
+    framesPerSecond: 18
+    areaRadius: 0
+    castDistance: 0
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}

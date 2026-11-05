@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: WaterBlastEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Water Blast
+  projectileSprite: {fileID: 783092905571151625, guid: 40188d14907cb9c4a803e66ce9f151da, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup:
+    - {fileID: 783092905571151625, guid: 40188d14907cb9c4a803e66ce9f151da, type: 3}
+    - {fileID: 4235764342197598927, guid: 40188d14907cb9c4a803e66ce9f151da, type: 3}
+    - {fileID: 3996425132493441457, guid: 40188d14907cb9c4a803e66ce9f151da, type: 3}
+    - {fileID: -3994785914085615944, guid: 40188d14907cb9c4a803e66ce9f151da, type: 3}
+    active:
+    - {fileID: 3243752937280222235, guid: 40188d14907cb9c4a803e66ce9f151da, type: 3}
+    - {fileID: -8670182699766003340, guid: 40188d14907cb9c4a803e66ce9f151da, type: 3}
+    - {fileID: -7983473062811307893, guid: 40188d14907cb9c4a803e66ce9f151da, type: 3}
+    - {fileID: 1326771293003029267, guid: 40188d14907cb9c4a803e66ce9f151da, type: 3}
+    - {fileID: 4299158096815469122, guid: 40188d14907cb9c4a803e66ce9f151da, type: 3}
+    - {fileID: 2029144410723576181, guid: 40188d14907cb9c4a803e66ce9f151da, type: 3}
+    - {fileID: -1491961588126407229, guid: 40188d14907cb9c4a803e66ce9f151da, type: 3}
+    - {fileID: -7783044939155567716, guid: 40188d14907cb9c4a803e66ce9f151da, type: 3}
+    ending:
+    - {fileID: -2845723211946050056, guid: de2385766c0b46b4a907d9d8613f5f68, type: 3}
+    - {fileID: 6959945206346676068, guid: de2385766c0b46b4a907d9d8613f5f68, type: 3}
+    - {fileID: -23977190302589203, guid: de2385766c0b46b4a907d9d8613f5f68, type: 3}
+    - {fileID: -9098259219666732056, guid: de2385766c0b46b4a907d9d8613f5f68, type: 3}
+    - {fileID: 7986314064759824009, guid: de2385766c0b46b4a907d9d8613f5f68, type: 3}
+    - {fileID: 7630600953000818834, guid: de2385766c0b46b4a907d9d8613f5f68, type: 3}
+    - {fileID: 410199937293669710, guid: de2385766c0b46b4a907d9d8613f5f68, type: 3}
+    - {fileID: -4224151887490241283, guid: de2385766c0b46b4a907d9d8613f5f68, type: 3}
+    impact: []
+    framesPerSecond: 18
+    areaRadius: 1.4
+    castDistance: 3
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}

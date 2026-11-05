@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: FireballSkill
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: fireball
-  skillName: "L\u1EEDa (Fireball)"
-  description: "Ph\xE9p thu\u1EADt l\u1EEDa. Chu\u1ED9t ph\u1EA3i k\xEDch ho\u1EA1t
-    Ultimate: ch\xF9m 5 c\u1EA7u l\u1EEDa b\xF9ng n\u1ED5 (H\u1ED3i chi\xEAu: 5s)."
+  skillName: Firebolt
+  description: Fire three bolts that burn enemies.
   skillIcon: {fileID: -6607481912129624618, guid: e099ae5e713cea34f87112a756e21427, type: 3}
   themeColor: {r: 1, g: 0.45, b: 0.1, a: 1}
   elementTag: Fire
@@ -31,9 +30,42 @@ MonoBehaviour:
     displayName: "Nanh qu\xE1i v\u1EADt"
     icon: {fileID: 0}
     amount: 2
-  ultimateProjectile: {fileID: 0}
+  ultimateProjectile: {fileID: 11400000, guid: 4fb383d3da7b2714c9ef656001dc713b, type: 2}
   ultimateCooldown: 5
-  ultimateProjectilesPerShot: 5
-  ultimateSpreadAngle: 35
+  ultimateProjectilesPerShot: 3
+  ultimateSpreadAngle: 25
   ultimateMuzzleFlash: {fileID: 0}
   ultimateSound: {fileID: 0}
+  combat:
+    pattern: 3
+    duration: 1.25
+    tickInterval: 0.4
+    damage: 11
+    radius: 0.4
+    range: 11
+    speed: 9.5
+    targetCount: 1
+    repeatTargets: 0
+    pierce: 0
+    hitDuringEnding: 0
+    damageOverTime: 0
+    radial: 0
+    followCaster: 0
+    knockbackDistance: 0
+    knockbackDuration: 0.18
+    pullSpeed: 0
+    trailDamage: 0
+    trailRadius: 0
+    explosionRadius: 0
+    explosionDamage: 0
+    wallSpacing: 1
+    wallDelay: 0.13
+    arcHeight: 1.6
+    vortexDegreesPerSecond: 140
+    status: 4
+    statusDuration: 3
+    slowMultiplier: 0.55
+    thawSlowDuration: 2
+    burnDamage: 2
+    burnInterval: 1
+    onHitSkill: {fileID: 0}

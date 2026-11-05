@@ -149,6 +149,12 @@ public class HitFeedback : MonoBehaviour
         if (rb != null) rb.linearVelocity = knockbackStartVelocity * t;
     }
 
+    public void ClearFlash()
+    {
+        RestoreColors();
+        isFlashing = false;
+    }
+
     private void RestoreColors()
     {
         if (renderers == null || !isFlashing) return;

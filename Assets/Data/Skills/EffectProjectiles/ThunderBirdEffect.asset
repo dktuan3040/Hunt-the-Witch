@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff14dd811f7f244a6da49bfadee013, type: 3}
+  m_Name: ThunderBirdEffect
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileName: Thunder Bird
+  projectileSprite: {fileID: 395512501001464600, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+  animatorController: {fileID: 0}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileScale: {x: 3.125, y: 3.125, z: 1}
+  speed: 8
+  lifeTime: 1.15
+  spriteOffset: 0
+  damage: 12
+  pierceCount: 1
+  effect:
+    startup:
+    - {fileID: 395512501001464600, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    - {fileID: 1440002111791278241, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    - {fileID: -2388350372811798223, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    - {fileID: 3281208815970921968, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    - {fileID: 3363332474384413469, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    - {fileID: 2931022329344639323, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    active:
+    - {fileID: 5390667794004295733, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    - {fileID: -6211520086057748446, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    - {fileID: 4762408944908381941, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    - {fileID: -4659204554865634455, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    - {fileID: -3149911597436007499, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    - {fileID: -7069145438159253527, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    - {fileID: -274249721111222128, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    - {fileID: -1326063651734849000, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    - {fileID: -3051283655889133903, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    - {fileID: 2791883300280094281, guid: 42288ea3586b84e41a5df75c86b2abf4, type: 3}
+    ending: []
+    impact: []
+    framesPerSecond: 18
+    areaRadius: 0
+    castDistance: 0
+  impactVfxPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
