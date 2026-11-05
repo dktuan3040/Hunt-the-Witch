@@ -55,6 +55,10 @@ public class PauseMenuUI : MonoBehaviour
         }
     }
 
+    // Space interactions do not use the mouse/Q/E release guard for combat.
+    public static bool InteractionInputBlocked => SkillScrollSelectionUI.BlocksGameplay
+        || GameplayPause.IsPaused || combatPaused || Time.timeScale<=0f;
+
     internal static void BlockUntilGameplayInputReleased()
     {
         waitingForCombatRelease = true;

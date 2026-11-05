@@ -8,6 +8,7 @@ public sealed class SkillScrollPickup : MonoBehaviour
     public SpriteRenderer skillIcon;
     public SpriteRenderer scrollVisual;
     public Sprite defaultScrollSprite;
+    [SerializeField,Min(.1f)] private float visualSize=.7f;
     public SkillData Skill => skill;
     private SkillScrollPickup template;
     private bool claimed,consumed;
@@ -30,11 +31,11 @@ public sealed class SkillScrollPickup : MonoBehaviour
         if(scrollVisual==null||defaultScrollSprite==null)return;
         scrollVisual.sprite=defaultScrollSprite;scrollVisual.color=Color.white;scrollVisual.enabled=true;scrollVisual.sortingOrder=20;
         float size=Mathf.Max(defaultScrollSprite.bounds.size.x,defaultScrollSprite.bounds.size.y);
-        if(size>0)scrollVisual.transform.localScale=Vector3.one*(.45f/size);
+        if(size>0)scrollVisual.transform.localScale=Vector3.one*(visualSize/size);
     }
     public bool CanInteract(PlayerSkillManager manager)
     {
-        if(!isActiveAndEnabled||consumed||claimed||skill==null||manager==null||Time.time<availableAt||SkillScrollSelectionUI.BlocksGameplay||PauseMenuUI.CombatInputBlocked)return false;
+        if(!isActiveAndEnabled||consumed||claimed||skill==null||manager==null||Time.time<availableAt||SkillScrollSelectionUI.BlocksGameplay||PauseMenuUI.InteractionInputBlocked)return false;
         var actor=manager.GetComponent<Health>();
         return actor!=null&&actor.Team==Team.Player&&!actor.IsDead&&manager.gameObject.scene==gameObject.scene&&Vector2.Distance(manager.transform.position,transform.position)<=interactionRange&&SkillUnlockProgress.GetState(skill)==SkillKnowledge.Unlocked;
     }
