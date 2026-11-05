@@ -30,7 +30,7 @@ MonoBehaviour:
   ultimateProjectilesPerShot: 1
   ultimateSpreadAngle: 0
   ultimateMuzzleFlash: {fileID: 0}
-  ultimateSound: {fileID: 0}
+  ultimateSound: {fileID: 8300000, guid: f4fa73a35836c1c438cc6294380711fa, type: 3}
   combat:
     pattern: 1
     duration: 0.36
@@ -47,7 +47,12 @@ MonoBehaviour:
     radial: 0
     followCaster: 1
     mirrorWhenAimingLeft: 1
+    keepSpriteHorizontal: 0
     visualOffset: {x: 0.72, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
     knockbackDistance: 1.4
     knockbackDuration: 0.18
     pullSpeed: 0
@@ -55,9 +60,11 @@ MonoBehaviour:
     trailRadius: 0
     explosionRadius: 0
     explosionDamage: 0
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 0
     statusDuration: 2

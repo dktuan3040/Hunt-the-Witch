@@ -6,6 +6,7 @@ public sealed class SkillCombatRunner : MonoBehaviour
 {
     private SkillCombatSettings settings;
     private SkillEffectSequence effect;
+    private AudioClip impactSound;
     private SpriteRenderer visual;
     private PhysicsScene2D physicsScene;
     private Transform anchor;
@@ -101,6 +102,7 @@ public sealed class SkillCombatRunner : MonoBehaviour
         var runner = visualObject.gameObject.AddComponent<SkillCombatRunner>();
         runner.settings = skill.Combat;
         runner.effect = data.Effect;
+        runner.impactSound = data.ImpactSound;
         runner.visual = visualObject.GetComponentInChildren<SpriteRenderer>();
         runner.physicsScene = visualObject.gameObject.scene.GetPhysicsScene2D();
         runner.caster = caster;
@@ -369,6 +371,7 @@ public sealed class SkillCombatRunner : MonoBehaviour
         transform.position = end;
         SetFrame(effect.ending, 0, false);
         SkillEffectPlayer.SpawnOneShot(visual, end, Quaternion.identity, transform.localScale, effect.impact, FrameTime);
+        PlayImpactSound(end);
         Explode(end, playImpact: false);
         yield return Phase(effect.ending, false);
     }
@@ -407,6 +410,7 @@ public sealed class SkillCombatRunner : MonoBehaviour
         else if (!useSeparateHit && !struck.Add(enemy)) return;
 
         Vector2 position = enemy.transform.position;
+        if (playImpact) PlayImpactSound(position);
         if (playImpact && Length(effect.impact) > 0)
             SpawnAttachedImpact(enemy);
         if (applyStatus && settings.onHitSkill != null && settings.onHitSkill.Combat != null)
@@ -419,6 +423,11 @@ public sealed class SkillCombatRunner : MonoBehaviour
         status.Apply(settings, multiplier);
         if (settings.knockbackDistance > 0)
             status.Push(direction, settings.knockbackDistance, settings.knockbackDuration);
+    }
+
+    private void PlayImpactSound(Vector3 position)
+    {
+        if (impactSound != null) AudioSource.PlayClipAtPoint(impactSound, position);
     }
 
     private void SpawnAttachedImpact(Health enemy)

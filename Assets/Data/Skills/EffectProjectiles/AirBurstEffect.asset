@@ -47,4 +47,4 @@ MonoBehaviour:
     areaRadius: 1.2
     castDistance: 1.25
   impactVfxPrefab: {fileID: 0}
-  impactSound: {fileID: 0}
+  impactSound: {fileID: 8300000, guid: 3604dce106a66514f89c9503470d74a1, type: 3}

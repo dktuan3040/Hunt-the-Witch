@@ -26,5 +26,5 @@ MonoBehaviour:
   spreadAngle: 0
   damageMultiplier: 1
   muzzleFlashPrefab: {fileID: 0}
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 862ad026e77ed5845abfbe40942fb42d, type: 3}
   unlockItems: []
