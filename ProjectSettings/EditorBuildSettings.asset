@@ -8,24 +8,24 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 5d279ae42acd3be4482dbd4138c97023
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: 8b6907e11cda8cd4497518f90cc2f666
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Settings.unity
     guid: 02c942da400e7ef42be7e6c6beb13f8e
+  - enabled: 1
+    path: "Assets/Scenes/Maps/Trong Nh\xE0.unity"
+    guid: 67d234d9c3410e547861233c49eb8544
+  - enabled: 1
+    path: Assets/Scenes/Maps/Home.unity
+    guid: 80721d1a27ea7d9498263f84e9b4c890
   - enabled: 1
     path: Assets/Scenes/Maps/M_F1.unity
     guid: 4beb2cea59244614cb4df70395b4a4a7
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/Maps/Home.unity
-    guid: 80721d1a27ea7d9498263f84e9b4c890
-  - enabled: 1
-    path: "Assets/Scenes/Maps/Trong Nh\xE0.unity"
-    guid: 67d234d9c3410e547861233c49eb8544
   - enabled: 1
     path: Assets/Scenes/Maps/M_F2.unity
     guid: 1783f84f5b5a6e24c9cb0a47aa317bd9
