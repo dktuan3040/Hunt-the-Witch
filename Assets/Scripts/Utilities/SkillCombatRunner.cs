@@ -371,7 +371,6 @@ public sealed class SkillCombatRunner : MonoBehaviour
         transform.position = end;
         SetFrame(effect.ending, 0, false);
         SkillEffectPlayer.SpawnOneShot(visual, end, Quaternion.identity, transform.localScale, effect.impact, FrameTime);
-        PlayImpactSound(end);
         Explode(end, playImpact: false);
         yield return Phase(effect.ending, false);
     }
@@ -410,7 +409,8 @@ public sealed class SkillCombatRunner : MonoBehaviour
         else if (!useSeparateHit && !struck.Add(enemy)) return;
 
         Vector2 position = enemy.transform.position;
-        if (playImpact) PlayImpactSound(position);
+        // Audio requires an actual enemy hit, even when arc landing already drew the impact visual.
+        PlayImpactSound(position);
         if (playImpact && Length(effect.impact) > 0)
             SpawnAttachedImpact(enemy);
         if (applyStatus && settings.onHitSkill != null && settings.onHitSkill.Combat != null)
@@ -427,7 +427,7 @@ public sealed class SkillCombatRunner : MonoBehaviour
 
     private void PlayImpactSound(Vector3 position)
     {
-        if (impactSound != null) AudioSource.PlayClipAtPoint(impactSound, position);
+        if (impactSound != null) SfxAudio.PlayAtPoint(impactSound, position);
     }
 
     private void SpawnAttachedImpact(Health enemy)

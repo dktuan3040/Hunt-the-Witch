@@ -217,7 +217,7 @@ private void OnTriggerEnter2D(Collider2D collision)
 
             damageable.TakeDamage(finalDamage, moveDirection);
 
-            SpawnImpactEffects();
+            SpawnImpactEffects(playSound: damageable.Team == Team.Enemy || damageable.Team == Team.Player);
             currentPierce--;
 
             if (currentPierce <= 0)
@@ -232,7 +232,7 @@ private void OnTriggerEnter2D(Collider2D collision)
         if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
             consumed = true;
-            SpawnImpactEffects();
+            SpawnImpactEffects(playSound: false);
             Destroy(gameObject);
         }
     }
@@ -249,7 +249,7 @@ private void StickTo(Transform target)
     }
 
 
-    private void SpawnImpactEffects()
+    private void SpawnImpactEffects(bool playSound = true)
     {
         var effect = projectileData != null ? projectileData.Effect : null;
         if (effect != null && effect.IsConfigured)
@@ -266,9 +266,9 @@ private void StickTo(Transform target)
         }
 
         AudioClip sound = projectileData != null ? projectileData.ImpactSound : impactSound;
-        if (sound != null)
+        if (playSound && sound != null)
         {
-            AudioSource.PlayClipAtPoint(sound, transform.position);
+            SfxAudio.PlayAtPoint(sound, transform.position);
         }
     }
 }
