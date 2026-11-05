@@ -30,8 +30,11 @@ public sealed class ItemPickup : MonoBehaviour
             visual.flipX=source.flipX;visual.flipY=source.flipY;visual.maskInteraction=source.maskInteraction;
             source.enabled=false;
         }
-        // Sorting layer takes precedence over sorting order: Default is behind the map's Ground.
-        if(visual!=null&&data!=null){visual.sprite=data.Icon;visual.color=Color.white;visual.sortingLayerName="Player";visual.sortingOrder=20;if(data.Icon!=null){float size=Mathf.Max(data.Icon.bounds.size.x,data.Icon.bounds.size.y);if(size>0)visual.transform.localScale=Vector3.one*(visualSize/size);}}
+        if(visual!=null&&data!=null){visual.sprite=data.Icon;visual.color=Color.white;visual.sortingLayerName="Player";visual.sortingOrder=20;if(data.Icon!=null){float size=Mathf.Max(data.Icon.bounds.size.x,data.Icon.bounds.size.y);if(size>0){
+                    var parent=visual.transform.parent;
+                    var scale=parent!=null?parent.lossyScale:Vector3.one;
+                    visual.transform.localScale=new Vector3(visualSize/size/Mathf.Max(.0001f,Mathf.Abs(scale.x)),visualSize/size/Mathf.Max(.0001f,Mathf.Abs(scale.y)),1);
+                }}}
     }
     private void OnTriggerEnter2D(Collider2D other){TryCollect(other);}
     private void OnTriggerStay2D(Collider2D other){TryCollect(other);}
@@ -52,6 +55,7 @@ public sealed class ItemPickup : MonoBehaviour
             if((long)PlayerSessionState.GetItemCount(item.ItemId)+amount>int.MaxValue)return false;
             collected=true;PlayerSessionState.AddItem(item.ItemId,amount);
         }
+        PickupNotificationUI.Show(item.DisplayName,amount,item.IsKey);
         if(this!=null){gameObject.SetActive(false);Destroy(gameObject);}return true;
     }
 }

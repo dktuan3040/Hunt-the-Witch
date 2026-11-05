@@ -38,9 +38,12 @@ public class PlayerStatePersistence : MonoBehaviour
         skin = GetComponent<PlayerSkinController>();
         if (skin == null && health != null && health.Team == Team.Player)
             skin = gameObject.AddComponent<PlayerSkinController>();
+        health.OnDied+=HandleDeath;
+        if(weapon!=null&&GameProfile.SelectedWeapon!=null)weapon.EquipWeapon(GameProfile.SelectedWeapon);
+        if(skin!=null&&GameProfile.SelectedSkin!=null)skin.ApplySkin(GameProfile.SelectedSkin);
         generation = PlayerSessionState.Generation;
         var saved = PlayerSessionState.Player;
-        if (saved != null)
+        if (saved != null && ExpeditionFlow.IsExpeditionActive)
         {
             if (weapon != null) weapon.EquipWeapon(saved.Weapon);
             if (skin != null && saved.Skin != null) skin.ApplySkin(saved.Skin);
@@ -58,11 +61,13 @@ public class PlayerStatePersistence : MonoBehaviour
 
     // Capture when unloading the scene, including while paused.
     private void OnDisable() => Capture();
+    private void HandleDeath(){ExpeditionFlow.PlayerDied();}
+    private void OnDestroy(){if(health!=null)health.OnDied-=HandleDeath;}
     private void LateUpdate() => Capture();
 
     public void Capture()
     {
-        if (!initialized || generation != PlayerSessionState.Generation) return;
+        if (!initialized || generation != PlayerSessionState.Generation || !ExpeditionFlow.IsExpeditionActive) return;
 
         if (health == null || health.IsDead || health.CurrentHealth <= 0) return;
         var saved = PlayerSessionState.Player ?? new PlayerSessionState.Snapshot();
@@ -80,6 +85,8 @@ public class PlayerStatePersistence : MonoBehaviour
                 saved.Cooldowns = new float[count];
             }
 
+            if(saved.SourceSkills==null||saved.SourceSkills.Length!=count)saved.SourceSkills=new SkillData[count];
+            if(saved.Cooldowns==null||saved.Cooldowns.Length!=count)saved.Cooldowns=new float[count];
             for (int i = 0; i < count; i++)
             {
                 saved.Skills[i] = skills.Slots[i];

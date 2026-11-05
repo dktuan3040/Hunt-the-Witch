@@ -82,6 +82,8 @@ public class EvilWitchHomingFireball : MonoBehaviour
     /// <summary>Gọi từ EvilWitchSkillSequencer hoặc Animation Event.</summary>
     public void CastHomingFireball()
     {
+        if (!isActiveAndEnabled || isCasting || (health != null && health.IsDead)) return;
+        if (TryGetComponent<EnemySkillStatus>(out var status) && status.Immobilized) return;
         if (fireballPrefab == null)
         {
             Debug.LogWarning($"[EvilWitchHomingFireball] '{name}': chưa gán fireballPrefab!", this);

@@ -14,19 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: water_splash
   skillName: Water Splash
-  description: Send a moving splash that soaks and damages enemies.
+  description: "A piercing wave deals 32 damage and slows enemies by 25%."
   skillIcon: {fileID: 21300000, guid: 2e5ba5cb6e3acb54cb2849d6b577b80f, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Water
   isSynergySkill: 1
   unlockItems:
   - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+    itemId: monster_hide
+    displayName: Monster Hide
     icon: {fileID: 0}
-    amount: 3
+    amount: 18
+  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+    itemId: magic_essence
+    displayName: Magic Essence
+    icon: {fileID: 0}
+    amount: 9
+  - item: {fileID: 11400000, guid: a395b72e9f8beeb4cb267a0160a4f1c2, type: 2}
+    itemId: monster_essence
+    displayName: Monster Essence
+    icon: {fileID: 0}
+    amount: 8
   ultimateProjectile: {fileID: 11400000, guid: f4a69cf240d04534d8f17368289878b1, type: 2}
-  ultimateCooldown: 7
+  ultimateCooldown: 8
   ultimateProjectilesPerShot: 1
   ultimateSpreadAngle: 0
   ultimateMuzzleFlash: {fileID: 0}
@@ -35,9 +45,9 @@ MonoBehaviour:
     pattern: 3
     duration: 1.55
     tickInterval: 0.4
-    damage: 15
+    damage: 32
     radius: 0.85
-    range: 10
+    range: 9
     speed: 6.5
     targetCount: 1
     repeatTargets: 0
@@ -48,6 +58,11 @@ MonoBehaviour:
     followCaster: 0
     mirrorWhenAimingLeft: 1
     keepSpriteHorizontal: 1
+    visualOffset: {x: 0, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
     knockbackDistance: 0
     knockbackDuration: 0.18
     pullSpeed: 0
@@ -55,13 +70,15 @@ MonoBehaviour:
     trailRadius: 0
     explosionRadius: 0
     explosionDamage: 0
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 2
-    statusDuration: 3
-    slowMultiplier: 0.54
+    statusDuration: 2.5
+    slowMultiplier: 0.75
     thawSlowDuration: 2
     burnDamage: 2
     burnInterval: 1

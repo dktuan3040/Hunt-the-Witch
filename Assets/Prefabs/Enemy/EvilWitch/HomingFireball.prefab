@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2146689460731413428}
   - component: {fileID: 8651899650259362844}
   - component: {fileID: 3431573040274847259}
+  - component: {fileID: 2671331595584279359}
   m_Layer: 0
   m_Name: HomingFireball
   m_TagString: Untagged
@@ -170,14 +171,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d25d075d11b42e045b714fb5a4494732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HomingFireball
-  speed: 4
-  turnSpeed: 150
+  speed: 3.4
+  turnSpeed: 80
   spriteOffset: 0
   wallLayers:
     serializedVersion: 2
     m_Bits: 0
   team: 1
-  damage: 1
-  maxLifeTime: 12
+  damage: 16
+  maxLifeTime: 4.5
   impactVfxPrefab: {fileID: 0}
   impactSound: {fileID: 0}
+--- !u!210 &2671331595584279359
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5443086627371984806}
+  m_Enabled: 1
+  m_SortingLayerID: -862230991
+  m_SortingLayer: 6
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0

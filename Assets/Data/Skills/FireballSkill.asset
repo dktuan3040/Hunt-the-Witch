@@ -14,24 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: fireball
   skillName: Firebolt
-  description: Fire three bolts that burn enemies.
+  description: "Fire three bolts for 14 damage each. Burn enemies for 2 damage per second for 2 seconds."
   skillIcon: {fileID: 21300000, guid: 8801d5d3377007c45aa76e56604d52c5, type: 3}
   themeColor: {r: 1, g: 0.45, b: 0.1, a: 1}
   elementTag: Fire
   isSynergySkill: 0
-  unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: monster_hide
-    displayName: "Da qu\xE1i v\u1EADt"
-    icon: {fileID: 0}
-    amount: 5
-  - item: {fileID: 11400000, guid: 92301f71842e8ad42b9a94ebbf2cf22b, type: 2}
-    itemId: monster_fang
-    displayName: "Nanh qu\xE1i v\u1EADt"
-    icon: {fileID: 0}
-    amount: 2
+  unlockItems: []
   ultimateProjectile: {fileID: 11400000, guid: 4fb383d3da7b2714c9ef656001dc713b, type: 2}
-  ultimateCooldown: 5
+  ultimateCooldown: 6
   ultimateProjectilesPerShot: 3
   ultimateSpreadAngle: 25
   ultimateMuzzleFlash: {fileID: 0}
@@ -40,9 +30,9 @@ MonoBehaviour:
     pattern: 3
     duration: 1.25
     tickInterval: 0.4
-    damage: 11
+    damage: 14
     radius: 0.4
-    range: 11
+    range: 9.5
     speed: 9.5
     targetCount: 1
     repeatTargets: 0
@@ -51,6 +41,13 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 0
     followCaster: 0
+    mirrorWhenAimingLeft: 0
+    keepSpriteHorizontal: 0
+    visualOffset: {x: 0, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
     knockbackDistance: 0
     knockbackDuration: 0.18
     pullSpeed: 0
@@ -58,12 +55,14 @@ MonoBehaviour:
     trailRadius: 0
     explosionRadius: 0
     explosionDamage: 0
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 4
-    statusDuration: 3
+    statusDuration: 2
     slowMultiplier: 0.55
     thawSlowDuration: 2
     burnDamage: 2

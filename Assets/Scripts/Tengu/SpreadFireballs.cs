@@ -1,53 +1,29 @@
-using System.Numerics;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class SpreadFireball : MonoBehaviour
 {
-    [Header("Skill setting")]
     public GameObject fireBallPrefab;
-    public int numberOfFireBall = 12;
-    public float fireBallspeed = 5f;
-    
-    public float damage = 1f;
-
+    [Range(1,128)] public int numberOfFireBall=12;
+    public float fireBallspeed=5f;
+    public float damage=1f;
+    [Min(.1f)] public float projectileLifeTime=2.6f;
     public void CastRadialFireBalls()
     {
-        float angleStep = 360f / numberOfFireBall;
-        float currentAngle = 0f;
-
-        Projectile projectile = fireBallPrefab.GetComponent<Projectile>();
-
-        if (projectile != null)
+        var owner=GetComponent<Health>();
+        if(!isActiveAndEnabled||fireBallPrefab==null||(owner!=null&&owner.IsDead))return;
+        if(TryGetComponent<EnemySkillStatus>(out var status)&&status.Immobilized)return;
+        int count=Mathf.Clamp(numberOfFireBall,1,128);
+        var ownerColliders=GetComponentsInChildren<Collider2D>();
+        for(int i=0;i<count;i++)
         {
-            projectile.SetTeam(Team.Enemy);
+            var rotation=Quaternion.Euler(0,0,i*360f/count);
+            var direction=rotation*Vector3.right;
+            var ball=Instantiate(fireBallPrefab,transform.position+direction*.4f,rotation);
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(ball,gameObject.scene);
+            var projectile=ball.GetComponent<Projectile>();
+            if(projectile!=null){projectile.SetTeam(Team.Enemy);projectile.Initialize(direction,1f,null,fireBallspeed,projectileLifeTime,Mathf.Max(1,Mathf.RoundToInt(damage)));}
+            foreach(var shotCollider in ball.GetComponentsInChildren<Collider2D>())
+                foreach(var body in ownerColliders)Physics2D.IgnoreCollision(shotCollider,body);
         }
-
-        Collider2D tenguCollider = GetComponent<Collider2D>();
-        Collider2D fireBallCollider = fireBallPrefab.GetComponent<Collider2D>();
-        if (tenguCollider != null && fireBallCollider != null)
-        {
-            Physics2D.IgnoreCollision(fireBallCollider, tenguCollider);
-        }
-
-        for (int i = 0; i < numberOfFireBall; i++)
-        {
-            UnityEngine.Quaternion rotation = UnityEngine.Quaternion.Euler(0, 0, currentAngle);
-            UnityEngine.Vector3 dir = rotation * UnityEngine.Vector3.right;
-            UnityEngine.Vector3 spawnPos = transform.position - dir * 0.4f; // Đẩy nhẹ ra ngoài rìa theo hướng bắn
-
-            GameObject fireBall = Instantiate(fireBallPrefab, spawnPos, rotation);
-
-            Projectile proj = fireBall.GetComponent<Projectile>();
-            if (proj != null)
-            {
-                proj.SetTeam(Team.Enemy); // Phe quái để gây dame lên Player
-                // Khởi tạo đạn: hướng bay, hệ số dame, data, tốc độ, thời gian tồn tại (3s), sát thương
-                proj.Initialize(dir, 1f, null, fireBallspeed, 3f, Mathf.RoundToInt(damage));
-            }
-
-            currentAngle += angleStep;
-        }
-
     }
 }

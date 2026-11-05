@@ -71,13 +71,12 @@ public class MenuButton : MonoBehaviour
 
         if (!GameplayPause.IsPaused) Time.timeScale = 1f;
 
-        // Khi bấm Play từ MainMenu để bắt đầu chơi, luôn reset session để player đầy máu và trang bị mới
-        if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().name == "MainMenu")
+        if(SceneManager.GetActiveScene().name=="MainMenu" && (sceneName=="Trong Nhà"||sceneName=="Main"||sceneName=="Home"))
         {
-            PlayerSessionState.StartNewGame();
+            ExpeditionFlow.PlayFromMenu();return;
         }
-
-        SceneManager.LoadScene(sceneName);
+        if(SceneManager.GetActiveScene().name=="MainMenu")SceneManager.LoadScene(sceneName);
+        else ExpeditionFlow.Travel(sceneName,null,true);
     }
 
     private void QuitGame()

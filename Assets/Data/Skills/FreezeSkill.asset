@@ -14,29 +14,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: freeze
   skillName: Freeze
-  description: Freeze nearby foes, then slow them as they thaw.
+  description: "Freeze nearby enemies for 1.6 seconds. Bosses are only briefly interrupted."
   skillIcon: {fileID: 21300000, guid: 450ffd781618f0e409351f3840c364f8, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Ice
   isSynergySkill: 0
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: 2676632bc05342c49df07e2167607fcc, type: 2}
+    itemId: bone
+    displayName: Bone
     icon: {fileID: 0}
-    amount: 3
+    amount: 18
+  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+    itemId: magic_essence
+    displayName: Magic Essence
+    icon: {fileID: 0}
+    amount: 9
+  - item: {fileID: 11400000, guid: 974fc5a0431349e8a83e2b17331d091e, type: 2}
+    itemId: scrying_orb
+    displayName: Scrying Orb
+    icon: {fileID: 0}
+    amount: 1
   ultimateProjectile: {fileID: 11400000, guid: 9d95b429e8a7fdd48b53627ff2df3a88, type: 2}
-  ultimateCooldown: 7
+  ultimateCooldown: 9
   ultimateProjectilesPerShot: 1
   ultimateSpreadAngle: 0
   ultimateMuzzleFlash: {fileID: 0}
   ultimateSound: {fileID: 0}
   combat:
     pattern: 9
-    duration: 2.5
+    duration: 0.8
     tickInterval: 0.4
     damage: 0
-    radius: 2.5
+    radius: 3
     range: 5
     speed: 8
     targetCount: 1
@@ -46,6 +56,11 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 0
     followCaster: 0
+    mirrorWhenAimingLeft: 0
+    keepSpriteHorizontal: 0
+    visualOffset: {x: 0, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
     placeAtTargetFeet: 1
     targetFootOffsetY: 0.16
     knockbackDistance: 0
@@ -55,14 +70,16 @@ MonoBehaviour:
     trailRadius: 0
     explosionRadius: 0
     explosionDamage: 0
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 16
-    statusDuration: 2.5
-    slowMultiplier: 0.5
-    thawSlowDuration: 2
+    statusDuration: 1.6
+    slowMultiplier: 0.75
+    thawSlowDuration: 1.2
     burnDamage: 2
     burnInterval: 1
     onHitSkill: {fileID: 0}

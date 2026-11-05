@@ -13,7 +13,7 @@ public sealed class SkillScrollSelectionUI : MonoBehaviour
     public Button confirmButton;
     private static SkillScrollSelectionUI instance;
     private static int closedFrame=-100;
-    public static bool IsOpen => instance!=null&&instance.panelRoot!=null&&instance.panelRoot.activeSelf;
+    public static bool IsOpen => instance!=null&&instance.panelRoot!=null&&instance.panelRoot.activeInHierarchy;
     public static bool BlocksGameplay => IsOpen||Time.frameCount<=closedFrame+1;
     public int SelectedSlot {get;private set;}
     private PlayerSkillManager manager;
@@ -59,6 +59,15 @@ public sealed class SkillScrollSelectionUI : MonoBehaviour
 
     private void Open(PlayerSkillManager player)
     {
+        // Scene-authored selection canvases may be inactive. Activate their full
+        // parent chain before opening the modal so it cannot pause invisibly.
+        for(var parent=transform;parent!=null;parent=parent.parent)parent.gameObject.SetActive(true);
+        var canvas=GetComponentInParent<Canvas>();if(canvas!=null)canvas.enabled=true;
+        if(UnityEngine.EventSystems.EventSystem.current==null)
+        {
+            var events=new GameObject("SkillSelectionEventSystem",typeof(UnityEngine.EventSystems.EventSystem));
+            events.AddComponent<UnityEngine.InputSystem.UI.InputSystemUIInputModule>().AssignDefaultActions();
+        }
         manager = player;
         ownsPause = true;
         SelectedSlot = 0;
@@ -100,6 +109,7 @@ public sealed class SkillScrollSelectionUI : MonoBehaviour
         var offered = startingSkill != null ? startingSkill : incoming.Skill;
         incomingIcon.sprite=offered.SkillIcon;incomingName.text=offered.SkillName.TrimStart('★',' ');
         qIcon.sprite=a!=null?a.SkillIcon:null;eIcon.sprite=b!=null?b.SkillIcon:null;
+        qIcon.enabled=qIcon.sprite!=null;eIcon.enabled=eIcon.sprite!=null;
         qName.text=a!=null?a.SkillName.TrimStart('★',' '):"-";eName.text=b!=null?b.SkillName.TrimStart('★',' '):"-";
         qSelected.SetActive(SelectedSlot==0);eSelected.SetActive(SelectedSlot==1);
         var current = manager.GetReplacementSkill(SelectedSlot);

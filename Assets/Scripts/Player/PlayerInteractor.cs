@@ -14,9 +14,9 @@ public sealed class PlayerInteractor : MonoBehaviour
     {
         var action=input!=null&&input.actions!=null?input.actions.FindAction(interactAction,false):null;
         if(action==null||!action.enabled){Highlight(null);return;}
-        RewardChest chest;SkillScrollPickup scroll;CraftingWorkbench workbench;SceneDoor door;
-        FindTarget(out chest,out scroll,out workbench,out door);
-        Highlight(door!=null?door.gameObject:workbench!=null?workbench.gameObject:scroll!=null?scroll.gameObject:chest!=null?chest.gameObject:null);
+        RewardChest chest;SkillScrollPickup scroll;CraftingWorkbench workbench;SceneDoor door;ExpeditionPortal portal;
+        FindTarget(out chest,out scroll,out workbench,out door,out portal);
+        Highlight(portal!=null?portal.gameObject:door!=null?door.gameObject:workbench!=null?workbench.gameObject:scroll!=null?scroll.gameObject:chest!=null?chest.gameObject:null);
         if(action.WasPressedThisFrame())TryInteract();
     }
     private void Highlight(GameObject target)
@@ -35,9 +35,9 @@ public sealed class PlayerInteractor : MonoBehaviour
         highlighted.SetVisible(true);
     }
     private void OnDisable(){Highlight(null);}
-    private void FindTarget(out RewardChest nearest,out SkillScrollPickup nearestScroll,out CraftingWorkbench nearestWorkbench,out SceneDoor nearestDoor)
+    private void FindTarget(out RewardChest nearest,out SkillScrollPickup nearestScroll,out CraftingWorkbench nearestWorkbench,out SceneDoor nearestDoor,out ExpeditionPortal nearestPortal)
     {
-        nearest=null;nearestScroll=null;nearestWorkbench=null;nearestDoor=null;
+        nearest=null;nearestScroll=null;nearestWorkbench=null;nearestDoor=null;nearestPortal=null;
         if(!isActiveAndEnabled||health==null||health.Team!=Team.Player||health.IsDead||PauseMenuUI.InteractionInputBlocked||SkillScrollSelectionUI.BlocksGameplay||Time.timeScale<=0)return;
         float distance=float.PositiveInfinity;
         foreach(var chest in FindObjectsByType<RewardChest>())
@@ -65,13 +65,19 @@ public sealed class PlayerInteractor : MonoBehaviour
             float d=Vector2.Distance(transform.position,door.InteractionPosition);
             if(d<distance){nearestDoor=door;nearestWorkbench=null;nearest=null;nearestScroll=null;distance=d;}
         }
+        foreach(var portal in FindObjectsByType<ExpeditionPortal>())
+        {
+            if(!portal.CanEnter(health))continue;
+            float d=Vector2.Distance(transform.position,portal.InteractionPosition);
+            if(d<distance){nearestPortal=portal;nearestDoor=null;nearestWorkbench=null;nearest=null;nearestScroll=null;distance=d;}
+        }
     }
     public bool TryInteract()
     {
-        RewardChest chest;SkillScrollPickup scroll;CraftingWorkbench workbench;SceneDoor door;
-        FindTarget(out chest,out scroll,out workbench,out door);
+        RewardChest chest;SkillScrollPickup scroll;CraftingWorkbench workbench;SceneDoor door;ExpeditionPortal portal;
+        FindTarget(out chest,out scroll,out workbench,out door,out portal);
         var skills=GetComponent<PlayerSkillManager>();
-        bool interacted=door!=null?door.TryInteract(health):workbench!=null?workbench.TryInteract(health):scroll!=null?scroll.TryTake(skills):chest!=null&&chest.TryOpen(health);
+        bool interacted=portal!=null?portal.TryEnter(health):door!=null?door.TryInteract(health):workbench!=null?workbench.TryInteract(health):scroll!=null?scroll.TryTake(skills):chest!=null&&chest.TryOpen(health);
         Highlight(null);
         return interacted;
     }

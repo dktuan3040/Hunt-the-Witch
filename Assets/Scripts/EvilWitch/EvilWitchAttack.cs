@@ -87,8 +87,20 @@ public class EvilWitchAttack : MonoBehaviour
 
     private void Update()
     {
-        if (health.IsDead || IsAttacking) return;
-        if (skillStatus != null && skillStatus.Immobilized) return;
+        if (health.IsDead) return;
+        if (skillStatus == null) TryGetComponent(out skillStatus);
+        if (skillStatus != null && skillStatus.Immobilized)
+        {
+            if (IsAttacking)
+            {
+                StopAllCoroutines();
+                IsAttacking = false;
+                SetAttack(false);
+                nextAttackTime = Time.time + .5f;
+            }
+            return;
+        }
+        if (IsAttacking) return;
         if (!movement.HasAggro || movement.Target == null) return;
 
         if (movement.DistanceToTarget <= attackRange && Time.time >= nextAttackTime)

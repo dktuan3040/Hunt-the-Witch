@@ -14,28 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: air_pull_in
   skillName: Air Pull In
-  description: Place a trap that pulls enemies and deals damage over time.
+  description: "Pull enemies for 2.4 seconds, dealing 4 damage every 0.6 seconds."
   skillIcon: {fileID: 21300000, guid: 3c45218b1035aaf4abaf362f1e8a26e3, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Wind
   isSynergySkill: 0
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: 60bafbb9917377e4c846efeb939ca142, type: 2}
+    itemId: monster_claw
+    displayName: Monster Claw
     icon: {fileID: 0}
-    amount: 3
+    amount: 9
+  - item: {fileID: 11400000, guid: a395b72e9f8beeb4cb267a0160a4f1c2, type: 2}
+    itemId: monster_essence
+    displayName: Monster Essence
+    icon: {fileID: 0}
+    amount: 5
   ultimateProjectile: {fileID: 11400000, guid: 9119b606fd979e34287c13e6e6382a53, type: 2}
-  ultimateCooldown: 6
+  ultimateCooldown: 7
   ultimateProjectilesPerShot: 1
   ultimateSpreadAngle: 0
   ultimateMuzzleFlash: {fileID: 0}
   ultimateSound: {fileID: 0}
   combat:
     pattern: 4
-    duration: 3
-    tickInterval: 0.55
-    damage: 3
+    duration: 2.4
+    tickInterval: 0.6
+    damage: 4
     radius: 2.2
     range: 5
     speed: 8
@@ -46,16 +51,25 @@ MonoBehaviour:
     damageOverTime: 1
     radial: 0
     followCaster: 0
+    mirrorWhenAimingLeft: 0
+    keepSpriteHorizontal: 0
+    visualOffset: {x: 0, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
     knockbackDistance: 0
     knockbackDuration: 0.18
-    pullSpeed: 5
+    pullSpeed: 2.5
     trailDamage: 0
     trailRadius: 0
     explosionRadius: 0
     explosionDamage: 0
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 0
     statusDuration: 2

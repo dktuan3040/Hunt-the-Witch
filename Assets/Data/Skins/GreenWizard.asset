@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c14e380f9b9ae46b9117f13564b22e, type: 3}
   m_Name: GreenWizard
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSkinData
+  persistentId: a6d10194d2c9b2a49b7a91325cb264c0
   skinName: Green Wizard
-  description: The young wizard's green hat, scarf, and cloak.
+  description: "Nature robes. Grants +0.15 movement speed (3%)."
   skinIcon: {fileID: 7316008476745969496, guid: 039a62a480cb4a109b2174e91a3a7cde, type: 3}
   animatorController: {fileID: 22100000, guid: 7efa3dcc87c0111449a1ec6bee8acdd7, type: 2}
   defaultSprite: {fileID: 7316008476745969496, guid: 039a62a480cb4a109b2174e91a3a7cde, type: 3}
-  moveSpeedBonus: 0
+  moveSpeedBonus: 0.15
   unlockItems:
   - item: {fileID: 11400000, guid: 7976e3fde26f471abbc0fd0de07c8f0e, type: 2}
-    amount: 3
+    amount: 6
+  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
+    amount: 11
+  - item: {fileID: 11400000, guid: 92225360ccc14c848320ddb6f2c0fe15, type: 2}
+    amount: 2

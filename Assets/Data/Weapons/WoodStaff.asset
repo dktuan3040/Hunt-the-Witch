@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 862c77c0a6a3b81448f0db70093ca38c, type: 3}
   m_Name: WoodStaff
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  persistentId: abba1e84baeac144a871daad6369605f
   weaponName: Wood Staff
-  description: A staff for channeling magic.
+  description: "6 damage per projectile. Fires 1 projectile(s) every 0.4s. Range: 8.5. Does not increase skill damage."
   weaponSprite: {fileID: 4251608956460758469, guid: abf06e25cdaf252479ccc6a38a30bb44, type: 3}
   weaponIcon: {fileID: 4251608956460758469, guid: abf06e25cdaf252479ccc6a38a30bb44, type: 3}
   projectilePrefab: {fileID: 5488266359571220922, guid: 8d3f73b18e0c6184ab4a6b657118bba9, type: 3}
   primaryBulletSprite: {fileID: 0}
-  damage: 10
-  projectileSpeed: 12
-  range: 10
-  fireRate: 0.2
+  damage: 6
+  projectileSpeed: 13.5
+  range: 8.5
+  fireRate: 0.4
   projectilesPerShot: 1
   spreadAngle: 0
   damageMultiplier: 1

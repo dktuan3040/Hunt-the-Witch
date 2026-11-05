@@ -76,6 +76,7 @@ public class EvelWitchMoverment : MonoBehaviour
 
     private void Update()
     {
+        if (skillStatus == null) TryGetComponent(out skillStatus);
         if (health.IsDead) return;
 
         FindTargetIfNeeded();
@@ -94,9 +95,9 @@ public class EvelWitchMoverment : MonoBehaviour
         // Bán kính phát hiện có độ trễ để Witch không bị chớp khi Player đứng sát ranh giới
         if (!HasAggro)
         {
-            if (DistanceToTarget <= detectionRadius) HasAggro = true;
+            if (EnemyAwareness.CanDetect(transform, spriteRenderer, Target, detectionRadius)) HasAggro = true;
         }
-        else if (DistanceToTarget > loseTargetRadius)
+        else if (DistanceToTarget > loseTargetRadius && !EnemyAwareness.CanDetect(transform, spriteRenderer, Target, detectionRadius))
         {
             HasAggro = false;
         }

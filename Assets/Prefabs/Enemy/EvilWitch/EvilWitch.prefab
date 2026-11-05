@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 404894823385713895}
   - component: {fileID: 2119284690419383238}
   - component: {fileID: 1816899735151163260}
+  - component: {fileID: -1043805667218293470}
   m_Layer: 0
   m_Name: EvilWitch
   m_TagString: Untagged
@@ -228,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   team: 1
-  maxHealth: 100
+  maxHealth: 1150
   invincibleTime: 0
   animator: {fileID: 0}
   isDeadParameter: isDead
@@ -254,9 +255,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65020f48703c0f0428fcc13fbfda8fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EvelWitchMoverment
-  detectionRadius: 11.7
-  loseTargetRadius: 17.1
-  moveSpeed: 2.2
+  detectionRadius: 14
+  loseTargetRadius: 26
+  moveSpeed: 2.1
   spriteFacesRight: 1
   isWalkingParameter: isWalking
   drawGizmos: 1
@@ -273,21 +274,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EvilWitchAttack
   attackType: 1
-  attackRange: 8.2
-  damage: 1
-  attackCooldown: 1.5
-  attackDuration: 1.02
-  attackHitTime: 0.5
-  damageByAnimationEvent: 0
+  attackRange: 6.5
+  damage: 12
+  attackCooldown: 1.3
+  attackDuration: 1.1
+  attackHitTime: 0.6
+  damageByAnimationEvent: 1
   meleeReach: 1.03
   meleeHitRadius: 0.18
   targetLayers:
     serializedVersion: 2
     m_Bits: 256
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 5488266359571220922, guid: 893213384b8b9dd43b7bce273c9282f7, type: 3}
   firePoint: {fileID: 0}
-  projectileSpeed: 5.17
-  projectileLifeTime: 4.65
+  projectileSpeed: 5.5
+  projectileLifeTime: 2.2
   isAttackParameter: isAttack
 --- !u!114 &145090083507846467
 MonoBehaviour:
@@ -304,11 +305,11 @@ MonoBehaviour:
   fireballPrefab: {fileID: 5488266359571220922, guid: 893213384b8b9dd43b7bce273c9282f7, type: 3}
   firePoint: {fileID: 2120623620002987858}
   numberOfFireballs: 5
-  spreadAngle: 60
+  spreadAngle: 70
   randomAngleJitter: 0
-  projectileSpeed: 7
-  projectileLifeTime: 3
-  damage: 1
+  projectileSpeed: 5.5
+  projectileLifeTime: 2.2
+  damage: 12
   delayBetweenShots: 0
 --- !u!114 &8851269967169053347
 MonoBehaviour:
@@ -323,9 +324,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpreadFireball
   fireBallPrefab: {fileID: 8473560615706035657, guid: 893213384b8b9dd43b7bce273c9282f7, type: 3}
-  numberOfFireBall: 12
-  fireBallspeed: 5
-  damage: 1
+  numberOfFireBall: 10
+  fireBallspeed: 4.5
+  damage: 10
+  projectileLifeTime: 2.6
 --- !u!114 &404894823385713895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,13 +360,13 @@ MonoBehaviour:
   firePoint: {fileID: 2120623620002987858}
   numberOfFireballs: 1
   delayBetweenShots: 0.4
-  projectileSpeed: 4
-  turnSpeed: 150
-  damage: 1
-  maxLifeTime: 12
-  autoCast: 1
-  skillCooldown: 2
-  initialDelay: 1.5
+  projectileSpeed: 3.4
+  turnSpeed: 80
+  damage: 16
+  maxLifeTime: 4.5
+  autoCast: 0
+  skillCooldown: 7
+  initialDelay: 3
 --- !u!114 &1816899735151163260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,7 +384,20 @@ MonoBehaviour:
   flashFadeTime: 0.14
   knockbackDistance: 0
   knockbackDuration: 0.15
-  knockbackResistance: 0
+  knockbackResistance: 1
+--- !u!210 &-1043805667218293470
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082002277116581136}
+  m_Enabled: 1
+  m_SortingLayerID: -862230991
+  m_SortingLayer: 6
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!1 &8681621040362786890
 GameObject:
   m_ObjectHideFlags: 0

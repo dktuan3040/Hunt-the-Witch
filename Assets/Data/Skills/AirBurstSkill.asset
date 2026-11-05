@@ -14,19 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: air_burst
   skillName: Air Burst
-  description: Prepare a burst and blast enemies away from the caster.
+  description: "Push back nearby enemies and deal 22 damage."
   skillIcon: {fileID: 21300000, guid: ce8199a4c9002ea45a755d6bc2cb3000, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Wind
   isSynergySkill: 0
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: 60bafbb9917377e4c846efeb939ca142, type: 2}
+    itemId: monster_claw
+    displayName: Monster Claw
     icon: {fileID: 0}
-    amount: 3
+    amount: 8
+  - item: {fileID: 11400000, guid: 2676632bc05342c49df07e2167607fcc, type: 2}
+    itemId: bone
+    displayName: Bone
+    icon: {fileID: 0}
+    amount: 11
   ultimateProjectile: {fileID: 11400000, guid: 024934dd1ae328547a544336364ae7b7, type: 2}
-  ultimateCooldown: 4.5
+  ultimateCooldown: 5
   ultimateProjectilesPerShot: 1
   ultimateSpreadAngle: 0
   ultimateMuzzleFlash: {fileID: 0}
@@ -35,7 +40,7 @@ MonoBehaviour:
     pattern: 1
     duration: 0.36
     tickInterval: 0.4
-    damage: 12
+    damage: 22
     radius: 0.65
     range: 3
     speed: 16
@@ -53,7 +58,7 @@ MonoBehaviour:
     hitboxOffset: {x: 0, y: 0}
     placeAtTargetFeet: 0
     targetFootOffsetY: 0
-    knockbackDistance: 1.4
+    knockbackDistance: 1.2
     knockbackDuration: 0.18
     pullSpeed: 0
     trailDamage: 0

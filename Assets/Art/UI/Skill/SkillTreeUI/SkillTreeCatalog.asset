@@ -121,7 +121,7 @@ MonoBehaviour:
   - assetGuid: eca92e27bb6322645bf8d628e4ebeadf
     skill: {fileID: 11400000, guid: eca92e27bb6322645bf8d628e4ebeadf, type: 2}
     recipe: {fileID: 0}
-    position: {x: 850, y: -620}
+    position: {x: 386, y: -286}
     invalid: 0
   - assetGuid: ed2c4955445aa1e4898569dedea92ad2
     skill: {fileID: 11400000, guid: ed2c4955445aa1e4898569dedea92ad2, type: 2}

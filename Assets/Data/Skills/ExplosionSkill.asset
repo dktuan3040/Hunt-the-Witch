@@ -14,19 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: explosion
   skillName: Explosion
-  description: Detonate near the closest enemy and burn nearby foes.
+  description: "Deal 30 area damage once, then burn enemies."
   skillIcon: {fileID: 21300000, guid: 39284f96066412c448878b6e1d7efd83, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Fire
   isSynergySkill: 0
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: 92301f71842e8ad42b9a94ebbf2cf22b, type: 2}
+    itemId: monster_fang
+    displayName: Monster Fang
     icon: {fileID: 0}
-    amount: 3
+    amount: 11
+  - item: {fileID: 11400000, guid: 4e51e44120454282883844e6ca4a3c42, type: 2}
+    itemId: gunpowder
+    displayName: Gunpowder
+    icon: {fileID: 0}
+    amount: 8
+  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+    itemId: magic_essence
+    displayName: Magic Essence
+    icon: {fileID: 0}
+    amount: 6
   ultimateProjectile: {fileID: 11400000, guid: 2f8b15e2dac6250419cd7cf74fabc873, type: 2}
-  ultimateCooldown: 6
+  ultimateCooldown: 7
   ultimateProjectilesPerShot: 1
   ultimateSpreadAngle: 0
   ultimateMuzzleFlash: {fileID: 0}
@@ -35,7 +45,7 @@ MonoBehaviour:
     pattern: 5
     duration: 0.65
     tickInterval: 0.48
-    damage: 22
+    damage: 30
     radius: 1
     range: 9
     speed: 8
@@ -43,22 +53,31 @@ MonoBehaviour:
     repeatTargets: 0
     pierce: 0
     hitDuringEnding: 1
-    damageOverTime: 1
+    damageOverTime: 0
     radial: 0
     followCaster: 0
+    mirrorWhenAimingLeft: 0
+    keepSpriteHorizontal: 0
+    visualOffset: {x: 0, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
     knockbackDistance: 0
     knockbackDuration: 0.18
     pullSpeed: 0
     trailDamage: 0
     trailRadius: 0
-    explosionRadius: 1.75
+    explosionRadius: 1.6
     explosionDamage: 0
+    explodeOnExpiry: 0
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 4
-    statusDuration: 3
+    statusDuration: 2
     slowMultiplier: 0.55
     thawSlowDuration: 2
     burnDamage: 3

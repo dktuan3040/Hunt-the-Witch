@@ -78,7 +78,7 @@ public class WeaponShoot : MonoBehaviour
 
     private void HandleDirectMouseInput()
     {
-        if (PauseMenuUI.CombatInputBlocked || Mouse.current == null) return;
+        if ((!ExpeditionFlow.CanFight||PauseMenuUI.CombatInputBlocked) || Mouse.current == null) return;
 
         // Chuột trái: Bắn spam liên tục (nhấn giữ hoặc nhấp) theo thông số của Gậy
         if (Mouse.current.leftButton.isPressed)
@@ -121,6 +121,8 @@ public class WeaponShoot : MonoBehaviour
     public void EquipWeapon(WeaponData newWeapon)
     {
         currentWeapon = newWeapon;
+        var owner=GetComponentInParent<Health>();
+        if(Application.isPlaying&&owner!=null&&owner.Team==Team.Player)GameProfile.SelectWeapon(newWeapon);
         if (newWeapon == null) return;
 
         // Cập nhật hình ảnh cây gậy trên tay
@@ -135,7 +137,7 @@ public class WeaponShoot : MonoBehaviour
     /// </summary>
     public void ShootPrimary()
     {
-        if (!isActiveAndEnabled || PauseMenuUI.CombatInputBlocked) return;
+        if (!isActiveAndEnabled || (!ExpeditionFlow.CanFight||PauseMenuUI.CombatInputBlocked)) return;
         if (Time.time < nextFireTime) return;
 
         Projectile effectivePrefab = (currentWeapon != null && currentWeapon.ProjectilePrefab != null)
@@ -183,7 +185,7 @@ public class WeaponShoot : MonoBehaviour
     /// </summary>
     public void ShootUltimate()
     {
-        if (!isActiveAndEnabled || PauseMenuUI.CombatInputBlocked || skillManager == null) return;
+        if (!isActiveAndEnabled || (!ExpeditionFlow.CanFight||PauseMenuUI.CombatInputBlocked) || skillManager == null) return;
 
         SkillData activeSkill = skillManager.GetActiveSkill();
         if (activeSkill == null) return;

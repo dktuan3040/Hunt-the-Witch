@@ -14,19 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: earth_bump
   skillName: Earth Bump
-  description: Raise earth beneath the closest enemies.
+  description: "Strike up to three different targets for 18 damage each and briefly stun them."
   skillIcon: {fileID: 21300000, guid: 469471b817a15e947822ae79d450faa4, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Earth
   isSynergySkill: 0
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: 2676632bc05342c49df07e2167607fcc, type: 2}
+    itemId: bone
+    displayName: Bone
     icon: {fileID: 0}
-    amount: 3
+    amount: 22
+  - item: {fileID: 11400000, guid: 92301f71842e8ad42b9a94ebbf2cf22b, type: 2}
+    itemId: monster_fang
+    displayName: Monster Fang
+    icon: {fileID: 0}
+    amount: 8
   ultimateProjectile: {fileID: 11400000, guid: 83eb4747243655e4a910851d454441cd, type: 2}
-  ultimateCooldown: 5.5
+  ultimateCooldown: 6
   ultimateProjectilesPerShot: 1
   ultimateSpreadAngle: 0
   ultimateMuzzleFlash: {fileID: 0}
@@ -35,12 +40,12 @@ MonoBehaviour:
     pattern: 5
     duration: 0.34
     tickInterval: 2
-    damage: 12
+    damage: 18
     radius: 1
     range: 8
     speed: 8
     targetCount: 3
-    repeatTargets: 1
+    repeatTargets: 0
     pierce: 0
     hitDuringEnding: 0
     damageOverTime: 0
@@ -67,7 +72,7 @@ MonoBehaviour:
     vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 8
-    statusDuration: 1.65
+    statusDuration: 0.9
     slowMultiplier: 0.55
     thawSlowDuration: 2
     burnDamage: 2

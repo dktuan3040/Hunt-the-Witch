@@ -65,6 +65,9 @@ public class EvilWitchSkillSequencer : MonoBehaviour
     /// </summary>
     public void ExecuteCurrentSkill()
     {
+        var owner = GetComponent<Health>();
+        if (!isActiveAndEnabled || (owner != null && owner.IsDead)) return;
+        if (TryGetComponent<EnemySkillStatus>(out var status) && status.Immobilized) return;
         switch (currentPhase)
         {
             case 0:

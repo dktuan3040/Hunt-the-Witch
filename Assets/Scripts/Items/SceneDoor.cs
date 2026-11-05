@@ -20,11 +20,8 @@ public sealed class SceneDoor : MonoBehaviour
     public bool TryInteract(Health actor)
     {
         if(!CanInteract(actor))return false;
+        if(!ExpeditionFlow.Travel(targetScenePath,actor))return false;
         IsTransitioning=true;
-        var persistence=actor.GetComponent<PlayerStatePersistence>();
-        if(persistence!=null)persistence.Capture();
-        var operation=SceneManager.LoadSceneAsync(targetScenePath,LoadSceneMode.Single);
-        if(operation==null){IsTransitioning=false;return false;}
         return true;
     }
 }

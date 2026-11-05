@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: M_F1_GateKey
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: m_f1_gate_key
-  displayName: M_F1 Gate Key
-  description: "Mang ch\xECa kh\xF3a \u0111\u1EBFn ch\u1EA1m v\xE0o Gate trong M_F1
-    \u0111\u1EC3 m\u1EDF c\u1ED5ng."
+  displayName: key
+  description: "Consumed when opening the gate to the boss arena."
   icon: {fileID: 8154595636103199125, guid: bb1e0488f87ac8940bc1944119440d3a, type: 3}
   rarity: 0
   pickupEffect: 0
   healFraction: 0.3
+  isKey: 1

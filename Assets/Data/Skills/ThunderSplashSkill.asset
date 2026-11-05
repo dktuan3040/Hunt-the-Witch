@@ -14,20 +14,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: thunder_splash
   skillName: Thunder Splash
-  description: Fire three bolts that call lightning on enemies they pass.
+  description: "Fire two electrified streams that deal lightning damage over time on hit."
   skillIcon: {fileID: 21300000, guid: 63ea81347b57ab8409a1811dabd40532, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Thunder
   isSynergySkill: 1
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: 60bafbb9917377e4c846efeb939ca142, type: 2}
+    itemId: monster_claw
+    displayName: Monster Claw
     icon: {fileID: 0}
-    amount: 3
+    amount: 15
+  - item: {fileID: 11400000, guid: 2fcbaa2e04d24beea270d93c3bfb436d, type: 2}
+    itemId: topaz
+    displayName: Topaz
+    icon: {fileID: 0}
+    amount: 2
+  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+    itemId: magic_essence
+    displayName: Magic Essence
+    icon: {fileID: 0}
+    amount: 6
+  - item: {fileID: 11400000, guid: f5f619ffccd1415c87ccbfd40dae6d88, type: 2}
+    itemId: magic_powder
+    displayName: Magic Powder
+    icon: {fileID: 0}
+    amount: 1
   ultimateProjectile: {fileID: 11400000, guid: 3469126ed652ae2449721a1d1e17051e, type: 2}
-  ultimateCooldown: 7
-  ultimateProjectilesPerShot: 3
+  ultimateCooldown: 9
+  ultimateProjectilesPerShot: 2
   ultimateSpreadAngle: 28
   ultimateMuzzleFlash: {fileID: 0}
   ultimateSound: {fileID: 0}
@@ -37,7 +52,7 @@ MonoBehaviour:
     tickInterval: 0.4
     damage: 0
     radius: 0.48
-    range: 10
+    range: 9
     speed: 8
     targetCount: 1
     repeatTargets: 0

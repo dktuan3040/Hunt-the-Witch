@@ -126,32 +126,43 @@ public class PlayerSkillManager : MonoBehaviour
         return null;
     }
 
-    private void Start()
+    private System.Collections.IEnumerator Start()
     {
+        LoadoutInitialized=false;
         SelectSlot(activeSlotIndex);
-        var health = GetComponent<Health>();
-        if (health == null || health.Team != Team.Player || health.IsDead) return;
-
-        var scene = gameObject.scene;
-        if (!PlayerSessionState.VisitMap(scene))
+        var health=GetComponent<Health>();
+        if(health==null||health.Team!=Team.Player||health.IsDead)yield break;
+        var catalog=GameContentCatalog.Instance;
+        if(catalog!=null)
         {
-            var saved = PlayerSessionState.Player;
-            if (saved != null)
-                RestoreSessionState(saved.Skills, saved.Cooldowns, saved.ActiveSlot, saved.SourceSkills);
-            LoadoutInitialized = true;
-            return;
+            foreach(var skill in catalog.skills)SkillUnlockProgress.Register(skill);
+            foreach(var skill in catalog.starterSkills)SkillUnlockProgress.MarkUnlocked(skill);
         }
-
-        LoadoutInitialized = true;
-        if (startingLearnedSkills != null)
-            foreach (var skill in startingLearnedSkills)
-                SkillUnlockProgress.MarkUnlocked(skill);
-
-        if (!offerSkillOnFirstVisit) return;
-
-        var offered = SkillUnlockProgress.PickLearnedSkill();
-        if (offered != null)
-            SkillScrollSelectionUI.ShowStartingSkill(this, offered);
+        else if(startingLearnedSkills!=null)
+            foreach(var skill in startingLearnedSkills)SkillUnlockProgress.MarkUnlocked(skill);
+        if(!ExpeditionFlow.CanFight){LoadoutInitialized=true;yield break;}
+        // A snapshot can exist before loadout initialization. Only an already-offered
+        // expedition is allowed to restore it and skip the initial choice.
+        if(PlayerSessionState.StartingSkillOffered)
+        {
+            var saved=PlayerSessionState.Player;
+            if(saved!=null&&saved.Skills!=null)RestoreSessionState(saved.Skills,saved.Cooldowns,saved.ActiveSlot,saved.SourceSkills);
+            LoadoutInitialized=true;yield break;
+        }
+        // Scene-loaded UI installers and Awake must finish before we show a modal.
+        yield return null;
+        for(int attempt=0;attempt<60&&isActiveAndEnabled&&!health.IsDead&&ExpeditionFlow.CanFight;attempt++)
+        {
+            var offered=SkillUnlockProgress.PickLearnedSkill();
+            if(offered!=null&&SkillScrollSelectionUI.ShowStartingSkill(this,offered))
+            {
+                PlayerSessionState.StartingSkillOffered=true;
+                LoadoutInitialized=true;yield break;
+            }
+            yield return null;
+        }
+        LoadoutInitialized=true;
+        Debug.LogWarning("Starting skill selection could not open; check the learned skills and selection UI prefab.",this);
     }
 
     private void Update()
@@ -197,7 +208,7 @@ public class PlayerSkillManager : MonoBehaviour
     // Selecting the initial slot in Start must not automatically cast a skill.
     public void ActivateSlot(int index)
     {
-        if (!isActiveAndEnabled || PauseMenuUI.CombatInputBlocked) return;
+        if (!isActiveAndEnabled || !ExpeditionFlow.CanFight || PauseMenuUI.CombatInputBlocked) return;
         if (index < 0 || index >= slots.Length || index >= lastActivationFrames.Length) return;
         // PlayerInput UnityEvents and performed callbacks can report the same press.
         if (lastActivationFrames[index] == Time.frameCount) return;

@@ -43,6 +43,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float attackDuration = 0.85f;
     [Tooltip("Thời điểm đòn đánh trúng / đạn bay ra, tính từ lúc bắt đầu animation Attack (giây)")]
     [SerializeField] private float attackHitTime = 0.4f;
+    [SerializeField, Min(.1f)] private float attackAnimationSpeed = 1f;
     [Tooltip("Bật = đòn đánh gây sát thương qua Animation Event gọi DealDamage() thay vì tự tính theo attackHitTime")]
     [SerializeField] private bool damageByAnimationEvent = false;
 
@@ -74,6 +75,8 @@ public class EnemyAI : MonoBehaviour
     private HitFeedback hitFeedback;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    [SerializeField] private bool mirrorWholeHierarchy;
+    private float facingScaleX;
 
     private Transform target;
     private IDamageable targetDamageable;
@@ -81,6 +84,7 @@ public class EnemyAI : MonoBehaviour
 
     private bool hasAggro;
     private bool isAttacking;
+    private bool hasDealtDamage;
     private float nextAttackTime;
     private Vector2 desiredVelocity;
 
@@ -89,15 +93,19 @@ public class EnemyAI : MonoBehaviour
     // (không kiểm tra tham số Animator lúc Awake vì Animator có thể chưa initialize)
     private bool animChasing;
     private bool animAttack;
+    private float baseAnimationSpeed = 1;
 
     private void Awake()
     {
+        facingScaleX=Mathf.Max(.0001f,Mathf.Abs(transform.localScale.x));
         rb = GetComponent<Rigidbody2D>();
         navigation = GetComponent<EnemyNavigation2D>();
         if (navigation == null) navigation = gameObject.AddComponent<EnemyNavigation2D>();
         health = GetComponent<Health>();
+        health.OnDamaged += AggroWhenHit;
         hitFeedback = GetComponent<HitFeedback>();
         animator = GetComponent<Animator>();
+        if (animator != null) baseAnimationSpeed = animator.speed;
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
@@ -114,6 +122,14 @@ public class EnemyAI : MonoBehaviour
         StopAllCoroutines();
         isAttacking = false;
         desiredVelocity = Vector2.zero;
+        SetAttack(false);
+    }
+
+    private void OnDestroy() { if (health != null) health.OnDamaged -= AggroWhenHit; }
+    private void AggroWhenHit(int amount)
+    {
+        FindTargetIfNeeded();
+        if (HasValidTarget) hasAggro = true;
     }
 
     private void OnValidate()
@@ -169,9 +185,9 @@ public class EnemyAI : MonoBehaviour
         // Bán kính phát hiện (có độ trễ để không bị chớp khi player đứng sát ranh giới)
         if (!hasAggro)
         {
-            if (distance <= detectionRadius) hasAggro = true;
+            if (EnemyAwareness.CanDetect(transform, spriteRenderer, target, detectionRadius)) hasAggro = true;
         }
-        else if (distance > loseTargetRadius)
+        else if (distance > loseTargetRadius && !EnemyAwareness.CanDetect(transform, spriteRenderer, target, detectionRadius))
         {
             hasAggro = false;
         }
@@ -223,6 +239,7 @@ public class EnemyAI : MonoBehaviour
 private IEnumerator AttackRoutine()
     {
         isAttacking = true;
+        hasDealtDamage = false;
         desiredVelocity = Vector2.zero;
         SetChasing(false);
         SetAttack(true);
@@ -250,10 +267,12 @@ private IEnumerator AttackRoutine()
 
     private void PerformAttack()
     {
-        if (!HasValidTarget || !navigation.HasLineOfSight(target.position)) return;
+        if (hasDealtDamage || health.IsDead || !HasValidTarget || !navigation.HasLineOfSight(target.position)) return;
+        if (TryGetComponent<EnemySkillStatus>(out var status) && status.Immobilized) return;
+        hasDealtDamage = true;
 
         if (attackType == EnemyAttackType.Melee) MeleeHit();
-        // else FireProjectile();
+        else SpawnProjectile();
     }
 
     private void MeleeHit()
@@ -275,7 +294,14 @@ private IEnumerator AttackRoutine()
         }
     }
 
-    private void FireProjectile()
+    // Animation event on the archer's release frame; never fire twice or after death.
+    public void FireProjectile()
+    {
+        if (!damageByAnimationEvent || !isAttacking) return;
+        PerformAttack();
+    }
+
+    private void SpawnProjectile()
     {
         if (projectilePrefab == null)
         {
@@ -307,10 +333,14 @@ private IEnumerator AttackRoutine()
 
     private void FaceTowards(float deltaX)
     {
-        if (spriteRenderer == null || Mathf.Abs(deltaX) < 0.05f) return;
-
-        bool targetIsOnRight = deltaX > 0f;
-        spriteRenderer.flipX = spriteFacesRight ? !targetIsOnRight : targetIsOnRight;
+        if(Mathf.Abs(deltaX)<.05f)return;
+        bool mirror=spriteFacesRight?deltaX<0:deltaX>0;
+        if(mirrorWholeHierarchy)
+        {
+            var scale=transform.localScale;scale.x=facingScaleX*(mirror?-1:1);transform.localScale=scale;
+            if(spriteRenderer!=null)spriteRenderer.flipX=false;
+        }
+        else if(spriteRenderer!=null)spriteRenderer.flipX=mirror;
     }
 
     private void SetChasing(bool value)
@@ -324,6 +354,7 @@ private IEnumerator AttackRoutine()
     {
         if (animator == null || animAttack == value) return;
         animAttack = value;
+        animator.speed = baseAnimationSpeed * (value ? attackAnimationSpeed : 1);
         animator.SetBool(isAttackHash, value);
     }
 

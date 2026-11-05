@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4691573478779147088}
   - component: {fileID: 3511049645383219534}
+  - component: {fileID: -7021012880811552327}
   m_Layer: 0
   m_Name: RedZoneFireball
   m_TagString: Untagged
@@ -92,3 +93,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!210 &-7021012880811552327
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7809681300293456356}
+  m_Enabled: 1
+  m_SortingLayerID: -862230991
+  m_SortingLayer: 6
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0

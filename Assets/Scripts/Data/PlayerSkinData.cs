@@ -4,6 +4,9 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "NewSkinData", menuName = "Hunt the Witch/Character/Skin Data")]
 public class PlayerSkinData : ScriptableObject
 {
+    [SerializeField,HideInInspector] private string persistentId;
+    public string PersistentId => string.IsNullOrEmpty(persistentId)?name:persistentId;
+
     [Header("Identity")]
     [SerializeField] private string skinName = "Apprentice Witch";
     [TextArea(2, 4)]

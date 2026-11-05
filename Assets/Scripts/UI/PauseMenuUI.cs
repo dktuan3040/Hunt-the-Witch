@@ -96,6 +96,7 @@ public class PauseMenuUI : MonoBehaviour
         if (settingsMenu != null)
         {
             settingsMenu.OnClosed += OnSettingsClosed;
+            settingsMenu.EscapeHandledByPause = true;
         }
 
         // Ẩn panel Pause khi bắt đầu game
@@ -175,6 +176,8 @@ public class PauseMenuUI : MonoBehaviour
         combatPaused = true;
         waitingForCombatRelease = true;
 
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         isPaused = true;
         GameplayPause.Acquire(this);
 
@@ -190,7 +193,7 @@ public class PauseMenuUI : MonoBehaviour
         FindPlayerInput();
         if (playerInput != null && playerInput.actions != null)
         {
-            playerInput.SwitchCurrentActionMap("UI");
+            if (playerInput.actions.FindActionMap("UI", false) != null) playerInput.SwitchCurrentActionMap("UI");
         }
     }
 
@@ -216,7 +219,7 @@ public class PauseMenuUI : MonoBehaviour
 
         if (playerInput != null && playerInput.actions != null)
         {
-            playerInput.SwitchCurrentActionMap("Player");
+            if (playerInput.actions.FindActionMap("Player", false) != null) playerInput.SwitchCurrentActionMap("Player");
         }
     }
 
@@ -245,8 +248,7 @@ public class PauseMenuUI : MonoBehaviour
     {
         PlayerSessionState.StartNewGame();
         GameplayPause.Release(this);
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex);
+        ExpeditionFlow.Travel(ExpeditionFlow.House, null, true);
     }
 
     public void ReturnToMainMenu()
@@ -284,7 +286,11 @@ public class PauseMenuUI : MonoBehaviour
         combatPaused = false;
         waitingForCombatRelease = false;
         combatReleaseFrame = -1;
-
+        if (settingsMenu != null)
+        {
+            settingsMenu.OnClosed -= OnSettingsClosed;
+            settingsMenu.EscapeHandledByPause = false;
+        }
         GameplayPause.Release(this);
     }
 }

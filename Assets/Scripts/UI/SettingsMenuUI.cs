@@ -28,6 +28,7 @@ public class SettingsMenuUI : MonoBehaviour
     [SerializeField] private Button backButton;
 
     public System.Action OnClosed;
+    public bool EscapeHandledByPause { get; set; }
 
     private const string PREF_MASTER_VOL = "Settings_MasterVol";
     private const string PREF_BGM_VOL = "Settings_BgmVol";
@@ -70,7 +71,7 @@ public class SettingsMenuUI : MonoBehaviour
     private void Update()
     {
         // Nhấn Escape để đóng Settings nếu đang mở
-        if (IsOpen && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (!EscapeHandledByPause && IsOpen && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             Close();
         }

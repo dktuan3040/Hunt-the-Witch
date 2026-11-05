@@ -15,6 +15,7 @@ public sealed class EnemySkillStatus : MonoBehaviour
     private float pushUntil, pullUntil, pushDuration;
     private Vector2 pushVelocity, pullVelocity;
     private int tint;
+    private float nextBossControlTime;
 
     public bool Immobilized => Time.time < Mathf.Max(freezeUntil, stunUntil);
     public float MovementMultiplier
@@ -49,10 +50,26 @@ public sealed class EnemySkillStatus : MonoBehaviour
         float until = now + Mathf.Max(0, settings.statusDuration);
         float factor = Mathf.Clamp01(settings.slowMultiplier);
         var flags = settings.status;
-        if ((flags & SkillStatus.Stun) != 0) stunUntil = Mathf.Max(stunUntil, until);
+        float controlUntil = until;
+        if (health != null && health.IsBoss)
+        {
+            // A short interrupt still rewards control skills; alternating slots cannot
+            // freeze a boss permanently. Slow and damage effects continue to work.
+            factor = Mathf.Max(.75f, factor);
+            if ((flags & (SkillStatus.Stun | SkillStatus.Freeze)) != 0)
+            {
+                if (now < nextBossControlTime) flags &= ~(SkillStatus.Stun | SkillStatus.Freeze);
+                else
+                {
+                    controlUntil = now + Mathf.Min(.6f, Mathf.Max(0, settings.statusDuration));
+                    nextBossControlTime = now + 3;
+                }
+            }
+        }
+        if ((flags & SkillStatus.Stun) != 0) stunUntil = Mathf.Max(stunUntil, controlUntil);
         if ((flags & SkillStatus.Freeze) != 0)
         {
-            freezeUntil = Mathf.Max(freezeUntil, until);
+            freezeUntil = Mathf.Max(freezeUntil, controlUntil);
             thawUntil = Mathf.Max(thawUntil, freezeUntil + settings.thawSlowDuration);
             thawFactor = factor;
         }
@@ -81,6 +98,7 @@ public sealed class EnemySkillStatus : MonoBehaviour
 
     public void Push(Vector2 direction, float distance, float duration)
     {
+        if (health != null && health.IsBoss) distance *= .15f;
         pushDuration = Mathf.Max(.01f, duration);
         pushVelocity = direction.normalized * (2 * distance / pushDuration);
         pushUntil = Time.time + pushDuration;
@@ -88,6 +106,7 @@ public sealed class EnemySkillStatus : MonoBehaviour
 
     public void Pull(Vector2 center, float speed)
     {
+        if (health != null && health.IsBoss) speed *= .2f;
         var offset = center - (Vector2)transform.position;
         pullVelocity = Vector2.ClampMagnitude(offset / .1f, speed);
         pullUntil = Time.time + .12f;
@@ -106,7 +125,7 @@ public sealed class EnemySkillStatus : MonoBehaviour
     {
         if (health.IsDead) return;
         float now = Time.time;
-        if (now >= nextBurn && nextBurn < burnUntil && burnDamage > 0)
+        if (now >= nextBurn && nextBurn <= burnUntil && burnDamage > 0)
         {
             nextBurn += burnInterval;
             health.TakeDamage(burnDamage);

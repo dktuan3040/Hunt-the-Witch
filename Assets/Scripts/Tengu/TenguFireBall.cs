@@ -67,6 +67,12 @@ public class TenguFireBall : MonoBehaviour
     {
         if (ownerHealth != null && ownerHealth.IsDead) return;
 
+        if (TryGetComponent<EnemySkillStatus>(out var status) && status.Immobilized && isCalling && !strikeStarted)
+        {
+            isCalling = false;
+            skillCounter = skillCoolDown;
+        }
+
         if (!isCalling && skillCounter > 0f)
             skillCounter -= Time.deltaTime;
 
@@ -93,7 +99,8 @@ public class TenguFireBall : MonoBehaviour
     /// <summary>Bắt đầu skill (đặt cooldown). Gọi ở đầu animation cast nếu muốn.</summary>
     public void StartCall()
     {
-        if (isCalling) return;
+        if(!isActiveAndEnabled||(ownerHealth!=null&&ownerHealth.IsDead)||isCalling||skillCounter>0)return;
+        if(TryGetComponent<EnemySkillStatus>(out var status)&&status.Immobilized)return;
         isCalling = true;
         strikeStarted = false;
         skillCounter = skillCoolDown;
@@ -102,7 +109,8 @@ public class TenguFireBall : MonoBehaviour
     /// <summary>Thả cầu lửa. Gọi từ Animation Event hoặc ngay sau StartCall().</summary>
     public void TriggerAttack()
     {
-        if (!isCalling || strikeStarted) return;
+        if(!isActiveAndEnabled||(ownerHealth!=null&&ownerHealth.IsDead)||!isCalling||strikeStarted)return;
+        if(TryGetComponent<EnemySkillStatus>(out var status)&&status.Immobilized)return;
 
         strikeStarted = true;
         StartCoroutine(FireBallRoutine());

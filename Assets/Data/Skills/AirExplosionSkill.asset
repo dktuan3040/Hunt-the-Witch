@@ -14,31 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: air_explosion
   skillName: Air Explosion
-  description: Fire three vortices that pull foes in before exploding.
+  description: "Fire two exploding gusts. Each explosion deals 28 damage; the trail deals minor damage."
   skillIcon: {fileID: 21300000, guid: 02d14e7c68a75b54fa71a031e42d7a70, type: 3}
   themeColor: {r: 1, g: 0.4, b: 0, a: 1}
   elementTag: Wind
   isSynergySkill: 1
   unlockItems:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
-    itemId: 
-    displayName: 
+  - item: {fileID: 11400000, guid: 60bafbb9917377e4c846efeb939ca142, type: 2}
+    itemId: monster_claw
+    displayName: Monster Claw
     icon: {fileID: 0}
-    amount: 3
+    amount: 15
+  - item: {fileID: 11400000, guid: 4e51e44120454282883844e6ca4a3c42, type: 2}
+    itemId: gunpowder
+    displayName: Gunpowder
+    icon: {fileID: 0}
+    amount: 8
+  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
+    itemId: magic_essence
+    displayName: Magic Essence
+    icon: {fileID: 0}
+    amount: 6
   ultimateProjectile: {fileID: 11400000, guid: e5d32e4a333ed7c4aa518414b564ef6d, type: 2}
-  ultimateCooldown: 7
-  ultimateProjectilesPerShot: 3
+  ultimateCooldown: 8.5
+  ultimateProjectilesPerShot: 2
   ultimateSpreadAngle: 30
   ultimateMuzzleFlash: {fileID: 0}
   ultimateSound: {fileID: 0}
   combat:
     pattern: 3
     duration: 1.5
-    tickInterval: 0.35
+    tickInterval: 0.5
     damage: 0
     radius: 0.5
-    range: 10
-    speed: 6
+    range: 8.5
+    speed: 7
     targetCount: 1
     repeatTargets: 0
     pierce: 1
@@ -46,17 +56,25 @@ MonoBehaviour:
     damageOverTime: 0
     radial: 0
     followCaster: 0
+    mirrorWhenAimingLeft: 0
+    keepSpriteHorizontal: 0
+    visualOffset: {x: 0, y: 0}
+    hitboxFollowsVisual: 0
+    hitboxOffset: {x: 0, y: 0}
+    placeAtTargetFeet: 0
+    targetFootOffsetY: 0
     knockbackDistance: 0
     knockbackDuration: 0.18
     pullSpeed: 5
     trailDamage: 3
     trailRadius: 1.35
     explosionRadius: 1.65
-    explosionDamage: 27
+    explosionDamage: 28
     explodeOnExpiry: 1
     wallSpacing: 1
     wallDelay: 0.13
     arcHeight: 1.6
+    vortexStartRadius: 0.45
     vortexDegreesPerSecond: 140
     status: 0
     statusDuration: 2

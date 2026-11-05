@@ -12,25 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 862c77c0a6a3b81448f0db70093ca38c, type: 3}
   m_Name: VerdantSpiralStaff
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  persistentId: e1505a5ab8f26684b85b942534ef6b00
   weaponName: Verdant Spiral Staff
-  description: A staff for channeling magic.
+  description: "5 damage per projectile. Fires 2 projectile(s) every 0.48s. Range: 7.5. Does not increase skill damage."
   weaponSprite: {fileID: -6270953770400647376, guid: 3056236d9f94f614f9062a0a7ed8cd71, type: 3}
   weaponIcon: {fileID: -6270953770400647376, guid: 3056236d9f94f614f9062a0a7ed8cd71, type: 3}
   projectilePrefab: {fileID: 5488266359571220922, guid: 8d3f73b18e0c6184ab4a6b657118bba9, type: 3}
   primaryBulletSprite: {fileID: 0}
-  damage: 10
-  projectileSpeed: 12
-  range: 10
-  fireRate: 0.2
-  projectilesPerShot: 1
-  spreadAngle: 0
+  damage: 5
+  projectileSpeed: 13
+  range: 7.5
+  fireRate: 0.48
+  projectilesPerShot: 2
+  spreadAngle: 18
   damageMultiplier: 1
   muzzleFlashPrefab: {fileID: 0}
   shootSound: {fileID: 0}
   unlockItems:
   - item: {fileID: 11400000, guid: 0c0b50b7ee7f4ad39c4f01525d9c32c9, type: 2}
+    amount: 9
+  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
+    amount: 22
+  - item: {fileID: 11400000, guid: 92225360ccc14c848320ddb6f2c0fe15, type: 2}
     amount: 3
-  - item: {fileID: 11400000, guid: 8d273da057b149639500eda65b1aeae6, type: 2}
-    amount: 2
-  - item: {fileID: 11400000, guid: f5f619ffccd1415c87ccbfd40dae6d88, type: 2}
-    amount: 1

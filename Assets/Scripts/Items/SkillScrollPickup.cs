@@ -31,7 +31,10 @@ public sealed class SkillScrollPickup : MonoBehaviour
         if(scrollVisual==null||defaultScrollSprite==null)return;
         scrollVisual.sprite=defaultScrollSprite;scrollVisual.color=Color.white;scrollVisual.enabled=true;scrollVisual.sortingLayerName="Player";scrollVisual.sortingOrder=20;
         float size=Mathf.Max(defaultScrollSprite.bounds.size.x,defaultScrollSprite.bounds.size.y);
-        if(size>0)scrollVisual.transform.localScale=Vector3.one*(visualSize/size);
+        if(size>0){
+            var parent=scrollVisual.transform.parent;var scale=parent!=null?parent.lossyScale:Vector3.one;
+            scrollVisual.transform.localScale=new Vector3(visualSize/size/Mathf.Max(.0001f,Mathf.Abs(scale.x)),visualSize/size/Mathf.Max(.0001f,Mathf.Abs(scale.y)),1);
+        }
     }
     public bool CanInteract(PlayerSkillManager manager)
     {
@@ -50,5 +53,5 @@ public sealed class SkillScrollPickup : MonoBehaviour
     public SkillScrollPickup DropReplacement(SkillData replaced,Health owner)
     {return Spawn(template!=null?template:Resources.Load<SkillScrollPickup>("SkillScrollPickup"),replaced,owner.transform.position+Vector3.right*.9f,owner);}
     public void Release(Health actor){claimed=false;availableAt=Time.time+.65f;}
-    public void Consume(){if(consumed)return;consumed=true;gameObject.SetActive(false);Destroy(gameObject);}
+    public void Consume(){if(consumed)return;if(skill!=null)PickupNotificationUI.Show("Scroll: "+skill.SkillName,1,false);consumed=true;gameObject.SetActive(false);Destroy(gameObject);}
 }
