@@ -138,7 +138,7 @@ SortingGroup:
   m_GameObject: {fileID: 36157756}
   m_Enabled: 1
   m_SortingLayerID: -862230991
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -421,7 +421,7 @@ SortingGroup:
   m_GameObject: {fileID: 189698924}
   m_Enabled: 1
   m_SortingLayerID: -466097453
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -8182,6 +8182,7 @@ GameObject:
   - component: {fileID: 439048940}
   - component: {fileID: 439048938}
   - component: {fileID: 439048939}
+  - component: {fileID: 439048949}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -8198,7 +8199,7 @@ Transform:
   m_GameObject: {fileID: 439048936}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75, y: 27, z: 0}
+  m_LocalPosition: {x: -76.17, y: 26.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8557,6 +8558,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!210 &439048949
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439048936}
+  m_Enabled: 1
+  m_SortingLayerID: -862230991
+  m_SortingLayer: 5
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!1001 &440971812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8701,7 +8715,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -862230991
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1191002196291150918, guid: e1357a84f9787244c99aa371a2b4a1cc, type: 3}
@@ -9086,7 +9100,7 @@ SortingGroup:
   m_GameObject: {fileID: 535685508}
   m_Enabled: 1
   m_SortingLayerID: -862230991
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -9249,7 +9263,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -466097453
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -88108,7 +88122,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -862230991
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7316008476745969496, guid: b0231bc32401d6542a0332daeacfcf0c, type: 3}
@@ -88896,7 +88910,7 @@ Transform:
   m_GameObject: {fileID: 929293448}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75, y: 27, z: -10}
+  m_LocalPosition: {x: -75.1209, y: 26.81367, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106004,7 +106018,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -466097453
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1200104180934158163, guid: e5cf8c6df58734042ba5cbd8a696b034, type: 3}
@@ -106544,7 +106558,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -466097453
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -146345,7 +146359,7 @@ Transform:
   m_GameObject: {fileID: 1655089274}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75, y: 27, z: -10}
+  m_LocalPosition: {x: -76.17, y: 26.81, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -147056,7 +147070,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
   m_UseReflectionProbes: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 80
