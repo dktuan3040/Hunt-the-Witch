@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5736326336573344761}
   - component: {fileID: 7661259046207433510}
   - component: {fileID: 8865330189414350708}
+  - component: {fileID: 7455203740674791658}
+  - component: {fileID: 7714281552720185089}
   m_Layer: 0
   m_Name: Tengu
   m_TagString: Untagged
@@ -82,8 +84,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -862230991
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5957154946591264525, guid: 75455c68aac002b4c9b48a9d5b851e37, type: 3}
@@ -107,7 +109,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 28261746d4a8e0140b445524afd55251, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -168,7 +170,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &5736326336573344761
 Animator:
@@ -249,7 +251,36 @@ MonoBehaviour:
   projectilePrefab: {fileID: 0}
   firePoint: {fileID: 0}
   projectileSpeed: 6
-  projectileLifeTime: 3
+  projectileLifeTime: -24.95
   retreatDistance: 0
   isChasingParameter: isChasing
   isAttackParameter: isAttack
+--- !u!210 &7455203740674791658
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056499537027696979}
+  m_Enabled: 1
+  m_SortingLayerID: -862230991
+  m_SortingLayer: 6
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
+--- !u!114 &7714281552720185089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056499537027696979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504e8967023a0af4eb2bbb55bd42d581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyNavigation2D
+  cellSize: 0.5
+  repathInterval: 0.6
+  detourMargin: 10
+  maxSearchNodes: 4000

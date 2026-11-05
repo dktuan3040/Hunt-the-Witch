@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RewardChestLoot
   m_EditorClassIdentifier: Assembly-CSharp::LootTableData
   entries:
-  - item: {fileID: 11400000, guid: cc604d47a90516844897775ea2c45b26, type: 2}
+  - item: {fileID: 11400000, guid: b2095a5985bd10d4a999421884647951, type: 2}
     chanceMultiplier: 2
     minAmount: 1
     maxAmount: 4
@@ -35,11 +35,6 @@ MonoBehaviour:
     quantityDecay: 0.5
   - item: {fileID: 11400000, guid: ed66dc35f6243564abdc4b8e1f6d709a, type: 2}
     chanceMultiplier: 0.53846157
-    minAmount: 1
-    maxAmount: 1
-    quantityDecay: 0.5
-  - item: {fileID: 11400000, guid: 5ea9867d21d111b4f8c7db62aa9f1eb8, type: 2}
-    chanceMultiplier: 0.2857143
     minAmount: 1
     maxAmount: 1
     quantityDecay: 0.5
