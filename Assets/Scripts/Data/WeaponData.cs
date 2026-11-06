@@ -49,6 +49,21 @@ public class WeaponData : ScriptableObject
     public bool CanUnlock => ItemUnlockProgress.CanUnlock(this, unlockItems);
     public bool TryUnlock() => ItemUnlockProgress.TryUnlock(this, unlockItems);
 
+#if HUNT_WITCH_DEMO
+    public static WeaponData CreateDemoStaff(WeaponData template)
+    {
+        var staff = Instantiate(template);
+        staff.name = "Demo One-Shot Staff";
+        staff.persistentId = "demo-one-shot-staff";
+        staff.weaponName = "Demo One-Shot Staff";
+        staff.description = "Demo only: defeats enemies and bosses in one hit.";
+        staff.damage = 1000000;
+        staff.damageMultiplier = 1f;
+        staff.unlockItems = new List<ItemRequirement>();
+        return staff;
+    }
+#endif
+
     // Public Getters
     public string WeaponName => weaponName;
     public string Description => description;
