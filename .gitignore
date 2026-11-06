@@ -15,7 +15,6 @@
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
-/[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 *.log
@@ -79,7 +78,12 @@ sysinfo.txt
 # Mono auto generated files
 mono_crash.*
 
-# Builds
+# Keep playable Windows builds in Git for submission.
+# Debug-only folders are not needed to run the game.
+/[Bb]uilds/**/*DoNotShip*/
+/[Bb]uilds/**/*ButDontShip*/
+
+# Other build packages
 *.apk
 *.aab
 *.unitypackage

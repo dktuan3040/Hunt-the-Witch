@@ -304,7 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EvilWitchSpreadFireball
   fireballPrefab: {fileID: 5488266359571220922, guid: 893213384b8b9dd43b7bce273c9282f7, type: 3}
   firePoint: {fileID: 2120623620002987858}
-  numberOfFireballs: 5
+  numberOfFireballs: 10
   spreadAngle: 70
   randomAngleJitter: 0
   projectileSpeed: 5.5
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpreadFireball
   fireBallPrefab: {fileID: 8473560615706035657, guid: 893213384b8b9dd43b7bce273c9282f7, type: 3}
-  numberOfFireBall: 10
+  numberOfFireBall: 15
   fireBallspeed: 4.5
   damage: 10
   projectileLifeTime: 2.6
@@ -358,7 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EvilWitchHomingFireball
   fireballPrefab: {fileID: 3431573040274847259, guid: d219d9d0bf8155047958751921c2fae8, type: 3}
   firePoint: {fileID: 2120623620002987858}
-  numberOfFireballs: 1
+  numberOfFireballs: 4
   delayBetweenShots: 0.4
   projectileSpeed: 3.4
   turnSpeed: 80
@@ -394,7 +394,7 @@ SortingGroup:
   m_GameObject: {fileID: 4082002277116581136}
   m_Enabled: 1
   m_SortingLayerID: -862230991
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
