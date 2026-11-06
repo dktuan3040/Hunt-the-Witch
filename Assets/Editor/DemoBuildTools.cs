@@ -27,7 +27,7 @@ public static class DemoBuildTools
         File.WriteAllText("Library/DemoBuildReport.json", "{\"status\":\"building\"}");
         try
         {
-            string folder = "Builds/Windows-Demo";
+            string folder = "Builds/Windows-Demo-OneShot";
             Directory.CreateDirectory(folder);
             var options = new BuildPlayerOptions {
                 scenes = new[] { "Assets/Scenes/MainMenu.unity", ExpeditionFlow.House,
@@ -58,3 +58,4 @@ public static class DemoBuildTools
         public int errors, warnings;
     }
 }
+

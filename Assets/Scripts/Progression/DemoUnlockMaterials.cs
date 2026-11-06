@@ -5,10 +5,21 @@ using System.Collections.Generic;
 public static class DemoUnlockMaterials
 {
 #if HUNT_WITCH_DEMO
+    private static bool staffInstalled;
+    [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetDemo() { staffInstalled = false; }
     [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void InitializeDemo()
     {
+        if (staffInstalled) return;
+        var catalog = GameContentCatalog.Instance;
+        if (catalog == null || catalog.weapons.Count == 0 || catalog.weapons[0] == null)
+            throw new InvalidOperationException("Demo staff template missing.");
+        var staff = WeaponData.CreateDemoStaff(catalog.weapons[0]);
+        catalog.weapons.Add(staff);
         var materials = GameProfile.Bank;
+        GameProfile.SelectWeapon(staff);
+        staffInstalled = true;
         UnityEngine.Debug.Log("Demo inventory ready: " + materials.Count + " material types.");
     }
 #endif
