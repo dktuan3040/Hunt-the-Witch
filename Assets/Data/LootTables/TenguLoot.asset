@@ -50,4 +50,4 @@ MonoBehaviour:
     quantityDecay: 0.35
   guaranteeAtLeastOne: 0
   scrollLoot: {fileID: 11400000, guid: f7d419fd06cf4bf44a32f52dd122a080, type: 2}
-  skillScrollChance: 0.1
+  skillScrollChance: 1

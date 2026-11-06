@@ -17,7 +17,12 @@ public static class GameProfile
     private static SaveData data;
     private static string testPath;
     private static bool writable=true;
-    public static string SavePath => string.IsNullOrEmpty(testPath)?Path.Combine(Application.persistentDataPath,"profile-v1.json"):testPath;
+#if HUNT_WITCH_DEMO
+    private const string ProfileFileName = "profile-demo-v1.json";
+#else
+    private const string ProfileFileName = "profile-v1.json";
+#endif
+    public static string SavePath => string.IsNullOrEmpty(testPath)?Path.Combine(Application.persistentDataPath,ProfileFileName):testPath;
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void Reset()
     {
@@ -48,7 +53,30 @@ public static class GameProfile
             if(!writable)Debug.LogError("Save could not be read. Original files have been kept at "+SavePath);
         }
         data.bank.RemoveAll(i=>i==null||string.IsNullOrWhiteSpace(i.id)||i.amount<=0);
+#if HUNT_WITCH_DEMO
+        EnsureDemoMaterials();
+#endif
     }
+#if UNITY_EDITOR || HUNT_WITCH_DEMO
+    // Restock only the dedicated demo profile; never unlock equipment automatically.
+    public static bool EnsureDemoMaterials()
+    {
+#if UNITY_EDITOR
+        if (string.IsNullOrEmpty(testPath))
+            throw new InvalidOperationException("Select a test profile before granting demo materials in the Editor.");
+#endif
+        Load();
+        var totals = DemoUnlockMaterials.RequiredTotals(GameContentCatalog.Instance);
+        bool changed = false;
+        foreach (var pair in totals)
+        {
+            int target = Math.Max(1000, pair.Value);
+            if (StoredCount(pair.Key) >= target) continue;
+            SetCount(pair.Key, target); changed = true;
+        }
+        return !changed || Save();
+    }
+#endif
     private static bool Save()
     {
         if(!writable)return false;
